@@ -3,7 +3,7 @@
   <div class="nav-bar">
     <div class="logo-box">
       <router-link to="/">
-        <img src="../assets/logo-small.jpg" alt="Logotipo" />
+        <img src="../assets/img/logo-small.jpg" alt="Logotipo" />
       </router-link>
       <p>CÁMBIALO</p>
     </div>

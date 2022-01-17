@@ -3,7 +3,7 @@
     <div class="mosaic-container">
       <img
         id="hash-logo"
-        src="../../assets/hero_banner.webp"
+        src="../../assets/img/hero_banner.webp"
         alt="#LoQueNoUsesCambialo"
       />
       <h1>
@@ -28,7 +28,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../assets/mosaic-image.webp');
+  background-image: url('../../assets/img/mosaic-image.webp');
   background-repeat: no-repeat;
   background-size: cover;
   padding: 2rem 0;
