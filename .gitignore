@@ -1,7 +1,14 @@
 .DS_Store
+.gitignore
 node_modules
 /dist
-
+dist-ssr
+*.local
+.eslintrc.js
+.browserslistrc
+package-lock.json
+package.json
+/public
 
 # local env files
 .env.local
