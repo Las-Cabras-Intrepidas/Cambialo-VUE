@@ -54,4 +54,5 @@ export default {
     transform: scale(1.3);
   }
 }
+
 </style>

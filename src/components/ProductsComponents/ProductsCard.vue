@@ -1,5 +1,4 @@
 <template>
-<h4>Our Products</h4>
   <div class="container">
     <div class="row-container">
     <div class="row" v-for="product in products" :key="product.id">
@@ -34,17 +33,16 @@ export default {
 }
 
 .row {
-  border: 2px solid grey;
-  border-radius: 8px;
-  box-shadow: 1px 1px 1px grey;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 7px 1px grey;
 }
 
 .row-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
 }
 
 img {
@@ -54,11 +52,17 @@ img {
 .availability {
   color: green;
   font-weight: 600;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+h4 {
+  margin: 2px;
 }
 
 p {
   font-size: 15px;
-  padding: 5px;
+  padding: 2px;
 }
 
 /* mediaqueries */
