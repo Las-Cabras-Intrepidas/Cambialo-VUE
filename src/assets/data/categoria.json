@@ -1,0 +1,20 @@
+[{
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504362/categorias/product1_tqljos.jpg",
+        "category": "Tecnologia"
+    },
+    {
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504362/categorias/product2_b2mcnu.jpg",
+        "category": "Hogar"
+    },{
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317660/cambialo/tecnologia-movil_j1tjqt.webp",
+        "category": "Mascotas"
+    },{
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product5_yidszn.jpg",
+        "category": "Juegos"
+    },{
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product4_mwucg6.jpg",
+        "category": "Ropa"
+    },{
+        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product6_dmzxyj.jpg",
+        "category": "Deporte"
+    }]
