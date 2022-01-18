@@ -30,11 +30,18 @@ export default {
   display: flex;
   height: 100%;
   width: 100%;
+  margin: 0 1rem;
 }
 
 .row {
-  border: 1px solid grey;
+  border: 3px solid grey;
+  border-radius: 8px;
+  max-width: 80%;
   box-shadow: 1px 1px 7px 1px grey;
+}
+
+.row:hover {
+  border: 4px solid #012bb3;
 }
 
 .row-container {
@@ -42,11 +49,11 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 15px;
-  grid-row-gap: 15px;
+  grid-row-gap: 25px;
 }
 
 img {
-  width: 200px;
+  max-width: 90%;
 }
 
 .availability {
