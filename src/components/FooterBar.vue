@@ -1,4 +1,5 @@
 <template>
+<footer class="footer-container">
   <nav class="link-container">
     <div class="desktop-bg">
       <ul class="footer-list">
@@ -7,10 +8,10 @@
           <!-- <a href="../views/Home.vue">INICIO</a> -->
         </li>
         <li class="footer-link">
-          <a href="product.html">PRODUCTOS</a>
+          <router-link to="/productos">PRODUCTOS</router-link>
         </li>
         <li class="footer-link">
-          <a href="#form">CONTACTO</a>
+          <router-link to="/contacto">CONTACTO</router-link>
         </li>
       </ul>
     </div>
@@ -53,11 +54,12 @@
   </nav>
   <div class="footer-flex">
     <a href="#">
-      <img class="logo" src="img/logotipo3.svg" width="25" height="25" alt="" />
+      <img class="logo" src="../assets/img/logos/logotipo3.png" width="25" height="25" alt="" />
     </a>
     <h4 class="footer-title">Cámbialo -</h4>
     <p class="footer-rights">Copyright © 2021, Cámbialo ©</p>
   </div>
+</footer>
 </template>
 
 <script>
@@ -65,91 +67,116 @@ export default {
   name: 'FooterBar'
 }
 </script>
+<style lang="scss" scoped>
 
-<style scoped>
-.link-container {
-  background-color: var(--action-color);
-  border-radius: 8px;
-  padding: 1rem;
-  width: 70%;
-  margin: 0 auto;
+:root {
+  --main-color: #012bb3;
+  --secondary-color: #c93042;
+  --terciary-color: #882f68;
+  --cute-color: #6277bb;
+  --placeholder-gray: #ccc;
+  --subtitle-color: #405161;
+  --action-color: #284ab6;
+  --title-font: "Poppins", sans-serif;
+  --text-font: "Poppins", sans-serif;
 }
 
-.footer-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer-flex a {
-  padding-left: 1rem;
-}
-
-.footer-title {
-  color: #fff;
-  font-family: var(--title-font);
-  margin-left: 1rem;
-}
-
-.footer-rights {
-  font-family: var(--text-font);
-  color: #fff;
-  margin-left: 0.5rem;
-  text-align: center;
-  font-size: 14px;
-}
-
-.icon-flex {
-  display: flex;
-  justify-content: center;
-}
-
-.footer-list {
-  list-style: none;
-  text-align: center;
-  font-family: var(--text-font);
+/* body {
   margin: 0;
-  padding: 0;
+} */
+
+a {
+  text-decoration: none;
+  color: #000;
 }
 
-.footer-link a {
-  color: #fff;
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 0.75rem;
+footer {
+  padding: 1rem;
+  background-color: var(--main-color);
 }
-
-.footer-flex a img {
-  width: 25px;
-  height: 25px;
-}
-
-.rrss-icon {
-  width: 5rem;
-  font-size: 2rem;
-}
-
-/* Media query */
-
-@media (min-width: 600px) {
-  .icon-flex {
-    display: block;
-  }
 
   .link-container {
+    background-color: var(--action-color);
+    border-radius: 8px;
+    padding: 1rem;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .footer-flex {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
   }
-}
 
-@media (min-width: 1000px) {
+  .footer-flex a {
+    padding-left: 1rem;
+  }
+
+  .footer-title {
+    color: #fff;
+    font-family: var(--title-font);
+    margin-left: 1rem;
+  }
+
+  .footer-rights {
+    font-family: var(--text-font);
+    color: #fff;
+    margin-left: 0.5rem;
+    text-align: center;
+    font-size: 14px;
+  }
+
   .icon-flex {
     display: flex;
+    justify-content: center;
   }
 
-  .link-container {
-    max-width: 60%;
+  .footer-list {
+    list-style: none;
+    text-align: center;
+    font-family: var(--text-font);
+    margin: 0;
+    padding: 0;
   }
-}
+
+  .footer-link a {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-flex a img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .rrss-icon {
+    width: 5rem;
+    font-size: 2rem;
+  }
+
+  /* Media query */
+  @media (min-width: 600px) {
+    .icon-flex {
+      display: block;
+    }
+
+    .link-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .icon-flex {
+      display: flex;
+    }
+
+    .link-container {
+      max-width: 60%;
+    }
+  }
 </style>
