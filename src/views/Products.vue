@@ -1,6 +1,6 @@
 <template>
-<CategoryComponent />
-<BannerComponent />
+  <CategoryComponent />
+  <BannerComponent />
   <ProductsCard />
   <LastBannerComponent />
 </template>
@@ -14,7 +14,10 @@ import LastBannerComponent from '../components/ProductsComponents/LastBannerComp
 export default {
   name: 'Products',
   components: {
-    ProductsCard, CategoryComponent, BannerComponent, LastBannerComponent
+    ProductsCard,
+    CategoryComponent,
+    BannerComponent,
+    LastBannerComponent
   }
 }
 </script>

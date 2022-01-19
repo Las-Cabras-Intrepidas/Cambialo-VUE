@@ -25,18 +25,18 @@
   <!-- Enlaces de navegacion-->
     <nav class="link-box" data-visible="false">
       <ul id="main-menu">
-          <li><router-link to="/">Inicio</router-link></li>
-          <li><router-link to="/">Productos</router-link></li>
-          <li><router-link to="/">Contacto</router-link></li>
+        <li><router-link to="/">Inicio</router-link></li>
+        <li><router-link to="/productos">Productos</router-link></li>
+        <li><router-link to="/contacto">Contacto</router-link></li>
       </ul>
     </nav>
   <!-- Botones Sign In -->
     <div id="botonesLogin" class="login-buttons">
       <button id="btnInicio">
-        <router-link to="/">Iniciar sesión</router-link>
+        <router-link to="/login">Iniciar sesión</router-link>
       </button>
       <button id="btnInicio">
-        <router-link to="/">Registrarse</router-link>
+        <router-link to="/login">Registrarse</router-link>
       </button>
     </div>
   </div>
