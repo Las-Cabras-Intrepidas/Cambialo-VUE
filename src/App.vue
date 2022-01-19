@@ -34,6 +34,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
   color: #000;

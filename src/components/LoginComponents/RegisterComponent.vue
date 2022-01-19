@@ -8,31 +8,48 @@
           <button id="loginButton2">Iniciar sesión</button>
         </div>
         <div class="signin-info">
-          <h3>¿Aún no tienes una cuenta?</h3>
-          <p>Regístrate para poder iniciar sesión</p>
-          <button id="registerButton2"><router-link to="/registrate">Registrarse</router-link>
-          </button>
+          <h3>¿Ya tienes una cuenta?</h3>
+          <p>Iniciar sesión para entrar en la página</p>
+          <button id="loginButton2"> <router-link to="/login">Iniciar sesión</router-link></button>
         </div>
       </div>
 
-      <!--Formulario de Login-->
+      <!--Formulario de Registro-->
       <div class="front-box">
-        <form action="#" id="formLogin" method="GET" class="formulario__login">
-          <h2>Iniciar sesión</h2>
+        <form
+          action="#"
+          id="formRegister"
+          method="GET"
+          class="formulario__register"
+        >
+          <h2>Registrarse</h2>
           <input
-            id="userLogin"
+            id="nameUser"
+            type="text"
+            placeholder="Nombre completo"
+            required
+          />
+          <input
+            id="user"
             type="text"
             placeholder="Nombre de usuario"
             required
           />
-          <input
-            id="pswLogin"
-            type="password"
-            placeholder="Contraseña"
-            required
-          />
-          <button id="loginButton" style="background-color: var(--main-color)">
-            Iniciar sesión
+          <input id="psw" type="password" placeholder="Contraseña" required />
+
+          <div class="check-container">
+            <input id="checkTerms" type="checkbox" required />
+            <span
+              >Estoy de acuerdo con los<a
+                href="./terms-conditions.html"
+                target="_blank"
+                >términos y condiciones</a
+              >.</span
+            >
+          </div>
+          <br />
+          <button id="registerButton" style="background-color: var(--main-color)">
+            Registrarse
           </button>
         </form>
       </div>
@@ -42,7 +59,7 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Register'
 }
 
 </script>
@@ -91,14 +108,14 @@ export default {
       color: #fff;
       outline: none;
 
-      a{
+      a {
         color: #fff;
       }
     }
 
     button:hover {
       background: #fff;
-      a{
+      a {
         color: var(--main-color);
       }
     }
