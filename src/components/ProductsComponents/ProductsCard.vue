@@ -41,7 +41,7 @@ export default {
 }
 
 .row:hover {
-  border: 4px solid #012bb3;
+  border: 3px solid #012bb3;
 }
 
 .row-container {

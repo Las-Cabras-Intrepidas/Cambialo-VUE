@@ -1,0 +1,65 @@
+[{
+  "title": "iPhone 11",
+  "available": true,
+  "description": "iPhone 11 de 64gb negro tiene 3 fundas, con su factura y garantía, está nuevo pero me gusta más Android",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317660/cambialo/tecnologia-movil_j1tjqt.webp",
+  "suNumero": true,
+  "category": "Tecnologia"
+},
+{
+  "title": "Portatil AAA",
+  "available": true,
+  "description": "Portatil traído de China, no tiene garantía, es un Intel Celerón así que ningún problema de velocidad.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317660/cambialo/tecnologia-pc_yfyzke.jpg",
+  "suNumero": true,
+  "category": "Tecnologia"
+},
+{
+  "title": "Nintendo Switch",
+  "available": true,
+  "description": "Se la regalé a mi novia porque 'iba a jugar mucho' y la tengo aquí cogiendo polvo, te regalo 5 juegos también.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317660/cambialo/tecnologia-switch_mmmmif.webp",
+  "suNumero": true,
+  "category": "Tecnologia"
+},
+{
+  "title": "Lámpara bien moderna",
+  "available": true,
+  "description": "Lámpara moderna, viene con el sombrero y las gafas. Tiene una pata un poco coja, pero cumple su función.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317659/cambialo/hogar-lamp_ccqizn.webp",
+  "suNumero": true,
+  "category": "Hogar"
+},
+{
+  "title": "Juguete de Gato",
+  "available": true,
+  "description": "Juguete grande. Ocupa la mitad de mi salón y por eso tengo que quitarlo. Cumple su función y al gato le gusta.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317659/cambialo/mascotas-cattoy_sbtcly.webp",
+  "suNumero": true,
+  "category": "Mascotas"
+},
+{
+  "title": "Monopoly clásico",
+  "available": true,
+  "description": "Lo cambio por no poder jugar, mi familia me roba el dinero cuando no estoy atento. Como nuevo, con todas sus piezas.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317659/cambialo/juego-monopoly_nr01um.jpg",
+  "suNumero": true,
+  "category": "Juegos"
+},
+{
+  "title": "Camisa blanca de Zara",
+  "available": true,
+  "description": "Talla M, tiene la etiqueta y todo. Me lo regalaron de cumpleaños pero me queda pequeña. La envío con la bolsa que me dieron también.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317661/cambialo/ropa-camisa_ahwath.jpg",
+  "suNumero": true,
+  "category": "Ropa"
+},
+{
+  "title": "Esquíes",
+  "available": true,
+  "description": "Los cambio por no uso, la única vez que los utilice fue con Filomena, la mejor experiencia en Madrid de mi vida.",
+  "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1641317660/cambialo/deporte-eski_f2late.jpg",
+  "suNumero": true,
+  "category": "Deporte"
+}
+]
