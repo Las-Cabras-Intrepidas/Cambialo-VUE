@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row-container">
-    <div class="row" v-for="product in products" :key="product.id">
+    <div class="row" v-for="product in products" :key="product.id" :id="product.category">
       <img :src="product.picture" :alt="product.title" />
       <h4>{{ product.title }}</h4>
       <p class="availability">{{ product.available ? "Disponible" :  "No Disponible"}}</p>
