@@ -5,7 +5,6 @@
       <ul class="footer-list">
         <li class="footer-link">
           <router-link to="/">INICIO</router-link>
-          <!-- <a href="../views/Home.vue">INICIO</a> -->
         </li>
         <li class="footer-link">
           <router-link to="/productos">PRODUCTOS</router-link>
@@ -19,21 +18,19 @@
     <div class="desktop-bg">
       <ul class="footer-list icon-flex">
         <li class="footer-link">
-          <a
-            href="https://www.facebook.com/Cambialocom-111304798084313/"
-            target="_blank"
-            ><i class="rrss-icon fab fa-facebook-square"></i
-          ></a>
+          <a href="https://www.facebook.com/Cambialocom-111304798084313/" target="_blank">
+            <i class="rrss-icon fab fa-facebook-square"></i>
+          </a>
         </li>
         <li class="footer-link">
-          <a href="https://www.instagram.com/cambialo_es/" target="_blank"
-            ><i class="rrss-icon fab fa-instagram"></i
-          ></a>
+          <a href="https://www.instagram.com/cambialo_es/" target="_blank">
+            <i class="rrss-icon fab fa-instagram"></i>
+          </a>
         </li>
         <li class="footer-link">
-          <a href="https://twitter.com/CambialoES" target="_blank"
-            ><i class="rrss-icon fab fa-twitter-square"></i
-          ></a>
+          <a href="https://twitter.com/CambialoES" target="_blank">
+            <i class="rrss-icon fab fa-twitter-square"></i>
+          </a>
         </li>
       </ul>
     </div>
@@ -44,10 +41,10 @@
           <a href="mailto:info@cambialo.es">SOPORTE</a>
         </li>
         <li class="footer-link">
-          <a href="terms-conditions.html">AVISO LEGAL</a>
+          <a href="https://las-cabras-intrepidas.github.io/cambialo/terms-conditions.html" target="_blank">AVISO LEGAL</a>
         </li>
         <li class="footer-link">
-          <a href="#">CONOCENOS</a>
+          <a href="https://las-cabras-intrepidas.github.io/cambialo/" target="_blank">CONÓCENOS</a>
         </li>
       </ul>
     </div>
