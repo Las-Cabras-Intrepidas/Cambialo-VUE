@@ -5,14 +5,9 @@
   <ValuesBanner />
   <ProductsSection />
   <SecondBanner />
-  <!-- <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>-->
 </template>
 
 <script>
-// @ is an alias to /src
 import HeroBanner from '../components/HomeComponents/HeroBanner.vue'
 import SloganBanner from '../components/HomeComponents/SloganBanner.vue'
 import CategoriesBanner from '../components/HomeComponents/CategoriesBanner.vue'

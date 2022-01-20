@@ -1,6 +1,6 @@
 <template>
   <!-- Logo -->
-  <div class="nav-bar">
+  <nav class="nav-bar">
     <div class="logo-box">
       <router-link to="/">
         <img src="../assets/img/logo-small.jpg" alt="Logotipo" />
@@ -17,24 +17,36 @@
       </div>
     </div>-->
     <div>
-      <!-- Botnon Menu hamburguesa -->
-      <button class="mobile-nav-toggle" aria-controls="main-menu" aria-expanded="false">
+      <!-- Enlaces de navegacion-->
+      <ul v-show="!mobile" class="window-navigation" id="main-menu">
+        <li>
+          <router-link to="/">Inicio</router-link>
+        </li>
+        <li>
+          <router-link to="/productos">Productos</router-link>
+        </li>
+        <li>
+          <router-link to="/contacto">Contacto</router-link>
+        </li>
+      </ul>
+
+      <!-- Boton Menu hamburguesa -->
+      <button @click="toggleMobileNav" v-show="mobile" class="mobile-nav-toggle" :class='{"icon-active": mobileNav}' >
         <span class="sr-only">Menu</span>
       </button>
-      <!-- Enlaces de navegacion-->
-      <nav class="link-box" data-visible="false">
-        <ul id="main-menu">
-          <li>
-            <router-link to="/">Inicio</router-link>
-          </li>
-          <li>
-            <router-link to="/productos">Productos</router-link>
-          </li>
-          <li>
-            <router-link to="/contacto">Contacto</router-link>
-          </li>
-        </ul>
-      </nav>
+
+      <!-- Enlaces de navegacion hamburguesa-->
+      <ul v-show="mobileNav" class="mobile-navigation" id="main-menu">
+        <li>
+          <router-link to="/">Inicio</router-link>
+        </li>
+        <li>
+          <router-link to="/productos">Productos</router-link>
+        </li>
+        <li>
+          <router-link to="/contacto">Contacto</router-link>
+        </li>
+      </ul>
       <!-- Botones Sign In -->
       <div id="botonesLogin" class="login-buttons">
         <button id="btnInicio">
@@ -45,12 +57,36 @@
         </button>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  data () {
+    return {
+      mobile: true,
+      mobileNav: false,
+      windowWidth: null
+    }
+  },
+  created () {
+    window.addEventListener()
+  },
+  methods: {
+    toggleMobileNav () {
+      this.mobileNav = !this.mobileNav
+    },
+    checkScreen () {
+      this.windowWidth = window.innerWidth
+      if (this.windowWidth <= 750) {
+        this.mobile = true
+      }
+      this.mobile = false
+      this.mobileNav = false
+    }
+
+  }
 }
 
 </script>
@@ -163,7 +199,7 @@ export default {
   }
 }
 
-.link-box {
+.mobile-navigation {
   display: flex;
   align-items: center;
 
@@ -232,71 +268,70 @@ export default {
   width: 90px;
 }
 
-@media (max-width: 900px) {
-  .login-buttons {
-    button {
-      display: none;
-    }
-  }
+// @media (max-width: 900px) {
+//   .login-buttons {
+//     button {
+//       display: none;
+//     }
+//   }
 
-  .link-box {
-    position: fixed;
-    inset: 0 0 0 35%;
-    background: #d9dee8f2;
-    display: block;
-    padding: 5rem 2rem;
-    gap: 2em;
-    transform: translateX(100%);
-    transition: transform 0ms ease-out; /*Quitado el tiempo de animación porque da fallos al redimensionar. Antes era 350ms*/
-  }
-  /* Sería interesante tener la función de "transtion:transform: ;" por medio de "onclick" en JS, ya que si lo tenemos así
-  al redimensionar la pantalla salta la animación sola. */
+//   .mobile-navigation {
+//     position: fixed;
+//     inset: 0 0 0 35%;
+//     background: #d9dee8f2;
+//     display: block;
+//     padding: 5rem 2rem;
+//     gap: 2em;
+//     transition: transform 0ms ease-out; /*Quitado el tiempo de animación porque da fallos al redimensionar. Antes era 350ms*/
+//   }
+//   /* Sería interesante tener la función de "transtion:transform: ;" por medio de "onclick" en JS, ya que si lo tenemos así
+//   al redimensionar la pantalla salta la animación sola. */
 
-  @supports (backdrop-filter: blur(1rem)) {
-    .link-box {
-      background: rgba(81, 117, 181, 0.1);
-      backdrop-filter: blur(1rem);
-    }
-  }
+//   @supports (backdrop-filter: blur(1rem)) {
+//     .mobile-navigation {
+//       background: #5175b51a;
+//       backdrop-filter: blur(1rem);
+//     }
+//   }
 
-  .link-box[data-visible="true"] {
-    transform: translateX(0%);
-  }
+//   #main-menu {
+//     flex-direction: column;
+//     align-items: flex-start;
+//     padding: 1rem;
+//     text-transform: uppercase;
 
-  .main-menu {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    text-transform: uppercase;
-  }
+//     li {
+//       margin-bottom: 2rem;
+//       width: 60%;
+//       line-height: 3rem;
+//       font-size: 1.125rem;
+//     }
 
-  .menu-item {
-    margin-bottom: 2rem;
-    width: 60%;
-    line-height: 3rem;
-    font-size: 1.125rem;
-  }
+//     li + li {
+//       margin-left: 0;
+//     }
+//   }
 
-  header .styless-btn {
-    display: none;
-  }
+//   header .styless-btn {
+//     display: none;
+//   }
 
-  .mobile-nav-toggle {
-    position: absolute;
-    background: url();
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 2rem;
-    aspect-ratio: 1;
-    top: 1rem;
-    right: 1.5rem;
-    z-index: 50;
-    border: none;
-    display: block;
-  }
+//   .mobile-nav-toggle {
+//     position: absolute;
+//     background: url(../assets/img/square.png);
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     width: 2rem;
+//     aspect-ratio: 1;
+//     top: 1rem;
+//     right: 1.5rem;
+//     z-index: 50;
+//     border: none;
+//     display: block;
+//   }
 
-  .mobile-nav-toggle[aria-expanded="true"] {
-    background-image: url();
-  }
-}
+//   .icon-active {
+//     background-image: url(../assets/img/cancel.png);
+//   }
+// }
 </style>
