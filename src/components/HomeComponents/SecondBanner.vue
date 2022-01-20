@@ -1,12 +1,12 @@
 <template>
-      <div class="banner-trading">
-        <img
-          class="img-banner-product"
-          src="../../assets/img/Trading.jpg"
-          alt="imagen muchos articulos"
-        />
-        <img class="img-slogan" src="../../assets/img/hero_banner.webp" />
-      </div>
+  <div class="banner-trading">
+    <img
+      class="img-banner-product"
+      src="../../assets/img/Trading2.jpg"
+      alt="imagen muchos articulos"
+    />
+    <img class="img-slogan" src="../../assets/img/hero_banner.webp" />
+  </div>
 </template>
 
 <script>
@@ -23,14 +23,14 @@ export default {
 }
 
 .img-banner-product {
-max-width: 100%;
-margin: 2rem 0;
-opacity: 0.8;
+  height: 450px;
+  width: 100%;
+  margin: 2rem 0;
+  opacity: 0.8;
 }
 
 .img-slogan {
   position: absolute;
-  width: 70%;
+  width: 80%;
 }
-
 </style>

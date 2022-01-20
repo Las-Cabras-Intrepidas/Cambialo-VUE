@@ -1,11 +1,9 @@
 <template>
-
   <NavBar />
 
-  <router-view/>
+  <router-view />
 
   <FooterBar />
-
 </template>
 
 <script>
@@ -22,7 +20,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 :root {
   --main-color: #012bb3;
   --placeholder-gray: #cccaca;

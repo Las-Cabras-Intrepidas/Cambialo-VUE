@@ -31,7 +31,12 @@
       </ul>
 
       <!-- Boton Menu hamburguesa -->
-      <button @click="toggleMobileNav" v-show="mobile" class="mobile-nav-toggle" :class='{"icon-active": mobileNav}' >
+      <button
+        @click="toggleMobileNav"
+        v-show="mobile"
+        class="mobile-nav-toggle"
+        :class="{ 'icon-active': mobileNav }"
+      >
         <span class="sr-only">Menu</span>
       </button>
 
@@ -61,23 +66,23 @@
 </template>
 
 <script>
+/* eslint-disable space-before-function-paren */
 export default {
   name: 'NavBar',
-  data () {
+  data() {
     return {
       mobile: true,
       mobileNav: false,
       windowWidth: null
     }
   },
-  created () {
-    window.addEventListener()
+  created() {
   },
   methods: {
-    toggleMobileNav () {
+    toggleMobileNav() {
       this.mobileNav = !this.mobileNav
     },
-    checkScreen () {
+    checkScreen() {
       this.windowWidth = window.innerWidth
       if (this.windowWidth <= 750) {
         this.mobile = true
