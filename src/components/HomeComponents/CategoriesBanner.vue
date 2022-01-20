@@ -1,28 +1,28 @@
 <template>
   <div class="category-container">
     <div>
-        <i class="fas fa-tshirt"></i>
-        <p>Ropa</p>
+      <font-awesome-icon icon="tshirt" />
+      <p>Ropa</p>
     </div>
     <div>
-        <i class="fas fa-gamepad"></i>
-        <p>Juegos</p>
+      <font-awesome-icon icon="gamepad" />
+      <p>Juegos</p>
     </div>
     <div>
-        <i class="fas fa-paw"></i>
-        <p>Mascotas</p>
+      <font-awesome-icon icon="paw" />
+      <p>Mascotas</p>
     </div>
     <div>
-        <i class="fas fa-tv"></i>
-        <p>Consolas</p>
+      <font-awesome-icon icon="tv" />
+      <p>Consolas</p>
     </div>
     <div>
-        <i class="fas fa-car"></i>
-        <p>Coches</p>
+      <font-awesome-icon icon="car" />
+      <p>Coches</p>
     </div>
     <div>
-        <i class="fas fa-bowling-ball"></i>
-        <p>Deportes</p>
+      <font-awesome-icon icon="bowling-ball" />
+      <p>Deportes</p>
     </div>
   </div>
 </template>
@@ -34,7 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+svg {
+  font-size: 40px;
+}
 .category-container {
   display: flex;
   flex-wrap: wrap;
@@ -54,7 +56,7 @@ export default {
     }
 
     p {
-      font-size: 18px;
+      font-size: 20px;
       font-family: var(--text);
       margin-top: 1rem;
     }

@@ -1,16 +1,10 @@
 <template>
   <section class="mosaic-section">
     <div class="mosaic-container">
-      <img
-        id="hash-logo"
-        src="../../assets/img/hero_banner.webp"
-        alt="#LoQueNoUsesCambialo"
-      />
-      <h1>
-        Conecta con otros usuarios y dale otra vida a lo que ya no usas.
-      </h1>
-      <button id="btnBorrar1" >
-        <a href="login-register.html">Empieza aquí</a>
+      <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="#LoQueNoUsesCambialo" />
+      <h1>Conecta con otros usuarios y dale otra vida a lo que ya no usas.</h1>
+      <button id="btnBorrar1">
+        <router-link to="/registrate">Empieza aquí</router-link>
       </button>
     </div>
   </section>
@@ -23,12 +17,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .mosaic-section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../../assets/img/mosaic-image.webp');
+  background-image: url("../../assets/img/mosaic-image.webp");
   background-repeat: no-repeat;
   background-size: cover;
   padding: 2rem 0;
@@ -69,6 +62,10 @@ export default {
     transition: all 300ms;
     margin-right: 0.5rem;
     margin-bottom: 1.5rem;
+
+    a {
+      color: var(--main-color);
+    }
   }
 
   button:hover {

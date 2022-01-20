@@ -7,37 +7,43 @@
       </router-link>
       <p>CÁMBIALO</p>
     </div>
-  <!-- Barra de busqueda -->
-    <div class="search-bar">
+    <!-- Barra de busqueda -->
+    <!-- <div class="search-bar">
       <div class="inner-container">
-        <input
-          type="search"
-          id="search"
-          placeholder="Busca en todas las categorías ..."
-          />
-        <button class="icon"><i class="fa fa-search"></i></button>
+        <input type="search" id="search" placeholder="Busca en todas las categorías ..." />
+        <button class="icon">
+          <i class="fa fa-search"></i>
+        </button>
       </div>
-    </div>
-  <!-- Botnon Menu hamburguesa -->
-    <button class="mobile-nav-toggle" aria-controls="main-menu" aria-expanded="false">
-      <span class="sr-only">Menu</span>
-    </button>
-  <!-- Enlaces de navegacion-->
-    <nav class="link-box" data-visible="false">
-      <ul id="main-menu">
-        <li><router-link to="/">Inicio</router-link></li>
-        <li><router-link to="/productos">Productos</router-link></li>
-        <li><router-link to="/contacto">Contacto</router-link></li>
-      </ul>
-    </nav>
-  <!-- Botones Sign In -->
-    <div id="botonesLogin" class="login-buttons">
-      <button id="btnInicio">
-        <router-link to="/login">Iniciar sesión</router-link>
+    </div>-->
+    <div>
+      <!-- Botnon Menu hamburguesa -->
+      <button class="mobile-nav-toggle" aria-controls="main-menu" aria-expanded="false">
+        <span class="sr-only">Menu</span>
       </button>
-      <button id="btnInicio">
-        <router-link to="/login">Registrarse</router-link>
-      </button>
+      <!-- Enlaces de navegacion-->
+      <nav class="link-box" data-visible="false">
+        <ul id="main-menu">
+          <li>
+            <router-link to="/">Inicio</router-link>
+          </li>
+          <li>
+            <router-link to="/productos">Productos</router-link>
+          </li>
+          <li>
+            <router-link to="/contacto">Contacto</router-link>
+          </li>
+        </ul>
+      </nav>
+      <!-- Botones Sign In -->
+      <div id="botonesLogin" class="login-buttons">
+        <button id="btnInicio">
+          <router-link to="/login">Iniciar sesión</router-link>
+        </button>
+        <button id="btnInicio">
+          <router-link to="/registrate">Registrarse</router-link>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -50,7 +56,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .nav-bar {
   position: sticky;
   background-color: #fff;
@@ -64,10 +69,18 @@ export default {
   border-bottom: 2px solid var(--shadow-color);
   box-shadow: 0px 18px 15px -10px var(--shadow-color);
   z-index: 10;
+
+  div {
+    display: flex;
+    align-items: center;
+
+    nav {
+      margin-right: 1rem;
+    }
+  }
 }
 
 .logo-box {
-
   display: flex;
 
   img {
@@ -135,7 +148,9 @@ export default {
     }
   }
 
-  .inner-container:hover, .inner-container:active, .inner-container:focus {
+  .inner-container:hover,
+  .inner-container:active,
+  .inner-container:focus {
     button {
       outline: none;
       opacity: 1;
@@ -177,7 +192,6 @@ export default {
 }
 
 .login-buttons {
-
   button {
     padding: 8px 20px;
     border-radius: 30px;
@@ -218,4 +232,71 @@ export default {
   width: 90px;
 }
 
+@media (max-width: 900px) {
+  .login-buttons {
+    button {
+      display: none;
+    }
+  }
+
+  .link-box {
+    position: fixed;
+    inset: 0 0 0 35%;
+    background: #d9dee8f2;
+    display: block;
+    padding: 5rem 2rem;
+    gap: 2em;
+    transform: translateX(100%);
+    transition: transform 0ms ease-out; /*Quitado el tiempo de animación porque da fallos al redimensionar. Antes era 350ms*/
+  }
+  /* Sería interesante tener la función de "transtion:transform: ;" por medio de "onclick" en JS, ya que si lo tenemos así
+  al redimensionar la pantalla salta la animación sola. */
+
+  @supports (backdrop-filter: blur(1rem)) {
+    .link-box {
+      background: rgba(81, 117, 181, 0.1);
+      backdrop-filter: blur(1rem);
+    }
+  }
+
+  .link-box[data-visible="true"] {
+    transform: translateX(0%);
+  }
+
+  .main-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+
+  .menu-item {
+    margin-bottom: 2rem;
+    width: 60%;
+    line-height: 3rem;
+    font-size: 1.125rem;
+  }
+
+  header .styless-btn {
+    display: none;
+  }
+
+  .mobile-nav-toggle {
+    position: absolute;
+    background: url();
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 2rem;
+    aspect-ratio: 1;
+    top: 1rem;
+    right: 1.5rem;
+    z-index: 50;
+    border: none;
+    display: block;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url();
+  }
+}
 </style>

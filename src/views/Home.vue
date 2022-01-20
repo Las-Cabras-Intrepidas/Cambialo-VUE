@@ -4,10 +4,11 @@
   <CategoriesBanner />
   <ValuesBanner />
   <ProductsSection />
+  <SecondBanner />
   <!-- <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div> -->
+  </div>-->
 </template>
 
 <script>
@@ -17,11 +18,12 @@ import SloganBanner from '../components/HomeComponents/SloganBanner.vue'
 import CategoriesBanner from '../components/HomeComponents/CategoriesBanner.vue'
 import ValuesBanner from '../components/HomeComponents/ValuesBanner.vue'
 import ProductsSection from '../components/HomeComponents/ProductsSection.vue'
+import SecondBanner from '../components/HomeComponents/SecondBanner.vue'
 
 export default {
   name: 'Home',
   components: {
-    HeroBanner, SloganBanner, CategoriesBanner, ValuesBanner, ProductsSection
+    HeroBanner, SloganBanner, CategoriesBanner, ValuesBanner, ProductsSection, SecondBanner
   }
 }
 </script>

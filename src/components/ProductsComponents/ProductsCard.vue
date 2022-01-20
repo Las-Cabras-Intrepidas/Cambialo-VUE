@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="row-container">
-    <div class="row" v-for="product in products" :key="product.id" :id="product.category">
-      <img :src="product.picture" :alt="product.title" />
-      <h4>{{ product.title }}</h4>
-      <p class="availability">{{ product.available ? "Disponible" :  "No Disponible"}}</p>
-      <p>{{ product.description }}</p>
+      <div class="row" v-for="product in products" :key="product.id" :id="product.category">
+        <img :src="product.picture" :alt="product.title" />
+        <h4>{{ product.title }}</h4>
+        <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
+        <p>{{ product.description }}</p>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ import products from '../../assets/data/producto.json'
 
 export default {
   name: 'ProductsCard',
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       products: products
     }
@@ -24,8 +25,7 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 .container {
   display: flex;
   height: 100%;
@@ -35,13 +35,21 @@ export default {
 
 .row {
   border: 3px solid grey;
-  border-radius: 8px;
   max-width: 80%;
-  box-shadow: 1px 1px 7px 1px grey;
+  box-shadow: 1px 1px 4px 1px #cfcfcf;
+  border: 2px solid #afafaf;
+  margin-top: -3px;
+  margin-left: -3px;
+
+  img {
+    width: 100%;
+  }
 }
 
 .row:hover {
-  border: 3px solid #012bb3;
+  border: 2px solid var(--main-color);
+  margin-top: -3px;
+  margin-left: -3px;
 }
 
 .row-container {
@@ -59,8 +67,8 @@ img {
 .availability {
   color: green;
   font-weight: 600;
-    border-top: 1px solid grey;
-    border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
 
 h4 {
@@ -75,7 +83,7 @@ p {
 /* mediaqueries */
 @media (min-width: 350px) and (max-width: 600px) {
   .row-container {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 </style>
