@@ -164,6 +164,10 @@ ul {
   }
 }
 
+.desktop-bar {
+  justify-content: space-between;
+}
+
 .desktop-search {
   width: 33%;
 }
@@ -260,12 +264,6 @@ ul {
     border-bottom: 3px solid var(--main-color);
     transition: all 300ms;
   }
-}
-
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .mobile-navigation {
@@ -392,6 +390,23 @@ ul {
 
   #btnInicio {
     white-space:nowrap;
+  }
+}
+
+@media (min-width: 1350px) {
+  .desktop-bar {
+    max-width: 90%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 1560px) {
+  .desktop-bar {
+    max-width: 85%;
+  }
+
+  .search-container {
+    width: 40%;
   }
 }
 
