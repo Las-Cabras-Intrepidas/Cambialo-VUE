@@ -260,6 +260,10 @@ ul {
     margin-right: 1rem;
   }
 
+  a {
+    border-bottom: 3px solid transparent;
+  }
+
   a:hover {
     border-bottom: 3px solid var(--main-color);
     transition: all 300ms;
