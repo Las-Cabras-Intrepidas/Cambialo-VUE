@@ -16,51 +16,60 @@
         </button>
       </div>
     </div>-->
-    <div>
+    <div >
       <!-- Enlaces de navegacion-->
-      <ul v-show="!mobile" class="window-navigation" id="main-menu">
-        <li>
-          <router-link to="/">Inicio</router-link>
-        </li>
-        <li>
-          <router-link to="/productos">Productos</router-link>
-        </li>
-        <li>
-          <router-link to="/contacto">Contacto</router-link>
-        </li>
-      </ul>
-
-      <!-- Boton Menu hamburguesa -->
-      <button
-        @click="toggleMobileNav"
-        v-show="mobile"
-        class="mobile-nav-toggle"
-        :class="{ 'icon-active': mobileNav }"
-      >
-        <span class="sr-only">Menu</span>
-      </button>
+      <div v-if="!mobile" class="flex">
+        <ul class="nav-list window-navigation">
+          <li>
+            <router-link to="/">Inicio</router-link>
+          </li>
+          <li>
+            <router-link to="/productos">Productos</router-link>
+          </li>
+          <li>
+            <router-link to="/contacto">Contacto</router-link>
+          </li>
+        </ul>
+        <!-- Botones Sign In -->
+        <div v-show="!mobile" id="botonesLogin" class="login-buttons">
+          <button id="btnInicio">
+            <router-link to="/login">Iniciar sesión</router-link>
+          </button>
+          <button id="btnInicio">
+            <router-link to="/registrate">Registrarse</router-link>
+          </button>
+        </div>
+      </div>
 
       <!-- Enlaces de navegacion hamburguesa-->
-      <ul v-show="mobileNav" class="mobile-navigation" id="main-menu">
-        <li>
-          <router-link to="/">Inicio</router-link>
-        </li>
-        <li>
-          <router-link to="/productos">Productos</router-link>
-        </li>
-        <li>
-          <router-link to="/contacto">Contacto</router-link>
-        </li>
-      </ul>
-      <!-- Botones Sign In -->
-      <div id="botonesLogin" class="login-buttons">
-        <button id="btnInicio">
-          <router-link to="/login">Iniciar sesión</router-link>
-        </button>
-        <button id="btnInicio">
-          <router-link to="/registrate">Registrarse</router-link>
-        </button>
-      </div>
+      <transition v-else name="mobile-nav">
+        <div v-show="mobileNav" class="nav-list mobile-navigation">
+          <ul>
+            <li>
+              <router-link to="/">Inicio</router-link>
+            </li>
+            <li>
+              <router-link to="/productos">Productos</router-link>
+            </li>
+            <li>
+              <router-link to="/contacto">Contacto</router-link>
+            </li>
+          </ul>
+          <div id="botonesLogin" class="login-buttons">
+            <button id="btnInicio">
+              <router-link to="/login">Iniciar sesión</router-link>
+            </button>
+            <button id="btnInicio">
+              <router-link to="/registrate">Registrarse</router-link>
+            </button>
+          </div>
+        </div>
+      </transition>
+
+      <!-- Boton Menu hamburguesa -->
+      <button @click="toggleMobileNav" v-show="mobile" class="mobile-nav-toggle" :class="{ 'icon-active': mobileNav }">
+        <span class="sr-only">Menu</span>
+      </button>
     </div>
   </nav>
 </template>
@@ -71,32 +80,39 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      mobile: true,
-      mobileNav: false,
+      mobile: null,
+      mobileNav: null,
       windowWidth: null
     }
   },
   created() {
+    window.addEventListener('resize', this.checkScreen)
+    this.checkScreen()
   },
   methods: {
-    toggleMobileNav() {
+    toggleMobileNav () {
       this.mobileNav = !this.mobileNav
     },
     checkScreen() {
       this.windowWidth = window.innerWidth
       if (this.windowWidth <= 750) {
         this.mobile = true
+      } else {
+        this.mobile = false
+        this.mobileNav = false
       }
-      this.mobile = false
-      this.mobileNav = false
     }
-
   }
 }
 
 </script>
 
 <style lang="scss" scoped>
+
+ul {
+  padding: 0;
+}
+
 .nav-bar {
   position: sticky;
   background-color: #fff;
@@ -110,19 +126,20 @@ export default {
   border-bottom: 2px solid var(--shadow-color);
   box-shadow: 0px 18px 15px -10px var(--shadow-color);
   z-index: 10;
+  padding: 0;
 
-  div {
-    display: flex;
-    align-items: center;
+  a {
+    display: inline-block;
+  }
 
-    nav {
-      margin-right: 1rem;
-    }
+  nav {
+    margin-right: 1rem;
   }
 }
 
 .logo-box {
   display: flex;
+  align-items: center;
 
   img {
     width: 4rem;
@@ -168,8 +185,6 @@ export default {
     button {
       -webkit-border-top-right-radius: 25px;
       -webkit-border-bottom-right-radius: 25px;
-      -moz-border-radius-topright: 25px;
-      -moz-border-radius-bottomright: 25px;
       border-top-right-radius: 25px;
       border-bottom-right-radius: 25px;
 
@@ -204,7 +219,53 @@ export default {
   }
 }
 
+.nav-list {
+  li {
+    font-weight: 600;
+    color: #000;
+    font-size: 1.125rem;
+    list-style: none;
+    margin-right: 1rem;
+  }
+
+  a:hover {
+    border-bottom: 3px solid var(--main-color);
+    transition: all 300ms;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mobile-navigation {
+  position: fixed;
+  inset: 0 0 0 35%;
+  background: #d7e4f0f8;
+  display: block;
+  padding: 5rem 2rem;
+  gap: 2em;
+  transition: all 300ms;
+
+  @supports (backdrop-filter: blur(1rem)) {
+    .link-box {
+      background: #5175b51a;
+        backdrop-filter: blur(1rem);
+      }
+   }
+
+  li {
+    margin-bottom: 2.5rem;
+  }
+
+  button {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.window-navigation {
   display: flex;
   align-items: center;
 
@@ -213,42 +274,33 @@ export default {
     justify-content: center;
     align-items: center;
     list-style: none;
-    padding: 0;
-  }
-
-  li {
-    font-weight: 600;
-    color: #000;
-    font-size: 1.125rem;
-  }
-
-  li + li {
-    margin-left: 1rem;
-  }
-
-  li:hover {
-    border-bottom: 3px solid var(--main-color);
-    transition: all 200ms;
   }
 }
 
 .login-buttons {
   button {
-    padding: 8px 20px;
+    padding: 11px 20px;
+    padding-top: 11px;
     border-radius: 30px;
     font-size: 16px;
-    background-color: #fff;
+    font-weight: 600;
+    background-color: #ffffffe1;
     color: var(--main-color);
     border: 2px solid var(--main-color);
     text-decoration: none;
     transition: all 300ms;
     margin-right: 0.5rem;
+
+    a {
+      color: var(--main-color);
+    }
   }
 
   button:hover {
     color: #fff;
     background-color: var(--main-color);
     text-decoration: none;
+    cursor: pointer;
 
     a {
       color: #fff;
@@ -256,9 +308,41 @@ export default {
   }
 }
 
-.mobile-nav-toggle {
-  display: none;
+.mobile-nav-enter-active,
+.mobile-nav-leave-active {
+  transition: 600ms ease all;
 }
+
+.mobile-nav-enter-from,
+.mobile-nav-leave-to {
+  transform: translateX(100%);
+}
+
+.mobile-nav-enter-to {
+  transform: translateX(0px);
+}
+
+.mobile-nav-toggle {
+  position: absolute;
+  background: url('../assets/img/square.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 2rem;
+  aspect-ratio: 1;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 50;
+  border: none;
+  display: block;
+  }
+
+  .mobile-nav-toggle:hover {
+    cursor: pointer;
+  }
+
+  .icon-active {
+    background-image: url('../assets/img/cancel.png');
+   }
 
 .sr-only {
   display: none;
@@ -273,70 +357,8 @@ export default {
   width: 90px;
 }
 
-// @media (max-width: 900px) {
-//   .login-buttons {
-//     button {
-//       display: none;
-//     }
-//   }
+@media (max-width: 900px) {
 
-//   .mobile-navigation {
-//     position: fixed;
-//     inset: 0 0 0 35%;
-//     background: #d9dee8f2;
-//     display: block;
-//     padding: 5rem 2rem;
-//     gap: 2em;
-//     transition: transform 0ms ease-out; /*Quitado el tiempo de animación porque da fallos al redimensionar. Antes era 350ms*/
-//   }
-//   /* Sería interesante tener la función de "transtion:transform: ;" por medio de "onclick" en JS, ya que si lo tenemos así
-//   al redimensionar la pantalla salta la animación sola. */
+}
 
-//   @supports (backdrop-filter: blur(1rem)) {
-//     .mobile-navigation {
-//       background: #5175b51a;
-//       backdrop-filter: blur(1rem);
-//     }
-//   }
-
-//   #main-menu {
-//     flex-direction: column;
-//     align-items: flex-start;
-//     padding: 1rem;
-//     text-transform: uppercase;
-
-//     li {
-//       margin-bottom: 2rem;
-//       width: 60%;
-//       line-height: 3rem;
-//       font-size: 1.125rem;
-//     }
-
-//     li + li {
-//       margin-left: 0;
-//     }
-//   }
-
-//   header .styless-btn {
-//     display: none;
-//   }
-
-//   .mobile-nav-toggle {
-//     position: absolute;
-//     background: url(../assets/img/square.png);
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     width: 2rem;
-//     aspect-ratio: 1;
-//     top: 1rem;
-//     right: 1.5rem;
-//     z-index: 50;
-//     border: none;
-//     display: block;
-//   }
-
-//   .icon-active {
-//     background-image: url(../assets/img/cancel.png);
-//   }
-// }
 </style>
