@@ -1,96 +1,97 @@
 <template>
-  <!-- Menu Desktop -->
-  <nav v-if="!mobile" class="navbar desktop-bar flex">
-    <!-- Logo -->
-    <div class="logo-container">
+  <!-- Logo -->
+  <nav class="nav-bar">
+    <div class="logo-box">
       <router-link to="/">
         <img src="../assets/img/logo-small.jpg" alt="Logotipo" />
       </router-link>
       <p>CÁMBIALO</p>
     </div>
     <!-- Barra de busqueda -->
-    <div class="search-container desktop-search">
+    <!-- <div class="search-bar">
       <div class="inner-container">
-        <input type="search" id="search" placeholder="Busca en todas las categorías..." />
+        <input type="search" id="search" placeholder="Busca en todas las categorías ..." />
         <button class="icon">
-          <font-awesome-icon icon="search" />
+          <i class="fa fa-search"></i>
         </button>
       </div>
-    </div>
-    <!-- Enlaces de navegacion-->
-    <div class="link-container flex">
-      <ul class="nav-list flex">
-        <li>
-          <router-link to="/">Inicio</router-link>
-        </li>
-        <li>
-          <router-link to="/productos">Productos</router-link>
-        </li>
-        <li>
-          <router-link to="/contacto">Contacto</router-link>
-        </li>
-      </ul>
-      <!-- Botones Sign In -->
-      <div id="botonesLogin" class="login-buttons">
-        <button id="btnInicio">
-          <router-link to="/login">Iniciar sesión</router-link>
-        </button>
-        <button id="btnRegistro">
-          <router-link to="/registrate">Registrarse</router-link>
-        </button>
+    </div> -->
+    <div >
+      <!-- Enlaces de navegacion-->
+      <div v-if="!mobile" class="flex">
+        <div class="search-bar">
+          <div class="inner-container">
+            <input type="search" id="search" placeholder="Busca en todas las categorías ..." />
+            <button class="icon">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+        <ul class="nav-list window-navigation">
+          <li>
+            <router-link to="/">Inicio</router-link>
+          </li>
+          <li>
+            <router-link to="/productos">Productos</router-link>
+          </li>
+          <li>
+            <router-link to="/contacto">Contacto</router-link>
+          </li>
+        </ul>
+        <!-- Botones Sign In -->
+        <div v-show="!mobile" id="botonesLogin" class="login-buttons">
+          <button id="btnInicio">
+            <router-link to="/login">Iniciar sesión</router-link>
+          </button>
+          <button id="btnInicio">
+            <router-link to="/registrate">Registrarse</router-link>
+          </button>
+        </div>
       </div>
-    </div>
-  </nav>
 
-  <!-- Menu Mobile -->
-  <nav v-else class="navbar mobile-bar">
-    <div>
-      <!-- Logo -->
-      <div class="logo-container">
-        <router-link to="/">
-          <img src="../assets/img/logo-small.jpg" alt="Logotipo" />
-        </router-link>
-        <p>CÁMBIALO</p>
+      <!-- Enlaces de navegacion hamburguesa-->
+      <div v-else >
+        <transition v-show="mobileNav" class="nav-list mobile-navigation" name="mobile-nav">
+          <div>
+            <ul>
+              <li>
+                <router-link to="/">Inicio</router-link>
+              </li>
+              <li>
+                <router-link to="/productos">Productos</router-link>
+              </li>
+              <li>
+                <router-link to="/contacto">Contacto</router-link>
+              </li>
+            </ul>
+            <div id="botonesLogin" class="login-buttons">
+              <button id="btnInicio">
+                <router-link to="/login">Iniciar sesión</router-link>
+              </button>
+              <button id="btnInicio">
+                <router-link to="/registrate">Registrarse</router-link>
+              </button>
+            </div>
+          </div>
+        </transition>
       </div>
+
       <!-- Boton Menu hamburguesa -->
       <button @click="toggleMobileNav" v-show="mobile" class="mobile-nav-toggle" :class="{ 'icon-active': mobileNav }">
         <span class="sr-only">Menu</span>
       </button>
-      <!-- Enlaces de navegacion hamburguesa-->
-      <transition v-show="mobileNav" class="nav-list mobile-navigation" name="mobile-nav">
-        <div>
-          <ul>
-            <li>
-              <router-link to="/">Inicio</router-link>
-            </li>
-            <li>
-              <router-link to="/productos">Productos</router-link>
-            </li>
-            <li>
-              <router-link to="/contacto">Contacto</router-link>
-            </li>
-          </ul>
-          <div id="botonesLogin" class="login-buttons">
-            <button id="btnInicio">
-              <router-link to="/login">Iniciar sesión</router-link>
-            </button>
-            <button id="btnInicio">
-              <router-link to="/registrate">Registrarse</router-link>
-            </button>
-          </div>
-        </div>
-      </transition>
     </div>
-    <!-- Barra de busqueda -->
-    <div class="search-container mobile-search">
+  </nav>
+  <div>
+    <div class="search-bar">
       <div class="inner-container">
-        <input type="search" id="search" placeholder="Busca en todas las categorías..." />
+        <input type="search" id="search" placeholder="Busca en todas las categorías ..." />
         <button class="icon">
-          <font-awesome-icon icon="search" />
+          <i class="fa fa-search"></i>
         </button>
       </div>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -114,7 +115,7 @@ export default {
     },
     checkScreen() {
       this.windowWidth = window.innerWidth
-      if (this.windowWidth <= 900) {
+      if (this.windowWidth <= 800) {
         this.mobile = true
       } else {
         this.mobile = false
@@ -132,22 +133,14 @@ ul {
   padding: 0;
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navbar {
+.nav-bar {
   position: sticky;
   background-color: #fff;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.5rem;
   box-sizing: border-box;
   border-bottom: 2px solid var(--shadow-color);
@@ -164,15 +157,9 @@ ul {
   }
 }
 
-.desktop-search {
-  width: 33%;
-}
-
-.logo-container {
+.logo-box {
   display: flex;
   align-items: center;
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
 
   img {
     width: 4rem;
@@ -186,63 +173,78 @@ ul {
   }
 }
 
-.search-container {
-  margin: 0.5rem 1.5rem;
+.search-bar {
+  margin: 25px;
+  width: 40%;
   display: flex;
   background: none;
   align-content: center;
   justify-content: center;
   border: none;
-  // overflow: hidden;
+  overflow: hidden;
 
   .inner-container {
-    display:flex;
+    vertical-align: middle;
     white-space: nowrap;
     width: 100%;
-    font-size: 0.875rem;
 
     input {
       width: 100%;
-      height: 3.125rem;
+      height: 50px;
       background: #fff;
       border: 1px solid #a1a1a128;
-      border-right: none;
+      font-size: 10pt;
+      float: left;
       color: #000;
-      padding-left: 1rem;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-      transition: 50ms;
+      padding-left: 15px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
     }
 
     button {
-      border-radius: 0 25px 25px 0;
-      border: 1px solid #a1a1a128;
-      padding: 0;
-      border-left: none;
-      background: none;
-      height: 3.125rem;
-      width: 3.125rem;
-      transition: all 550ms ease;
-      color: var(--main-color);
-      font-size: 1rem;
+      -webkit-border-top-right-radius: 25px;
+      -webkit-border-bottom-right-radius: 25px;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+
+      border: none;
+      background: #012bb3;
+      height: 50px;
+      width: 50px;
+      color: #fff;
+      opacity: 0;
+      font-size: 10pt;
+
+      -webkit-transition: all 0.55s ease;
+      -moz-transition: all 0.55s ease;
+      -ms-transition: all 0.55s ease;
+      -o-transition: all 0.55s ease;
+      transition: all 0.55s ease;
     }
   }
 
   .inner-container:hover,
   .inner-container:active,
   .inner-container:focus {
-    input {
-      border: 2px solid var(--main-color);
-    }
     button {
-      background: var(--main-color);
-      cursor: pointer;
-      color: #fff;
+      outline: none;
+      opacity: 1;
+      margin-left: -50px;
+
+      i {
+        outline: none;
+        opacity: 1;
+        margin-left: -50px;
+      }
+
+      i:hover {
+        background: #fff;
+      }
     }
 
     button:hover {
-      background: var(--main-color);
-      font-size: 1.25rem;
+      background: #fff;
     }
   }
 }
@@ -357,7 +359,7 @@ ul {
   background-size: cover;
   width: 2rem;
   aspect-ratio: 1;
-  top: 1.5rem;
+  top: 1rem;
   right: 1.5rem;
   z-index: 50;
   border: none;
@@ -385,14 +387,8 @@ ul {
   width: 90px;
 }
 
-@media (max-width: 1200px) {
-  #btnRegistro {
-    display: none;
-  }
+@media (max-width: 900px) {
 
-  #btnInicio {
-    white-space:nowrap;
-  }
 }
 
 </style>
