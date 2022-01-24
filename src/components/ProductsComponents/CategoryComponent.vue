@@ -31,8 +31,8 @@ export default {
   methods: {
     // eslint-disable-next-line space-before-function-paren
     filterResults(value) {
-      const search = this.products.filter(category => category.name === value)
-      this.filter = search
+      const search = this.products.filter(product => product.id.filter(product.id === selectedCategory) === value)
+      const selectedCategory = this.category.id
       console.log(search)
     }
   }
