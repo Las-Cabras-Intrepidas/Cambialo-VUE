@@ -26,7 +26,12 @@ const routes = [
     path: '/contacto',
     name: 'Contact',
     component: () => import('../views/Contact.vue')
-  }
+  } /*
+  {
+    path: '/categoriafiltrada',
+    name: 'Filtrada',
+    component: () => import('../views/Productosfilter.vue')
+  } */
 ]
 
 const router = createRouter({

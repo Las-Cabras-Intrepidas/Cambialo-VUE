@@ -1,26 +1,43 @@
+/* eslint-disable space-before-function-paren */
 <template>
   <div class="container-categories">
-    <div class="card-category" v-for="category in categories" :key="category.id">
-      <a href="#{category.category}">
-        <img class="img-category" :src="category.picture" :alt="category.category" />
-        <h2>{{ category.category }}</h2>
-      </a>
+    <div
+      @click="filterResults(value)"
+      class="card-category"
+      v-for="category in categories"
+      :key="category.id"
+    >
+      <img class="img-category" :src="category.picture" :alt="category.category" />
+      <h2>{{ category.category }}</h2>
     </div>
   </div>
 </template>
 
 <script>
 import categories from '../../assets/data/categoria.json'
+import products from '../../assets/data/producto.json'
 
 export default {
   name: 'Categories',
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      categories: categories
+      value: '',
+      categories: categories,
+      products: products,
+      filter: []
+    }
+  },
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    filterResults(value) {
+      const search = this.products.filter(category => category.name === value)
+      this.filter = search
+      console.log(search)
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
