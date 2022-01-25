@@ -1,5 +1,6 @@
 <template>
   <div class="banner-trading">
+    <div class="color-banner"></div>
     <img
       class="img-banner-product"
       src="../../assets/img/Trading2.jpg"
@@ -21,12 +22,17 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
+.color-banner {
+  background-color: #012bb379;
+  width: 100%;
+  height: 65%;
+  position: absolute;
+}
 .img-banner-product {
   height: 450px;
   width: 100%;
-  margin: 2rem 0;
-  opacity: 0.8;
+  margin: 3rem 0;
+  background-size: cover;
 }
 
 .img-slogan {
