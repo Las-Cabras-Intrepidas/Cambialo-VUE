@@ -1,6 +1,11 @@
 <template>
   <div class="container-categories">
-    <div class="card-category" v-for="category in categories" :key="category.id">
+    <div
+      @click="selectedCategory = category.category;"
+      class="card-category"
+      v-for="category in categories"
+      :key="category.id"
+    >
       <img class="img-category" :src="category.picture" :alt="category.category" />
       <h2>{{ category.category }}</h2>
     </div>
@@ -8,7 +13,7 @@
   <!-- Productos -->
   <div class="container">
     <div class="row-container">
-      <div class="row" v-for="product in products" :key="product.id" :id="product.category">
+      <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
         <img :src="product.picture" :alt="product.title" />
         <h4>{{ product.title }}</h4>
         <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
@@ -29,12 +34,28 @@ export default {
     return {
       value: '',
       categories: categories,
+      selectedCategory: null,
       products: products,
-      filter: []
+      ProductsFiltrados: []
     }
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
+    filterCategories(id) {
+      console.log('filterCategories')
+    }
+  },
+  computed: {
+    // eslint-disable-next-line space-before-function-paren
+    shownProducts() {
+      console.log(this.selectedCategory)
+      if (this.selectedCategory) {
+        return this.products.filter(product => product.category === this.selectedCategory)
+      } else if (this.products) {
+        return this.products
+      }
+      return []
+    }
   }
 }
 </script>
