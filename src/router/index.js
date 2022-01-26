@@ -26,6 +26,11 @@ const routes = [
     path: '/contacto',
     name: 'Contact',
     component: () => import('../views/Contact.vue')
+  },
+  {
+    path: '/usuario',
+    name: 'UserSection',
+    component: () => import('../views/Users.vue')
   } /*
   {
     path: '/categoriafiltrada',
