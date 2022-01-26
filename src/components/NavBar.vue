@@ -399,15 +399,12 @@ ul {
 
 @media (min-width: 1350px) {
   .desktop-bar {
-    max-width: 90%;
     margin: auto;
+    justify-content: space-evenly;
   }
 }
 
 @media (min-width: 1560px) {
-  .desktop-bar {
-    max-width: 85%;
-  }
 
   .search-container {
     width: 40%;
