@@ -31,12 +31,17 @@ const routes = [
     path: '/usuario',
     name: 'UserSection',
     component: () => import('../views/Users.vue')
-  } /*
+  }, /*
   {
     path: '/categoriafiltrada',
     name: 'Filtrada',
     component: () => import('../views/Productosfilter.vue')
   } */
+  {
+    path: '/terminos',
+    name: 'TermsConditions',
+    component: () => import('../views/Terms.vue')
+  }
 ]
 
 const router = createRouter({

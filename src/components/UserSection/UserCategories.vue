@@ -10,8 +10,10 @@
       v-for="category in categories"
       :key="category.id"
     >
+    <router-link to="/productos">
       <img class="img-category" :src="category.picture" :alt="category.category" />
       <h2>{{ category.category }}</h2>
+    </router-link>
     </div>
   </div>
 </template>

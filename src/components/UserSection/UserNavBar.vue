@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="left-align">¡Hola, Bárbara!</h1>
+    <h1 class="left-align">¡Hola, (user_name)!</h1>
   </div>
   <div class="users-options">
     <div>
