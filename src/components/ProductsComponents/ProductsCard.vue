@@ -14,10 +14,12 @@
   <div class="container">
     <div class="row-container">
       <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
+        <router-link to="/productos/:name">
         <img :src="product.picture" :alt="product.title" />
         <h4>{{ product.title }}</h4>
         <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
         <p>{{ product.description }}</p>
+         </router-link>
       </div>
     </div>
   </div>
