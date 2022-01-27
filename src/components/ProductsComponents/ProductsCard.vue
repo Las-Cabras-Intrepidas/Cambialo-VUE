@@ -15,11 +15,11 @@
     <div class="row-container">
       <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
         <router-link to="/productos/:name">
-        <img :src="product.picture" :alt="product.title" />
-        <h4>{{ product.title }}</h4>
-        <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
-        <p>{{ product.description }}</p>
-         </router-link>
+          <img :src="product.picture" :alt="product.title" />
+          <h4>{{ product.title }}</h4>
+          <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
+          <p>{{ product.description }}</p>
+        </router-link>
       </div>
     </div>
   </div>
@@ -67,14 +67,14 @@ export default {
   display: flex;
   height: 100%;
   width: 100%;
-  margin: 0 1rem;
+  margin: 1.5rem 1rem;
 }
 
 .row {
-  border: 3px solid grey;
-  max-width: 80%;
+  max-width: 90%;
   box-shadow: 1px 1px 4px 1px #cfcfcf;
-  border: 2px solid #afafaf;
+  border: 3px solid #afafaf;
+  border-radius: 4px;
   margin-top: -3px;
   margin-left: -3px;
 
@@ -84,7 +84,7 @@ export default {
 }
 
 .row:hover {
-  border: 2px solid var(--main-color);
+  border: 3px solid var(--main-color);
   margin-top: -3px;
   margin-left: -3px;
 }
@@ -93,15 +93,15 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 15px;
   grid-row-gap: 25px;
 }
 
 img {
-  max-width: 90%;
+  max-width: 100%;
 }
 
 .availability {
+  font-size: 17px;
   color: green;
   font-weight: 600;
   border-top: 1px solid grey;
@@ -110,10 +110,11 @@ img {
 
 h4 {
   margin: 2px;
+  font-size: 17px;
 }
 
 p {
-  font-size: 15px;
+  font-size: 16px;
   padding: 2px;
 }
 
@@ -126,8 +127,9 @@ p {
 .container-categories {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   flex-direction: row;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
 
   .card-category {

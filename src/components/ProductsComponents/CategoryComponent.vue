@@ -1,4 +1,4 @@
-/* eslint-disable space-before-function-paren */
+<!-- /* eslint-disable space-before-function-paren */
 <template>
   <div class="container-categories">
     <div
@@ -66,3 +66,4 @@ export default {
   }
 }
 </style>
+ -->

@@ -1,23 +1,29 @@
 <template>
   <div>
     <h1>Detalle Producto</h1>
-    <div>{{ productName }} </div>
+    <div>{{ productName }}</div>
+    <FormExchange />
   </div>
 </template>
 <script>
-
+import FormExchange from '../components/ProductsComponents/FormExchange.vue'
 // import producto from '../assets/data/producto.json'
 
 export default {
-  name: 'products',
-  data () {
-    return {
-    }
+  name: 'ProductsExchange',
+  component: {
+    FormExchange
+  },
+  // eslint-disable-next-line space-before-function-paren
+  data() {
+    return {}
   },
   computed: {
-    productName () {
+    // eslint-disable-next-line space-before-function-paren
+    productName() {
       return this.$route.params.name
     }
-  }
+  },
+  components: { FormExchange }
 }
 </script>
