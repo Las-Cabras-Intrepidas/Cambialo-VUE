@@ -38,15 +38,16 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-shadow: 0px 3px 6px rgb(71, 71, 71);
 }
 
+h1 {
+  text-shadow: 0px 3px 6px rgb(71, 71, 71);
+}
 .text-banner {
   font-size: 19px;
   font-weight: 600;
   margin-top: 0;
   padding: 0 170px;
-  text-shadow: 0px 3px 6px #fff;
 }
 
 .our-movement {
