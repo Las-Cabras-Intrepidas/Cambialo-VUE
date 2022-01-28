@@ -68,4 +68,14 @@ hr {
   font-size: 19px;
   text-shadow: 0px 3px 6px #fff;
 }
+
+@media (max-width: 768px) {
+  .text-banner {
+    padding: 0px;
+  }
+
+  .info {
+    width: 90%;
+  }
+}
 </style>

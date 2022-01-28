@@ -70,4 +70,15 @@ export default {
     bottom: 10%;
   }
 }
+
+@media (max-width: 768px) {
+  .container-boxes {
+    display: flex;
+    flex-direction: column;
+
+    .left-box {
+      margin-bottom: 15px;
+    }
+  }
+}
 </style>

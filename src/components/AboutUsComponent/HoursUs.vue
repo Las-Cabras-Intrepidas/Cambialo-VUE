@@ -20,32 +20,38 @@
     </div>
   </div>
   <section>
-    <div class="container-lifetime">
-      <div>
-        <h1>Noviembre 2021</h1>
+    <div class="container-of-containers">
+      <div class="container-lifetime">
+        <div>
+          <h1>Noviembre 2021</h1>
+        </div>
+        <div>
+          <h1>Diciembre 2021</h1>
+        </div>
+        <div>
+          <h1>Enero 2022</h1>
+        </div>
+        <div>
+          <h1>Febrero 2022</h1>
+        </div>
       </div>
-      <div>
-        <h1>Diciembre 2021</h1>
-      </div>
-      <div>
-        <h1>Enero 2022</h1>
-      </div>
-      <div>
-        <h1>Febrero 2022</h1>
-      </div>
-    </div>
-    <div class="container-arrows">
-      <div>
-        <font-awesome-icon icon="arrow-right" />
-      </div>
-      <div>
-        <font-awesome-icon icon="arrow-right" />
-      </div>
-      <div>
-        <font-awesome-icon icon="arrow-right" />
-      </div>
-      <div>
-        <font-awesome-icon icon="arrow-right" />
+      <div class="container-arrows">
+        <div>
+          <font-awesome-icon icon="arrow-down" class="line" />
+          <p>Ni nos conocíamos...</p>
+        </div>
+        <div>
+          <font-awesome-icon icon="arrow-down" class="line" />
+          <p>Ya éramos un grupo e íbamos avanzando...</p>
+        </div>
+        <div>
+          <font-awesome-icon icon="arrow-down" class="line" />
+          <p>Terminamos nuestro primer proyecto en Vainilla...</p>
+        </div>
+        <div>
+          <font-awesome-icon icon="arrow-down" class="line" />
+          <p>Fuimos capaces de migrarlo todo a Vue.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -86,24 +92,40 @@ export default {
 }
 
 .container-lifetime {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   div {
-    padding: 40px;
+    padding: 30px;
   }
 }
 
 .container-arrows {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
   div {
-    margin-left: 70px;
     margin-bottom: 30px;
-    padding-right: 180px;
+    padding-right: 1px;
+    margin-top: -30px;
+    padding-right: 10px;
+  }
+}
+
+.line {
+  color: var(--main-color);
+}
+
+@media (max-width: 768px) {
+  .container-circle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  section {
+    display: none;
   }
 }
 </style>

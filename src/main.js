@@ -9,7 +9,7 @@ import { faFacebookSquare, faInstagram, faTwitterSquare } from '@fortawesome/fre
 import { db, auth, storage } from './firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faTshirt, faUserSecret, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faSearch, faFacebookSquare, faInstagram, faTwitterSquare, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight)
+library.add(faTshirt, faUserSecret, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faSearch, faFacebookSquare, faInstagram, faTwitterSquare, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight, faArrowDown)
 console.log(db)
 console.log(auth)
 console.log(storage)

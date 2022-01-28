@@ -18,23 +18,18 @@
       <div class="desktop-bg">
         <ul class="footer-list icon-flex">
           <li class="footer-link">
-            <a
-              href="https://www.facebook.com/Cambialocom-111304798084313/"
-              target="_blank"
-              >
+            <a href="https://www.facebook.com/Cambialocom-111304798084313/" target="_blank">
               <font-awesome-icon :icon="['fab', 'facebook-square']" />
             </a>
           </li>
           <li class="footer-link">
-            <a href="https://www.instagram.com/cambialo_es/" target="_blank"
-              >
-            <font-awesome-icon :icon="['fab', 'instagram']" />
+            <a href="https://www.instagram.com/cambialo_es/" target="_blank">
+              <font-awesome-icon :icon="['fab', 'instagram']" />
             </a>
           </li>
           <li class="footer-link">
-            <a href="https://twitter.com/CambialoES" target="_blank"
-              >
-            <font-awesome-icon :icon="['fab', 'twitter-square']" />
+            <a href="https://twitter.com/CambialoES" target="_blank">
+              <font-awesome-icon :icon="['fab', 'twitter-square']" />
             </a>
           </li>
         </ul>
@@ -49,14 +44,14 @@
             <router-link to="/terminos">AVISO LEGAL</router-link>
           </li>
           <li class="footer-link">
-            <router-link to="/conocenos">CONOCENOS</router-link>
+            <router-link to="/conocenos">CONÓCENOS</router-link>
           </li>
         </ul>
       </div>
     </nav>
     <div class="footer-flex">
       <router-link to="/">
-      <img class="logo" src="../assets/img/logo-small.jpg" alt="" />
+        <img class="logo" src="../assets/img/logo-small.jpg" alt />
       </router-link>
       <p>Cámbialo -</p>
       <p>Copyright © 2021, Intrepid Ibex ©</p>
@@ -71,7 +66,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 nav {
   background-color: var(--main-color);
   border-radius: 8px;
@@ -88,8 +82,8 @@ nav {
   padding: 0.5rem;
 
   a {
-      width: 25px;
-      height: 25px;
+    width: 25px;
+    height: 25px;
 
     img {
       width: 25px;
