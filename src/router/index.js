@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import { getAuth } from 'firebase/auth'
 
 const routes = [
   {
@@ -40,7 +41,10 @@ const routes = [
   {
     path: '/usuario',
     name: 'UserSection',
-    component: () => import('../views/Users.vue')
+    component: () => import('../views/Users.vue'),
+    meta: {
+      requiresAuth: true
+    }
   }, /*
   {
     path: '/categoriafiltrada',
@@ -57,6 +61,17 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const auth = getAuth()
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  if (requiresAuth) {
+    auth.onAuthStateChanged((user) => {
+      if (!user) next('/login')
+      else next()
+    })
+  } else next()
 })
 
 export default router

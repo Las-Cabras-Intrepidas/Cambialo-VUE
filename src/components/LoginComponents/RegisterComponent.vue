@@ -16,14 +16,16 @@
 
       <!--Formulario de Registro-->
       <div class="front-box">
-        <form
-          action="#"
-          id="formRegister"
-          method="GET"
-          class="formulario__register"
-        >
+        <form action="#" id="formRegister" method="GET" class="formulario__register" @submit.prevent="register">
           <h2>Registrarse</h2>
-          <input
+          <label for="">
+            <input id="userRegister" type="text" placeholder="Correo electrónico" required v-model="email">
+          </label>
+          <label for="">
+            <input id="pswRegister" type="password" placeholder="Contraseña" required v-model="password">
+          </label>
+
+          <!-- <input
             id="nameUser"
             type="text"
             placeholder="Nombre completo"
@@ -35,7 +37,7 @@
             placeholder="Nombre de usuario"
             required
           />
-          <input id="psw" type="password" placeholder="Contraseña" required />
+          <input id="psw" type="password" placeholder="Contraseña" required /> -->
 
           <div class="check-container">
             <input id="checkTerms" type="checkbox" required />
@@ -48,7 +50,7 @@
             >
           </div>
           <br />
-          <button id="registerButton" style="background-color: var(--main-color)">
+          <button id="registerButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Registrarse
           </button>
         </form>
@@ -58,8 +60,28 @@
 </template>
 
 <script>
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+
 export default {
-  name: 'Register'
+  name: 'Register',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    register () {
+      const auth = getAuth()
+      createUserWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          this.$router.replace('usuario')
+        })
+        .catch(function (error) {
+          console.log(error.message)
+        })
+    }
+  }
 }
 
 </script>

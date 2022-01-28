@@ -17,21 +17,30 @@
 
       <!--Formulario de Login-->
       <div class="front-box">
-        <form action="#" id="formLogin" method="GET" class="formulario__login">
+        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logIn">
           <h2>Iniciar sesión</h2>
-          <input
+          <label for="">
+            <input id="userLogin" type="text" placeholder="Correo electrónico" required v-model="email">
+          </label>
+          <label for="">
+            <input id="pswLogin" type="password" placeholder="Contraseña" required v-model="password">
+          </label>
+
+          <!-- <input type="submit" value="Login"> -->
+
+          <!-- <input
             id="userLogin"
             type="text"
             placeholder="Nombre de usuario"
             required
-          />
-          <input
+          /> -->
+          <!-- <input
             id="pswLogin"
             type="password"
             placeholder="Contraseña"
             required
-          />
-          <button id="loginButton" style="background-color: var(--main-color)">
+          /> -->
+          <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Iniciar sesión
           </button>
         </form>
@@ -41,8 +50,29 @@
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    logIn () {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then(() => {
+          this.$router.replace('usuario')
+        })
+        .catch(function (error) {
+          console.log(error.message)
+        })
+    }
+  }
+
 }
 
 </script>

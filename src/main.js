@@ -6,11 +6,12 @@ import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faTshirt, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
-import { db } from './firebase'
-
+import { db, auth, storage } from './firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faTshirt, faUserSecret, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faSearch, faFacebookSquare, faInstagram, faTwitterSquare, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight)
 console.log(db)
+console.log(auth)
+console.log(storage)
 
 createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
