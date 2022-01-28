@@ -31,6 +31,7 @@
 <script>
 export default {
   name: 'Exchange',
+  // eslint-disable-next-line space-before-function-paren
   methods: {
     // eslint-disable-next-line space-before-function-paren
     sendSucced() {
