@@ -14,11 +14,11 @@
     </div>
     <div>
       <font-awesome-icon icon="tv" />
-      <p>Consolas</p>
+      <p>Tecnología</p>
     </div>
     <div>
-      <font-awesome-icon icon="car" />
-      <p>Coches</p>
+      <font-awesome-icon icon="home" />
+      <p>Hogar</p>
     </div>
     <div>
       <font-awesome-icon icon="bowling-ball" />
@@ -60,6 +60,18 @@ svg {
       font-family: var(--text);
       margin-top: 1rem;
     }
+  }
+}
+
+@media (min-width: 1000px) {
+  .category-container {
+    margin: 0 20%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .category-container {
+    margin: 0 25%;
   }
 }
 </style>

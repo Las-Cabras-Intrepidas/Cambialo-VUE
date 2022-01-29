@@ -7,7 +7,6 @@
       <strong>¿Cuál va a ser tu próximo cambio?</strong>
     </h2>
   </div>
-
 <hr />
 </template>
 

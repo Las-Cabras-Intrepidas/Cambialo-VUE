@@ -1,23 +1,27 @@
 <template>
-  <br />
   <section class="central-cards">
     <div>
       <h2>Atencion al cliente</h2>
       <p>
-        Contacta con nosotros para resolver cualquier tipo de incidencia o duda. Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto
+        Contacta con nosotros y resolveremos cualquier duda o incidencia.
+        <br>
+      Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto
         <router-link to="/contacto">aquí</router-link>.
       </p>
     </div>
     <div>
       <h2>Compromiso</h2>
-      <p>Nuestro objetivo es ayudarlo a realizar sus cambios fácilmente. Comprometidos mejorar nuestro servicio cada día para que intercambiar y darle una segunda vida a cosas que ya no necesitas.</p>
+      <p>Nuestro objetivo es ayudarte a realizar tus cambios fácilmente.
+      <br>
+        Mejoramos para darte la mejor experiencia mientras das una segunda vida a las cosas que ya no necesitas.</p>
     </div>
     <div>
       <h2>Gestión de incidencias</h2>
-      <p>Con tecnología innovadora y estricta seguridad, reducimos riesgos y brindamos un mayor nivel de protección en el intercambio, garantizando un trueque justo.</p>
+      <p>Con tecnología innovadora y estricta seguridad, reducimos riesgos brindántote un mayor nivel de protección.
+      <br>
+      Te garantizamos un trueque justo.</p>
     </div>
   </section>
-  <br />
 </template>
 
 <script>
@@ -29,32 +33,34 @@ export default {
 <style lang="scss" scoped>
 .central-cards {
   display: flex;
-  justify-content: baseline;
+  flex-direction: column;
   align-items: center;
-  margin: 30px 0px 50px 50px;
-  font-weight: 500;
+  margin: 1.5rem 2rem;
+  margin-bottom: 4rem;
 
   div {
-    width: 80%;
-    height: 190px;
-    border-radius: 5px;
+    width: 75%;
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: justify;
-    background-color: #284ab6;
+    background-color: #113ccc;
     color: #fff;
     margin: 10px;
-    padding: 15px;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
 
     h2 {
-      font-weight: 500;
-      font-size: 1.1rem;
+      font-weight: 600;
+      font-size: 1.25rem;
     }
 
     p {
-      padding: 10px;
-      font-size: 0.9rem;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 500;
+      max-width: 80%;
+      margin: 0.5rem 0;
 
       a {
         color: #fff;
@@ -64,32 +70,29 @@ export default {
   }
 }
 
-@media (max-width: 580px) {
-  .central-cards {
-    display: flex;
-    flex-direction: column;
-
+@media (min-width: 750px) {
+  .central-cards{
     div {
-      height: 260px;
-    }
-  }
-}
-@media (min-width: 580px) and (max-width: 1030px) {
-  .central-cards {
-    display: flex;
-    flex-direction: column;
-
-    div {
-      height: 140px;
+      width: 65%;
     }
   }
 }
 
-@media (min-width: 2300px) {
+@media (min-width: 1000px) {
   .central-cards {
+    flex-direction: row;
+    justify-content: center;
     div {
-      height: 130px;
+      width: 25%;
     }
   }
+}
+
+@media (min-width: 1500px) {
+    .central-cards{
+    div {
+      width: 20%;
+      }
+    }
 }
 </style>
