@@ -1,23 +1,10 @@
 <template>
-  <div>
-    <h1>Detalle Producto</h1>
-    <div class="container">
-      <div class="row">
-        <div class="column">
-          <h2>{{ product.title}}</h2>
-            <p>{{ product.category }}</p>
-            <p>{{ product.description }}</p>
-        </div>
-        <div class="column2">
-          <img :src="product.picture" alt />
-        </div>
-      </div>
-    </div>
-    <FormExchange />
-  </div>
+  <ProductDetail :title="product.title" :category="product.category" :description="product.description" :picture="product.picture"/>
+  <FormExchange />
 </template>
 <script>
 import FormExchange from '../components/ProductsComponents/FormExchange.vue'
+import ProductDetail from '../components/ProductsComponents/ProductDetail.vue'
 import products from '../assets/data/producto.json'
 
 export default {
@@ -36,8 +23,9 @@ export default {
   beforeMount() {
     const productName = this.$route.params.id
     this.product = this.products.find((product) => product.title === productName)
-    console.log(productName)
   },
-  components: { FormExchange }
+  components: {
+    FormExchange, ProductDetail
+  }
 }
 </script>
