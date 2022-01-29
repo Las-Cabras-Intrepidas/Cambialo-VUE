@@ -1,7 +1,6 @@
 <template>
   <div>
     <h1>Detalle Producto</h1>
-    <div>{{ productName }}</div>
     <div class="container">
       <div class="row">
         <div class="column"></div>
@@ -15,24 +14,25 @@
 </template>
 <script>
 import FormExchange from '../components/ProductsComponents/FormExchange.vue'
-/* import products from '../assets/data/producto.json' */
+import products from '../assets/data/producto.json'
 
 export default {
   name: 'ProductsExchange',
-  props: ['products'],
   component: {
     FormExchange
   },
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      product: {}
+      products: products,
+      product: null
     }
   },
   // eslint-disable-next-line space-before-function-paren
-  mounted() {
-    this.name = this.$params.name
-    this.product = this.products.find((product) => product.name === this.name)
+  beforeMount() {
+    const productName = this.$route.params.id
+    this.product = this.products.find((product) => product.title === productName)
+    console.log(productName)
   },
   components: { FormExchange }
 }

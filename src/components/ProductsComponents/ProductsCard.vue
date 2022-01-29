@@ -10,11 +10,15 @@
       <h2>{{ category.category }}</h2>
     </div>
   </div>
+
+  <div>
+    <button @click="selectedCategory = null">Mostrar Todos</button>
+  </div>
   <!-- Productos -->
   <div class="container">
     <div class="row-container">
-      <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
-        <router-link to="/productos/:name">
+      <div class="row" v-for="product in shownProducts" :key="product.title" :id="product.category">
+        <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }">
           <img :src="product.picture" :alt="product.title" />
           <h4>{{ product.title }}</h4>
           <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
@@ -37,26 +41,16 @@ export default {
       value: '',
       categories: categories,
       selectedCategory: null,
-      products: products,
-      ProductsFiltrados: []
-    }
-  },
-  methods: {
-    // eslint-disable-next-line space-before-function-paren
-    filterCategories(id) {
-      console.log('filterCategories')
+      products: products
     }
   },
   computed: {
     // eslint-disable-next-line space-before-function-paren
     shownProducts() {
-      console.log(this.selectedCategory)
       if (this.selectedCategory) {
         return this.products.filter(product => product.category === this.selectedCategory)
-      } else if (this.products) {
-        return this.products
       }
-      return []
+      return this.products
     }
   }
 }
