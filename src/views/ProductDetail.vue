@@ -3,7 +3,11 @@
     <h1>Detalle Producto</h1>
     <div class="container">
       <div class="row">
-        <div class="column"></div>
+        <div class="column">
+          <h2>{{ product.title}}</h2>
+            <p>{{ product.category }}</p>
+            <p>{{ product.description }}</p>
+        </div>
         <div class="column2">
           <img :src="product.picture" alt />
         </div>

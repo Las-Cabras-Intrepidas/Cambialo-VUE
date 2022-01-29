@@ -31,7 +31,7 @@
         </li>
       </ul>
       <!-- Botones Sign In -->
-      <div id="botonesLogin" class="login-buttons">
+      <div id="botonesLogin" class="login-buttons"> <!-- v-if="!isLoggedIn" -->
         <button id="btnInicio">
           <router-link to="/login">Iniciar sesión</router-link>
         </button>

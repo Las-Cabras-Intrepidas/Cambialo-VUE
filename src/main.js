@@ -3,6 +3,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import store from './store/store'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faTshirt, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
@@ -14,4 +16,4 @@ console.log(db)
 console.log(auth)
 console.log(storage)
 
-createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App).use(router).use(store).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
