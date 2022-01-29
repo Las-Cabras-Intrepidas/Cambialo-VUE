@@ -32,11 +32,14 @@
       </ul>
       <!-- Botones Sign In -->
       <div id="botonesLogin" class="login-buttons"> <!-- v-if="!isLoggedIn" -->
-        <button id="btnInicio">
+        <button v-if="!existUser"  id="btnInicio">
           <router-link to="/login">Iniciar sesión</router-link>
         </button>
-        <button id="btnRegistro">
+        <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate">Registrarse</router-link>
+        </button>
+        <button v-if="existUser" @click="logOut" id="btnLogOut">
+          <router-link to="/">Cerrar sesión</router-link>
         </button>
       </div>
     </div>
@@ -94,6 +97,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { getAuth, signOut } from 'firebase/auth'
 /* eslint-disable space-before-function-paren */
 export default {
   name: 'NavBar',
@@ -120,7 +125,18 @@ export default {
         this.mobile = false
         this.mobileNav = false
       }
+    },
+    // funcion boton logout
+    logOut () {
+      const auth = getAuth()
+      signOut(auth)
+        .then(() => {
+          this.$router.replace('/')
+        })
     }
+  },
+  computed: {
+    ...mapGetters(['existUser'])
   }
 }
 

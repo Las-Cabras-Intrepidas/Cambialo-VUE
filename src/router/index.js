@@ -63,7 +63,7 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   const auth = getAuth()
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
   if (requiresAuth) {
@@ -72,6 +72,21 @@ router.beforeEach((to, from, next) => {
       else next()
     })
   } else next()
+}) */
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const auth = getAuth()
+    const user = auth.currentUser
+    console.log('usuario desde router', user)
+    if (!user) {
+      next({ path: '/login' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 export default router

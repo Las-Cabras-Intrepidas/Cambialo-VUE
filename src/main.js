@@ -10,6 +10,7 @@ import { faUserSecret, faTshirt, faGamepad, faPaw, faTv, faCar, faBowlingBall, f
 import { faFacebookSquare, faInstagram, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
 import { db, auth, storage } from './firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 library.add(faTshirt, faUserSecret, faGamepad, faPaw, faTv, faCar, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faSearch, faFacebookSquare, faInstagram, faTwitterSquare, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight, faArrowDown)
 console.log(db)
@@ -17,3 +18,23 @@ console.log(auth)
 console.log(storage)
 
 createApp(App).use(router).use(store).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+
+// Función: al cambiar el estado de autenticidad
+const authUser = getAuth()
+onAuthStateChanged(authUser, (user) => {
+  if (user) {
+    console.log(user)
+    const userActive = {
+      email: user.email,
+      uid: user.uid
+    }
+    store.dispatch('detectUsers', userActive)
+    console.log(userActive)
+    // ...
+  } else {
+    console.log(user)
+    store.dispatch('detectUsers', user)
+    // User is signed out
+    // ...
+  }
+})

@@ -25,21 +25,6 @@
           <label for="">
             <input id="pswLogin" type="password" placeholder="Contraseña" required v-model="password">
           </label>
-
-          <!-- <input type="submit" value="Login"> -->
-
-          <!-- <input
-            id="userLogin"
-            type="text"
-            placeholder="Nombre de usuario"
-            required
-          /> -->
-          <!-- <input
-            id="pswLogin"
-            type="password"
-            placeholder="Contraseña"
-            required
-          /> -->
           <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Iniciar sesión
           </button>

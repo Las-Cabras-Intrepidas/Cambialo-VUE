@@ -1,9 +1,4 @@
 <template>
-<div class="UserSection">
-    <h1>Logout provisional</h1>
-    <button @click="logOut">LogOut</button>
-  </div>
-
   <UserNavBar />
   <router-view />
   <UserOptionsComponent />

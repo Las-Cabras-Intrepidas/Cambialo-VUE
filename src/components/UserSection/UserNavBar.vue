@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="left-align">¡Hola, (user_name)!</h1>
+  <div class="title-user">
+    <h1 class="left-align">¡Hola, {{$store.state.user.email}}!</h1>
   </div>
   <div class="users-options">
     <div>
@@ -35,6 +35,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.title-user{
+  h1{
+    text-align: center;
+  }
+}
 .left-align {
   text-align: left;
   margin-left: 1rem;

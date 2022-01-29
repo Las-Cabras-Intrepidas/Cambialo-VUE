@@ -1,31 +1,28 @@
 import { createStore } from 'vuex'
-import { getAuth } from 'firebase/auth'
 
-const store = createStore({
-  state () {
-    return {
-      email: '',
-      password: ''
-    }
+export default createStore({
+  state: {
+    user: null
   },
   mutations: {
-    SET_USER (state, newEmail) {
-      state.email = newEmail
-    },
-    SET_PASSWORD (state, newPassword) {
-      state.password = newPassword
+    setUser (state, payload) {
+      state.user = payload
     }
   },
+  // Recibe datos de onAuthStateChanged (main.js)
   actions: {
-    async logIn ({ commit }, { newEmail, newPassword }) {
-      const auth = getAuth()
-      console.log(auth)
-      commit('SET_USER', newEmail)
-    },
-    async setPassword ({ commit }, newPassword) {
-      commit('SET_PASSWORD', newPassword)
+    detectUsers ({ commit }, user) {
+      commit('setUser', user)
+    }
+  },
+  // Devuelve true/false si existe un usuario
+  getters: {
+    existUser (state) {
+      if (state.user === null) {
+        return false
+      } else {
+        return true
+      }
     }
   }
 })
-
-export default store
