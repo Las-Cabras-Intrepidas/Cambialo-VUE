@@ -28,10 +28,7 @@
           <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Iniciar sesión
           </button>
-        </form>
-        <!--  -->
-        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logInWithGoogle">
-          <button id="loginButtonGoogle" type="submit" value="Login" style="background-color: red">
+          <button id="loginButtonGoogle" @click="logInWithGoogle" style="background-color: red">
             Iniciar sesión con Google
           </button>
         </form>
@@ -131,6 +128,7 @@ export default {
       padding: 10px 40px;
       border: 2px solid #fff;
       font-size: 14px;
+      width: 300px;
       background: transparent;
       font-weight: 600;
       cursor: pointer;
@@ -200,6 +198,7 @@ export default {
       margin-top: 40px;
       border: none;
       font-size: 14px;
+      width: 300px;
       background: #46a2fd;
       font-weight: 600;
       cursor: pointer;
