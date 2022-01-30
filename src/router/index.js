@@ -45,12 +45,12 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  }, /*
+  },
   {
-    path: '/categoriafiltrada',
-    name: 'Filtrada',
-    component: () => import('../views/Productosfilter.vue')
-  } */
+    path: '/editar/:id',
+    name: 'EditProduct',
+    component: () => import('../views/EditProduct.vue')
+  },
   {
     path: '/terminos',
     name: 'TermsConditions',

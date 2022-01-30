@@ -7,7 +7,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 import NavBar from './components/NavBar.vue'
 import FooterBar from './components/FooterBar.vue'
 
@@ -15,6 +15,12 @@ export default {
   name: 'App',
   components: {
     NavBar, FooterBar
+  },
+  methods: {
+    ...mapActions(['cargarLocalStorage'])
+  },
+  created () {
+    this.cargarLocalStorage()
   }
 }
 </script>
