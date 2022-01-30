@@ -3,12 +3,10 @@
     <div class="contact-container">
       <div class="contact-details">
         <h1 class="contact-title">¿Tienes alguna pregunta?</h1>
-        <h2 class="contact-subtitle">
-          Rellena el siguiente formulario y te responderemos cuanto antes.
-        </h2>
-        <h3 class="contact-subtitle">
-          También nos puedes encontrar en Redes Sociales.
-        </h3>
+        <h2
+          class="contact-subtitle"
+        >Rellena el siguiente formulario y te responderemos cuanto antes.</h2>
+        <h3 class="contact-subtitle">También nos puedes encontrar en Redes Sociales.</h3>
         <ul>
           <li class="contact-item">902 781 369</li>
           <li class="contact-item">intrepidibex@gmail.com</li>
@@ -34,20 +32,20 @@
         <div class="message-field">
           <label class="label">Mensaje</label>
           <div class="control">
-            <textarea
-              class="input textarea"
-              placeholder="Tu mensaje..."
-            ></textarea>
+            <textarea class="input textarea" placeholder="Tu mensaje..."></textarea>
           </div>
         </div>
 
         <div class="terms-field">
           <div class="control">
-            <label class="">
-              <input type="checkbox" required />
-              Estoy de acuerdo con los<a class="conditions-link" href="#">
-                términos y condiciones.</a
-              >
+            <label class>
+              <ul>
+                <input id="checkTerms" type="checkbox" required />
+                <span>
+                  Estoy de acuerdo con los
+                  <router-link to="/terminos-y-condiciones" target="_blank">términos y condiciones.</router-link>
+                </span>
+              </ul>
             </label>
           </div>
         </div>
@@ -68,12 +66,10 @@ export default {
 }
 </script>
 <style scoped>
-
 section {
   background-image: url("../../assets/img/mosaic-image.webp");
   background-size: cover;
   padding: 6rem 0;
-
 }
 
 .contact-container {
@@ -161,10 +157,9 @@ ul {
 }
 
 @media (min-width: 650px) {
-
-    section {
+  section {
     padding: 9rem;
-    }
+  }
 
   .contact-container {
     display: flex;
@@ -184,7 +179,7 @@ ul {
     width: 110%;
   }
   .btn-form {
-      width: 90px;
+    width: 90px;
   }
 }
 

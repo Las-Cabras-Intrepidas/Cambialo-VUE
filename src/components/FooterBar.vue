@@ -41,7 +41,7 @@
             <a href="mailto:info@cambialo.es">SOPORTE</a>
           </li>
           <li class="footer-link">
-            <router-link to="/terminos">AVISO LEGAL</router-link>
+            <router-link to="/terminos-y-condiciones" target="_blank">AVISO LEGAL</router-link>
           </li>
           <li class="footer-link">
             <router-link to="/conocenos">CONÓCENOS</router-link>

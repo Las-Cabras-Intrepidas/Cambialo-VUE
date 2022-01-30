@@ -10,49 +10,57 @@
         <div class="signin-info">
           <h3>¿Ya tienes una cuenta?</h3>
           <p>Iniciar sesión para entrar en la página</p>
-          <button id="loginButton2"> <router-link to="/login">Iniciar sesión</router-link></button>
+          <button id="loginButton2">
+            <router-link to="/login">Iniciar sesión</router-link>
+          </button>
         </div>
       </div>
 
       <!--Formulario de Registro-->
       <div class="front-box">
-        <form action="#" id="formRegister" method="GET" class="formulario__register" @submit.prevent="register">
+        <form
+          action="#"
+          id="formRegister"
+          method="GET"
+          class="formulario__register"
+          @submit.prevent="register"
+        >
           <h2>Registrarse</h2>
-          <label for="">
-            <input id="userRegister" type="text" placeholder="Correo electrónico" required v-model="email">
+          <label for>
+            <input
+              id="userRegister"
+              type="text"
+              placeholder="Correo electrónico"
+              required
+              v-model="email"
+            />
           </label>
-          <label for="">
-            <input id="pswRegister" type="password" placeholder="Contraseña" required v-model="password">
+          <label for>
+            <input
+              id="pswRegister"
+              type="password"
+              placeholder="Contraseña"
+              required
+              v-model="password"
+            />
           </label>
-
-          <!-- <input
-            id="nameUser"
-            type="text"
-            placeholder="Nombre completo"
-            required
-          />
-          <input
-            id="user"
-            type="text"
-            placeholder="Nombre de usuario"
-            required
-          />
-          <input id="psw" type="password" placeholder="Contraseña" required /> -->
 
           <div class="check-container">
-            <input id="checkTerms" type="checkbox" required />
-            <span
-              >Estoy de acuerdo con los<a
-                href="./terms-conditions.html"
-                target="_blank"
-                >términos y condiciones</a
-              >.</span
-            >
+            <label class>
+              <input id="checkTerms" type="checkbox" required />
+              <span>
+                Estoy de acuerdo con los
+                <router-link to="/terminos-y-condiciones" target="_blank">términos y condiciones.</router-link>
+              </span>
+            </label>
           </div>
           <br />
-          <button id="registerButton" type="submit" value="Login" style="background-color: var(--main-color)">
-            Registrarse
-          </button>
+          <button
+            id="registerButton"
+            type="submit"
+            value="Login"
+            style="background-color: var(--main-color)"
+          >Registrarse</button>
         </form>
       </div>
     </div>
@@ -86,7 +94,6 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-
 .login-section {
   padding: 0;
   background-image: url("../../assets/img/mosaic-image.webp");
@@ -111,8 +118,9 @@ export default {
     color: #fff;
     transition: all 500ms;
 
-    p, button {
-      margin-top: 30px
+    p,
+    button {
+      margin-top: 30px;
     }
 
     p {
@@ -253,5 +261,4 @@ export default {
     padding-left: 2rem;
   }
 }
-
 </style>
