@@ -17,8 +17,11 @@
 
       <!--Formulario de Login-->
       <div class="front-box">
-        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logIn">
-          <h2>Iniciar sesión</h2>
+        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logInWithGoogle">
+          <button id="loginButtonGoogle" type="submit" value="Login" style="background-color: red">
+            Iniciar sesión con Google
+          </button>
+          <!-- <h2>Iniciar sesión</h2>
           <label for="">
             <input id="userLogin" type="text" placeholder="Correo electrónico" required v-model="email">
           </label>
@@ -27,7 +30,7 @@
           </label>
           <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Iniciar sesión
-          </button>
+          </button> -->
         </form>
       </div>
     </div>
@@ -35,7 +38,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 
 export default {
   name: 'Login',
@@ -52,8 +55,39 @@ export default {
         .then(() => {
           this.$router.replace('usuario')
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error.message)
+        })
+    },
+    logInWithGoogle () {
+      const provider = new GoogleAuthProvider()
+      provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+      const auth = getAuth()
+      auth.languageCode = 'es'
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result)
+          const token = credential.accessToken
+          // The signed-in user info.
+          const user = result.user
+          console.log(token)
+          console.log(user)
+          // ...
+        })
+        .then(() => {
+          this.$router.replace('usuario')
+        })
+        .catch((error) => {
+          console.log(error.message)
+          // Handle Errors here.
+          // const errorCode = error.code
+          // const errorMessage = error.message
+          // The email of the user's account used.
+          // const email = error.email
+          // The AuthCredential type that was used.
+          // const credential = GoogleAuthProvider.credentialFromError(error)
+          // ...
         })
     }
   }

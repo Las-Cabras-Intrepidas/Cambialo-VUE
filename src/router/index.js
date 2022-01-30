@@ -77,6 +77,7 @@ const router = createRouter({
   routes
 })
 
+// antiguo:
 /* router.beforeEach((to, from, next) => {
   const auth = getAuth()
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
@@ -88,6 +89,7 @@ const router = createRouter({
   } else next()
 }) */
 
+// funcion con firebase usando currentUser para obtener el usuario que ha accedidio, si no hay es un valor null
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     const auth = getAuth()
