@@ -1,6 +1,7 @@
 <template>
   <section class="login-section">
     <div class="main-container">
+      <!--  -->
       <div class="back-box">
         <div class="login-info">
           <h3>¿Ya tienes una cuenta?</h3>
@@ -14,14 +15,10 @@
           </button>
         </div>
       </div>
-
       <!--Formulario de Login-->
       <div class="front-box">
-        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logInWithGoogle">
-          <button id="loginButtonGoogle" type="submit" value="Login" style="background-color: red">
-            Iniciar sesión con Google
-          </button>
-          <!-- <h2>Iniciar sesión</h2>
+        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logIn">
+          <h2>Iniciar sesión</h2>
           <label for="">
             <input id="userLogin" type="text" placeholder="Correo electrónico" required v-model="email">
           </label>
@@ -30,9 +27,17 @@
           </label>
           <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
             Iniciar sesión
-          </button> -->
+          </button>
         </form>
+        <!--  -->
+        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logInWithGoogle">
+          <button id="loginButtonGoogle" type="submit" value="Login" style="background-color: red">
+            Iniciar sesión con Google
+          </button>
+        </form>
+        <!--  -->
       </div>
+      <!--  -->
     </div>
   </section>
 </template>
@@ -80,14 +85,6 @@ export default {
         })
         .catch((error) => {
           console.log(error.message)
-          // Handle Errors here.
-          // const errorCode = error.code
-          // const errorMessage = error.message
-          // The email of the user's account used.
-          // const email = error.email
-          // The AuthCredential type that was used.
-          // const credential = GoogleAuthProvider.credentialFromError(error)
-          // ...
         })
     }
   }
@@ -175,6 +172,7 @@ export default {
 
   form {
     width: 100%;
+    // height: 400px;
     padding: 80px 20px;
     background: #fff;
     position: absolute;
