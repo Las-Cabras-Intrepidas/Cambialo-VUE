@@ -5,14 +5,13 @@
     <InputProduct :product="product"/>
   </form>
   <hr>
-  <ListProduct />
+  <ListProduct :products="userProductList"/>
   <UserOptionsComponent />
   <UserCategories />
 </template>
 
 <script>
 import { getAuth, signOut } from 'firebase/auth'
-import { mapActions } from 'vuex'
 
 import UserNavBar from '../components/UserSection/UserNavBar.vue'
 import UserOptionsComponent from '../components/UserSection/UserOptionsComponent.vue'
@@ -36,8 +35,12 @@ export default {
         shipping: '',
         description: '',
         picture: ''
-      }
+      },
+      userProductList: []
     }
+  },
+  created () {
+    this.readProducts()
   },
   methods: {
     logOut () {
@@ -47,18 +50,25 @@ export default {
           this.$router.replace('/')
         })
     },
-    ...mapActions(['setProduct']),
-    addProduct () {
-      console.log(this.product)
-      if (this.product.title.trim() === '') {
-        console.log('Campo Vacio')
+    // agregar producto a firebase
+    async addProductDB () {
+      try {
+        const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${this.$store.state.user.uid}/${this.product.id}.json`, {
+          method: 'PUT',
+          body: JSON.stringify(this.product)
+        })
+        const dataDB = await response.json()
+        console.log(dataDB)
+      } catch {
+        console.log('error en subir')
       }
-      console.log('No Campo Vacio')
+    },
+    addProduct () {
       // generar id
       this.product.id = shortid.generate()
-      console.log(this.product.id)
       // enviar datos
-      this.setProduct(this.product)
+      this.addProductDB()
+      // vaciar campos
       this.product = {
         id: '',
         title: '',
@@ -67,7 +77,23 @@ export default {
         description: '',
         picture: ''
       }
+    },
+    async readProducts () {
+      try {
+        const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${this.$store.state.user.uid}.json`)
+        const dataDB = await response.json()
+        const arrayProducts = []
+        for (const index in dataDB) {
+          arrayProducts.push(dataDB[index])
+        }
+        this.userProductList = arrayProducts
+      } catch (error) {
+        console.log('error en cargar')
+      }
     }
+  },
+  updated () {
+    this.readProducts()
   }
 }
 </script>

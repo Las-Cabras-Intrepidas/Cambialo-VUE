@@ -32,14 +32,21 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
 export default {
   name: 'ListProduct',
-  computed: {
-    ...mapState(['products'])
+  props: {
+    products: Array
   },
   methods: {
-    ...mapActions(['deleteProduct', 'editProduct'])
+    async deleteProduct (id) {
+      try {
+        await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${this.$store.state.user.uid}/${id}.json`, {
+          method: 'DELETE'
+        })
+      } catch (error) {
+        console.log('error al borrar')
+      }
+    }
   }
 }
 </script>
