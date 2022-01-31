@@ -21,13 +21,13 @@
     <div class="link-container flex">
       <ul class="nav-list flex">
         <li>
-          <router-link to="/">Inicio</router-link>
+          <router-link to="/" @click="scrollToTop">Inicio</router-link>
         </li>
         <li>
-          <router-link to="/productos">Productos</router-link>
+          <router-link to="/productos" @click="scrollToTop">Productos</router-link>
         </li>
         <li>
-          <router-link to="/contacto">Contacto</router-link>
+          <router-link to="/contacto" @click="scrollToTop">Contacto</router-link>
         </li>
       </ul>
       <!-- Botones Sign In -->
@@ -133,6 +133,9 @@ export default {
         .then(() => {
           this.$router.replace('/')
         })
+    },
+    scrollToTop () {
+      window.scrollTo(0, 0)
     }
   },
   computed: {

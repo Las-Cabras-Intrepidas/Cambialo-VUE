@@ -4,13 +4,13 @@
       <div class="desktop-bg">
         <ul class="footer-list">
           <li class="footer-link">
-            <router-link to="/">INICIO</router-link>
+            <router-link to="/" @click="scrollToTop">INICIO</router-link>
           </li>
           <li class="footer-link">
-            <router-link to="/productos">PRODUCTOS</router-link>
+            <router-link to="/productos" @click="scrollToTop">PRODUCTOS</router-link>
           </li>
           <li class="footer-link">
-            <router-link to="/contacto">CONTACTO</router-link>
+            <router-link to="/contacto" @click="scrollToTop">CONTACTO</router-link>
           </li>
         </ul>
       </div>
@@ -44,7 +44,7 @@
             <router-link to="/terminos-y-condiciones" target="_blank">AVISO LEGAL</router-link>
           </li>
           <li class="footer-link">
-            <router-link to="/conocenos">CONÓCENOS</router-link>
+            <router-link to="/conocenos" @click="scrollToTop">CONÓCENOS</router-link>
           </li>
         </ul>
       </div>
@@ -61,7 +61,12 @@
 
 <script>
 export default {
-  name: 'FooterBar'
+  name: 'FooterBar',
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
+    }
+  }
 }
 </script>
 
