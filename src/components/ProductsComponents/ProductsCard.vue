@@ -18,12 +18,16 @@
   <div class="container">
     <div class="row-container">
       <div class="row" v-for="product in shownProducts" :key="product.title" :id="product.category">
-        <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }">
+        <div class="img-box">
           <img :src="product.picture" :alt="product.title" />
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }">
+            <font-awesome-icon class="icon" icon="handshake" />
+          </router-link>
+        </div>
+        <div class="flex">
           <h4>{{ product.title }}</h4>
           <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
-          <p>{{ product.description }}</p>
-        </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -57,65 +61,129 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  margin: 1.5rem 1rem;
-}
+button {
+  padding: 8px 20px;
+  font-weight: 600;
+  border-radius: 30px;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  background-color: #fff;
+  color: var(--main-color);
+  border: 2px solid var(--main-color);
+  text-decoration: none;
+  transition: all 300ms;
+  margin-right: 0.5rem;
+  margin-bottom: 1.5rem;
 
-.row {
-  max-width: 90%;
-  box-shadow: 1px 1px 4px 1px #cfcfcf;
-  border: 3px solid #afafaf;
-  border-radius: 4px;
-  margin-top: -3px;
-  margin-left: -3px;
-
-  img {
-    width: 100%;
+  a {
+    color: var(--main-color);
   }
 }
+button:hover {
+  background-color: var(--main-color);
+  text-decoration: none;
+  color: #fff;
+}
 
-.row:hover {
-  border: 3px solid var(--main-color);
-  margin-top: -3px;
-  margin-left: -3px;
+.container {
+  max-width: 85%;
+  margin: 0 auto;
 }
 
 .row-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  grid-row-gap: 25px;
+  gap: 2rem;
+}
+
+.row {
+  box-shadow: 1px 1px 4px 1px #cfcfcf;
+  border-radius: 1rem;
+  border: 2px solid #fff;
+}
+
+.row:hover {
+  border: 2px solid #012bb3;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 2rem;
+  margin-top: 1.5rem;
+}
+
+.img-box {
+  position: relative;
 }
 
 img {
   max-width: 100%;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.icon {
+  position: absolute;
+  bottom: -15px;
+  color: #fff;
+  font-size: 1.25rem;
+  right: 40%;
+  background: var(--main-color);
+  border: 2px solid #fff;
+  padding: 0.6rem;
+  border-radius: 50%;
+  text-align: center;
 }
 
 .availability {
-  font-size: 17px;
   color: green;
   font-weight: 600;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  text-align: start;
 }
 
 h4 {
-  margin: 2px;
-  font-size: 17px;
+  margin: 0;
 }
 
 p {
-  font-size: 16px;
+  font-size: 15px;
   padding: 2px;
+  margin: 0;
+  margin-bottom: 0.5rem;
 }
 
 /* mediaqueries */
-@media (min-width: 350px) and (max-width: 600px) {
+@media (min-width: 700px) {
   .row-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .row-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1300px) {
+  .container {
+    max-width: 75%;
+  }
+
+  .flex {
+    p {
+      margin: 0 0 0 1rem;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    max-width: 60%;
   }
 }
 .container-categories {
@@ -123,7 +191,7 @@ p {
   justify-content: space-evenly;
   margin-top: 2rem;
   flex-direction: row;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 
   .card-category {

@@ -1,28 +1,40 @@
 <template>
   <div class="category-container">
     <div>
-      <font-awesome-icon icon="tshirt" />
-      <p>Ropa</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="tshirt" />
+        <p>Ropa</p>
+      </router-link>
     </div>
     <div>
-      <font-awesome-icon icon="gamepad" />
-      <p>Juegos</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="gamepad" />
+        <p>Juegos</p>
+      </router-link>
     </div>
     <div>
-      <font-awesome-icon icon="paw" />
-      <p>Mascotas</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="paw" />
+        <p>Mascotas</p>
+      </router-link>
     </div>
     <div>
-      <font-awesome-icon icon="tv" />
-      <p>Tecnología</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="tv" />
+        <p>Tecnología</p>
+      </router-link>
     </div>
     <div>
-      <font-awesome-icon icon="home" />
-      <p>Hogar</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="home" />
+        <p>Hogar</p>
+      </router-link>
     </div>
     <div>
-      <font-awesome-icon icon="bowling-ball" />
-      <p>Deportes</p>
+      <router-link to="/productos">
+        <font-awesome-icon icon="bowling-ball" />
+        <p>Deportes</p>
+      </router-link>
     </div>
   </div>
 </template>

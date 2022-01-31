@@ -2,13 +2,15 @@
   <div class="center">
     <div class="color-banner flex">
       <div>
-      <h3>¡Compra sin dinero!</h3>
-      <h4>Únete a la nueva plataforma de intercambio</h4>
+        <h3>¡Compra sin dinero!</h3>
+        <h4>Únete a la nueva plataforma de intercambio</h4>
       </div>
-      <button>Empieza Aqui</button>
+      <button>
+        <router-link to="/registrate">Empieza Aquí</router-link>
+      </button>
     </div>
   </div>
-    <img class="hashtag" src="../../assets/img/hero_banner.webp" />
+  <img class="hashtag" src="../../assets/img/hero_banner.webp" />
 </template>
 
 <script>
@@ -18,7 +20,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .center {
   display: flex;
   justify-content: center;
@@ -29,7 +30,7 @@ export default {
   display: flex;
 }
 .color-banner {
-  background: url('../../assets/img/Trading2.webp');
+  background: url("../../assets/img/Trading2.webp");
   background-position-y: center;
   background-size: cover;
   box-shadow: inset 0 0 0 200px rgba(66, 96, 194, 0.75);
@@ -45,7 +46,8 @@ export default {
     margin: 5rem 2rem;
     max-width: 50%;
 
-    h3, h4 {
+    h3,
+    h4 {
       margin: 0;
     }
 
@@ -57,7 +59,6 @@ export default {
     h4 {
       font-size: 1.3rem;
     }
-
   }
 
   button {
@@ -95,27 +96,27 @@ img {
   max-width: 90%;
 }
 
-  @media (min-width: 700px) {
-    .hashtag {
+@media (min-width: 700px) {
+  .hashtag {
     max-width: 75%;
-    }
   }
+}
 
-  @media (min-width: 900px) {
-    .hashtag {
+@media (min-width: 900px) {
+  .hashtag {
     max-width: 60%;
-    }
   }
+}
 
-  @media (min-width: 1100px) {
-    .hashtag {
+@media (min-width: 1100px) {
+  .hashtag {
     max-width: 45%;
-    }
   }
+}
 
-  @media (min-width: 1300px) {
-    .hashtag {
+@media (min-width: 1300px) {
+  .hashtag {
     max-width: 40%;
-    }
   }
+}
 </style>
