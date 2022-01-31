@@ -23,7 +23,7 @@
             </a>
           </li>
           <li class="footer-link">
-            <a href="https://www.instagram.com/cambialo_es/" target="_blank">
+            <a href="https://www.instagram.com/cambialo.eu/" target="_blank">
               <font-awesome-icon :icon="['fab', 'instagram']" />
             </a>
           </li>
