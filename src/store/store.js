@@ -23,11 +23,9 @@ export default createStore({
     },
     SET_PRODUCT (state, payload) {
       state.products.push(payload)
-      localStorage.setItem('products', JSON.stringify(state.products))
     },
     DELETE_PRODUCT (state, payload) {
       state.products = state.products.filter(product => product.id !== payload)
-      localStorage.setItem('products', JSON.stringify(state.products))
     },
     SEARCH_PRODUCT (state, payload) {
       if (!state.products.find(product => product.id === payload)) {
@@ -38,35 +36,69 @@ export default createStore({
     },
     UPDATE_PRODUCT (state, payload) {
       state.products = state.products.map(product => product.id === payload.id ? payload : product)
-      localStorage.setItem('products', JSON.stringify(state.products))
       router.push('/usuario')
     }
   },
   // Recibe datos de onAuthStateChanged (main.js)
   actions: {
-    cargarLocalStorage ({ commit }) {
-      if (localStorage.getItem('products')) {
-        const products = JSON.parse(localStorage.getItem('products'))
-        commit('cargar', products)
-        return
+    async cargarLocalStorage ({ commit }) {
+      try {
+        const response = await fetch('https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-4.json')
+        const dataDB = await response.json()
+        const arrayProducts = []
+        for (const index in dataDB) {
+          arrayProducts.push(dataDB[index])
+        }
+        commit('cargar', arrayProducts)
+        console.log(dataDB)
+      } catch (error) {
+        console.log(error)
       }
-
-      localStorage.setItem('products', JSON.stringify([]))
     },
     detectUsers ({ commit }, user) {
       commit('setUser', user)
     },
-    setProduct ({ commit }, product) {
-      commit('SET_PRODUCT', product)
+    async setProduct ({ commit }, product) {
+      try {
+        // eslint-disable-next-line no-undef
+        const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${user.uid}/${product.id}.json`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(product)
+        })
+
+        const dataDB = await response.json()
+        console.log(dataDB)
+      } catch {
+        console.log('error')
+      }commit('SET_PRODUCT', product)
     },
-    deleteProduct ({ commit }, id) {
-      commit('DELETE_PRODUCT', id)
+    async deleteProduct ({ commit }, id) {
+      try {
+        await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/productsList/${id}.json`, {
+          method: 'DELETE'
+        })
+        commit('DELETE_PRODUCT', id)
+      } catch (error) {
+        console.log(error)
+      }
     },
     searchProduct ({ commit }, id) {
       commit('SEARCH_PRODUCT', id)
     },
-    updateProduct ({ commit }, id) {
-      commit('UPDATE_PRODUCT', id)
+    async updateProduct ({ commit }, product) {
+      try {
+        const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/productsList/${product.id}.json`, {
+          method: 'PATCH',
+          body: JSON.stringify(product)
+        })
+        const dataDB = await response.json()
+        commit('UPDATE_PRODUCT', dataDB)
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   // Devuelve true/false si existe un usuario
