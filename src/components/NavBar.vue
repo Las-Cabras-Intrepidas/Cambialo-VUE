@@ -3,10 +3,12 @@
   <nav v-if="!mobile" class="navbar desktop-bar flex">
     <!-- Logo -->
     <div class="logo-container">
-      <router-link to="/">
+      <router-link to="/" @click="scrollToTop">
         <img src="../assets/img/logo-small.jpg" alt="Logotipo" />
       </router-link>
-      <p>CÁMBIALO</p>
+      <router-link to="/" @click="scrollToTop">
+        <p>CÁMBIALO</p>
+      </router-link>
     </div>
     <!-- Barra de busqueda -->
     <div class="search-container desktop-search">
@@ -33,10 +35,10 @@
       <!-- Botones Sign In -->
       <div id="botonesLogin" class="login-buttons">
         <button v-if="!existUser"  id="btnInicio">
-          <router-link to="/login">Iniciar sesión</router-link>
+          <router-link to="/login" @click="scrollToTop">Iniciar sesión</router-link>
         </button>
         <button v-if="!existUser" id="btnRegistro">
-          <router-link to="/registrate">Registrarse</router-link>
+          <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>
         <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">Cerrar sesión</router-link>

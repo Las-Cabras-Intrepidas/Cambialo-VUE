@@ -20,7 +20,7 @@
       <div class="row" v-for="product in shownProducts" :key="product.title" :id="product.category">
         <div class="img-box">
           <img :src="product.picture" :alt="product.title" />
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }">
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }" @click="scrollToTop">
             <font-awesome-icon class="icon" icon="handshake" />
           </router-link>
         </div>
@@ -55,6 +55,11 @@ export default {
         return this.products.filter(product => product.category === this.selectedCategory)
       }
       return this.products
+    }
+  },
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
     }
   }
 }

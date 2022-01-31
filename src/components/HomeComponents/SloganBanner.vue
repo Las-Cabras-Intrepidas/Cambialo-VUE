@@ -1,11 +1,11 @@
 <template>
   <div class="slogan-banner">
-    <p class="slogan-text">
-      Cámbialo te ofrece la oportunidad de darle valor a lo que creías que ya no lo tenía
-    </p>
     <h2 class="slogan-title">
       <strong>¿Cuál va a ser tu próximo cambio?</strong>
     </h2>
+    <p class="slogan-text">
+      Cámbialo te ofrece la oportunidad de darle valor a lo que creías que ya no lo tenía
+    </p>
   </div>
 <hr />
 </template>

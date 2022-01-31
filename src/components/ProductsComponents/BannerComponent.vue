@@ -3,8 +3,8 @@
     <h2>
       <strong>¿Quieres devolver tu regalo de Reyes y Navidad?</strong>
     </h2>
-    <hr />
     <p>Te damos la posibilidad de cambiar los regalos sin dejar la moral de tu familia y amigos por los suelos.</p>
+    <hr />
   </div>
 </template>
 

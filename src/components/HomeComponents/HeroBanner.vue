@@ -4,7 +4,7 @@
       <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="#LoQueNoUsesCambialo" />
       <h1>Conecta con otros usuarios y dale otra vida a lo que ya no usas.</h1>
       <button id="btnBorrar1">
-        <router-link to="/registrate">Empieza aquí</router-link>
+        <router-link to="/registrate" @click="scrollToTop">Empieza aquí</router-link>
       </button>
     </div>
   </section>
@@ -12,7 +12,12 @@
 
 <script>
 export default {
-  name: 'HeroBanner'
+  name: 'HeroBanner',
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
+    }
+  }
 }
 </script>
 

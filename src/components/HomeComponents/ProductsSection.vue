@@ -9,8 +9,8 @@
       >
         <div class="img-box">
         <img :src="starProduct.picture" :alt="starProduct.title" />
-        <router-link to="/productos">
-        <font-awesome-icon class="icon" icon="handshake" />
+        <router-link to="/productos" @click="scrollToTop">
+          <font-awesome-icon class="icon" icon="handshake" />
         </router-link>
         </div>
         <div class="flex">
@@ -32,6 +32,11 @@ export default {
   data() {
     return {
       starProducts: starProducts
+    }
+  },
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
     }
   }
 }

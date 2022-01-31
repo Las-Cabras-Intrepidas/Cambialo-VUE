@@ -6,7 +6,7 @@
         <h4>Únete a la nueva plataforma de intercambio</h4>
       </div>
       <button>
-        <router-link to="/registrate">Empieza Aquí</router-link>
+        <router-link to="/registrate" @click="scrollToTop">Empieza Aquí</router-link>
       </button>
     </div>
   </div>
@@ -15,7 +15,12 @@
 
 <script>
 export default {
-  name: 'SecondBanner'
+  name: 'SecondBanner',
+  methods: {
+    scrollToTop () {
+      window.scrollTo(0, 0)
+    }
+  }
 }
 </script>
 
