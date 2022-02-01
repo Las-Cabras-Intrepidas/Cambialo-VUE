@@ -8,7 +8,7 @@ import store from './store/store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUserSecret, faTshirt, faGamepad, faPaw, faTv, faHome, faBowlingBall, faSearch, faBoxes, faEnvelope, faStar, faBox, faSyncAlt, faArrowDown, faStopwatch, faDollarSign, faRecycle, faArrowRight, faHandshake, faHandshakeAltSlash } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookSquare, faInstagram, faTwitterSquare } from '@fortawesome/free-brands-svg-icons'
-import { db, auth, storage } from './firebase'
+import { db, auth, storage, firestore } from './firebase'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
@@ -16,6 +16,7 @@ library.add(faTshirt, faUserSecret, faGamepad, faPaw, faTv, faHome, faBowlingBal
 console.log(db)
 console.log(auth)
 console.log(storage)
+console.log(firestore)
 
 createApp(App).use(router).use(store).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
 
