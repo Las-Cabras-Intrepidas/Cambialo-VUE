@@ -40,6 +40,9 @@
         <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>
+        <button v-if="existUser" id="btnUserPage">
+          <router-link to="/usuario">{{$store.state.user.email}}</router-link>
+        </button>
         <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">Cerrar sesión</router-link>
         </button>

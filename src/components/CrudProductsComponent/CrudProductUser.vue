@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div class="addProduct-box">
+  <div>
+    <div class="add-box">
       <h2>Subir Producto</h2>
       <form action="#" id="addProduct" method="GET" class="formulario__addProduct" @submit.prevent="addProduct">
           <label for="">
@@ -20,14 +20,32 @@
           </button>
         </form>
     </div>
-  </div>
-  <div>
-
+    <div class=getProduct-box>
+      <h2>Productos de {{$store.state.user.email}}</h2>
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Disponible</th>
+        <th scope="col">Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(item, index) in productos" :key="index">
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.available}}</td>
+        <td>{{item.idCategory}}</td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
   </div>
 </template>
 
 <script>
-import { getFirestore, collection, addDoc } from 'firebase/firestore/lite'
+import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore/lite'
 export default {
   name: 'AddProductUser',
   data () {
@@ -36,7 +54,8 @@ export default {
       description: '',
       available: '',
       idUser: '',
-      idCategory: ''
+      idCategory: '',
+      productos: []
     }
   },
   methods: {
@@ -57,10 +76,28 @@ export default {
         .catch(function (error) {
           console.error('Error al añadir el documento: ', error)
         })
+    },
+    async showDates () {
+      const db = getFirestore()
+      const uid = this.$store.state.user.uid
+      const q = query(collection(db, 'Productos'), where('idUser', '==', uid))
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => {
+        const producto = doc.data()
+        producto.id = doc.id
+        this.productos.push(producto)
+        console.log(producto)
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data())
+      }).then(() => {
+        this.$forceUpdate()
+      })
     }
+  },
+  mounted () {
+    this.showDates()
   }
 }
-
 </script>
 
 <style>

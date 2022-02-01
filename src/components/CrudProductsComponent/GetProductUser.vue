@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h2>Productos de {{$store.state.user.email}}</h2>
+    <div class=getProduct-box>
+      <h2>Productos de {{$store.state.user.email}}</h2>
     <table class="table">
     <thead>
       <tr>
@@ -19,6 +20,7 @@
       </tr>
     </tbody>
     </table>
+    </div>
   </div>
 </template>
 
