@@ -1,11 +1,12 @@
+
 <template>
   <UserNavBar />
-  <h2>Agrega un producto!</h2>
+  <h2>¡Agrega un producto!</h2>
   <form @submit.prevent="addProduct">
-    <InputProduct :product="product"/>
+    <InputProduct :product="product" />
   </form>
-  <hr>
-  <ListProduct :products="userProductList"/>
+  <hr />
+  <ListProduct :products="userProductList" />
   <UserOptionsComponent />
   <UserCategories />
 </template>
@@ -26,7 +27,8 @@ export default {
   components: {
     UserNavBar, InputProduct, UserOptionsComponent, UserCategories, ListProduct
   },
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       product: {
         id: '',
@@ -39,11 +41,13 @@ export default {
       userProductList: []
     }
   },
-  created () {
+  // eslint-disable-next-line space-before-function-paren
+  created() {
     this.readProducts()
   },
   methods: {
-    logOut () {
+    // eslint-disable-next-line space-before-function-paren
+    logOut() {
       const auth = getAuth()
       signOut(auth)
         .then(() => {
@@ -51,7 +55,8 @@ export default {
         })
     },
     // agregar producto a firebase
-    async addProductDB () {
+    // eslint-disable-next-line space-before-function-paren
+    async addProductDB() {
       try {
         const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${this.$store.state.user.uid}/${this.product.id}.json`, {
           method: 'PUT',
@@ -63,7 +68,8 @@ export default {
         console.log('error en subir')
       }
     },
-    addProduct () {
+    // eslint-disable-next-line space-before-function-paren
+    addProduct() {
       // generar id
       this.product.id = shortid.generate()
       // enviar datos
@@ -78,7 +84,8 @@ export default {
         picture: ''
       }
     },
-    async readProducts () {
+    // eslint-disable-next-line space-before-function-paren
+    async readProducts() {
       try {
         const response = await fetch(`https://cambialo-eoi-default-rtdb.europe-west1.firebasedatabase.app/userList-${this.$store.state.user.uid}.json`)
         const dataDB = await response.json()
@@ -92,8 +99,33 @@ export default {
       }
     }
   },
-  updated () {
+  // eslint-disable-next-line space-before-function-paren
+  updated() {
     this.readProducts()
   }
 }
 </script>
+<style lang="scss" scoped>
+form {
+  font-size: 16px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+  min-height: 380px;
+  padding: 2rem;
+  background: rgba(2, 42, 176, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(1px);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 350px;
+  }
+}
+</style>
