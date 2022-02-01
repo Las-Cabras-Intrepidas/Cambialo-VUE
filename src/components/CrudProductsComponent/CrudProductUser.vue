@@ -37,6 +37,14 @@
         <td>{{item.description}}</td>
         <td>{{item.available}}</td>
         <td>{{item.idCategory}}</td>
+        <td>
+          <button @click.prevent="deleteProduct(item.id)"
+          class="btn btn-danger">Eliminar
+          </button>
+        </td>
+        <button @click="editProduct(item.id)">
+            <router-link :to="{ name: 'EditProduct', params: { id: item.id } }">Editar</router-link>
+          </button>
       </tr>
     </tbody>
     </table>
@@ -45,7 +53,7 @@
 </template>
 
 <script>
-import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore/lite'
+import { getFirestore, collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore/lite'
 export default {
   name: 'AddProductUser',
   data () {
@@ -62,7 +70,7 @@ export default {
     async addProduct () {
       const db = getFirestore()
       const uid = this.$store.state.user.uid
-      const docRef = await addDoc(collection(db, 'Productos'), {
+      await addDoc(collection(db, 'Productos'), {
         title: this.title,
         description: this.description,
         available: this.available,
@@ -70,8 +78,7 @@ export default {
         idCategory: this.idCategory
       })
         .then(() => {
-          console.log(docRef.id)
-          console.log('Documento añadido')
+          this.$router.go('/usuario')
         })
         .catch(function (error) {
           console.error('Error al añadir el documento: ', error)
@@ -89,10 +96,16 @@ export default {
         console.log(producto)
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, ' => ', doc.data())
-      }).then(() => {
-        this.$forceUpdate()
       })
+    },
+    async deleteProduct (id) {
+      const db = getFirestore()
+      await deleteDoc(doc(db, 'Productos', id))
+        .then(() => {
+          this.$router.go()
+        })
     }
+
   },
   mounted () {
     this.showDates()

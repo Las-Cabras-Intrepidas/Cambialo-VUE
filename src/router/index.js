@@ -69,6 +69,11 @@ const routes = [{
   name: 'TermsConditions',
   component: () =>
     import('../views/Terms.vue')
+},
+{
+  path: '/editar/:id',
+  name: 'EditProduct',
+  component: () => import('../views/EditProduct.vue')
 }
 ]
 
