@@ -10,21 +10,14 @@
             <input id="descP" type="textarea" placeholder="Descripcion" required v-model="description">
           </label>
           <label for="">
-            <input  name="foto" type="file" accept="image/*" @change="buscarImagen($event)">
+            <input  name="foto" type="file" accept="image/*" @change="buscarImagen($event)" required>
             <div class="mt-4">
               <img :src="datoImagen">
             </div>
           </label>
           <label for="">
-            <select id="avalP" required v-model="available" name="selectdisp">
-              <option value="">Seleccione Disponibilidad</option>
-              <option value="Disponible">Disponible</option>
-              <option value="No disponible">No disponible</option>
-            </select>
-          </label>
-          <label for="">
             <select  id="catP"  required v-model="idCategory" name="selectcat">
-              <option value="">Categoría</option>
+              <option value="">Categoria</option>
               <option value="Tecnología">Tecnología</option>
               <option value="Hogar">Hogar</option>
               <option value="Mascotas">Mascotas</option>
@@ -47,6 +40,9 @@
         <th scope="col">Descripción</th>
         <th scope="col">Disponible</th>
         <th scope="col">Categoria</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Eliminar</th>
+        <th scope="col">Editar</th>
       </tr>
     </thead>
     <tbody>
@@ -55,8 +51,9 @@
         <td>{{item.description}}</td>
         <td>{{item.available}}</td>
         <td>{{item.idCategory}}</td>
+        <td><img v-bind:src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+item.picture.replace('/','%2F')+'?alt=media'"></td>
         <td>
-          <button @click.prevent="deleteProduct(item.id)"
+          <button @click.prevent="deleteProduct(item.id, item.picture)"
           class="btn btn-danger">Eliminar
           </button>
         </td>
@@ -72,7 +69,7 @@
 
 <script>
 import { getFirestore, collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore/lite'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import { getStorage, ref, uploadBytes, deleteObject } from 'firebase/storage'
 export default {
   name: 'AddProductUser',
   data () {
@@ -92,7 +89,8 @@ export default {
       const db = getFirestore()
       const uid = this.$store.state.user.uid
       const storage = getStorage()
-      const storageRef = ref(storage, this.file.name)
+      const rute = uid + '/' + this.file.name
+      const storageRef = ref(storage, rute)
       // 'file' comes from the Blob or File API
       uploadBytes(storageRef, this.file).then((snapshot) => {
         console.log('Uploaded a blob or file!')
@@ -100,10 +98,10 @@ export default {
       await addDoc(collection(db, 'Productos'), {
         title: this.title,
         description: this.description,
-        available: this.available,
+        available: 'Disponible',
         idUser: uid,
         idCategory: this.idCategory,
-        picture: this.file.name
+        picture: rute
       }).then(() => {
         this.error = 'Imagen subida con éxito'
         this.file = null
@@ -129,7 +127,13 @@ export default {
         console.log(doc.id, ' => ', doc.data())
       })
     },
-    async deleteProduct (id) {
+    async deleteProduct (id, urlImg) {
+      const storage = getStorage()
+      const desertRef = ref(storage, urlImg)
+      deleteObject(desertRef).then(() => {
+      }).catch((error) => {
+        console.log(error)
+      })
       const db = getFirestore()
       await deleteDoc(doc(db, 'Productos', id))
         .then(() => {
@@ -161,5 +165,18 @@ export default {
 </script>
 
 <style>
+table {
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+th, td {
+  padding: 25px;
+}
+
+  td img {
+    height: 125px;
+    width: 125px;
+  }
 
 </style>

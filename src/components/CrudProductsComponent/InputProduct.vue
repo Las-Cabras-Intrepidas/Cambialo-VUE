@@ -1,6 +1,7 @@
 <template>
 <div class="container">
   <h2>Edita tu producto => {{ idroute }}</h2>
+  <p>➡ Nombre de producto:</p>
   <form @submit.prevent="updateProduct(idroute)">
   <div class="name">
     <input type="text" placeholder="Producto" v-model="title" />
@@ -11,8 +12,12 @@
   </div>
   <div class="picture">
     <p>➡ Sube una foto:</p>
-    <input type="file" accept="image/*" />
+    <input type="file" accept="image/*" @change="buscarImagen($event)"/>
+    <div class="mt-4">
+              <img :src="datoImagen">
+            </div>
   </div>
+  <p>➡ Descripción de producto:</p>
   <div class="description">
     <textarea
       placeholder="Descripción de tu producto"
@@ -29,7 +34,8 @@
 </template>
 
 <script>
-import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore/lite'
+import { getFirestore, doc, updateDoc } from 'firebase/firestore/lite'
+import { getStorage, ref, uploadBytes } from 'firebase/storage'
 export default {
   name: 'InputProduct',
   data () {
@@ -37,38 +43,69 @@ export default {
       idroute: this.$route.params.id,
       title: '',
       description: '',
-      idCategory: ''
+      idCategory: '',
+      picture: '',
+      file: null,
+      datoImagen: null
     }
   },
   methods: {
     async updateProduct (id) {
       const db = getFirestore()
+      const uid = this.$store.state.user.uid
       const productRef = doc(db, 'Productos', id)
-      // Set the "capital" field of the city 'DC'
-      await updateDoc(productRef, {
-        title: this.title,
-        description: this.description,
-        idCategory: this.idCategory
-      }).then(() => {
-        this.$router.go('/usuario')
-      })
-    },
-    async created () {
-      const db = getFirestore()
-      const docRef = doc(db, 'Productos', this.$route.params.id)
-      const docSnap = await getDoc(docRef)
-        .then(() => {
-          this.product = docSnap
-          console.log(this.product)
-          if (docSnap.exists()) {
-            console.log('Document data:', docSnap.data())
-            window.alert('bien')
-          } else {
-            // doc.data() will be undefined in this case
-            console.log('No such document!')
-            window.alert('va mal')
-          }
+      if (this.datoImagen != null) {
+        const storage = getStorage()
+        const rute = uid + '/' + this.file.name
+        const storageRef = ref(storage, rute)
+        await uploadBytes(storageRef, this.file)
+          .then((snapshot) => {
+            this.picture = this.file.name
+          })
+        await updateDoc(productRef, {
+          title: this.title,
+          description: this.description,
+          idCategory: this.idCategory,
+          picture: rute
         })
+          .then(() => {
+            this.error = 'Imagen subida con éxito'
+            this.file = null
+          })
+          .then(() => {
+            this.$router.go('/usuario')
+          })
+      } else {
+        await updateDoc(productRef, {
+          title: this.title,
+          description: this.description,
+          idCategory: this.idCategory
+        })
+          .then(() => {
+            this.error = 'Imagen subida con éxito'
+            this.file = null
+          })
+          .then(() => {
+            this.$router.go('/usuario')
+          })
+      }
+    },
+    buscarImagen (event) {
+      console.log(event.target.files[0])
+      const tipoArchivo = event.target.files[0].type
+      if (tipoArchivo === 'image/jpeg' || tipoArchivo === 'image/png') {
+        this.file = event.target.files[0]
+        this.error = null
+      } else {
+        this.error = 'Archivo no válido'
+        this.file = null
+        return
+      }
+      const reader = new FileReader()
+      reader.readAsDataURL(this.file)
+      reader.onload = (e) => {
+        this.datoImagen = e.target.result
+      }
     }
 
   }
@@ -126,7 +163,7 @@ button:hover {
 }
 
 p {
-  text-align: left;
+  text-align: center;
   font-weight: 600;
   margin: 2px;
   font-size: 18px;
