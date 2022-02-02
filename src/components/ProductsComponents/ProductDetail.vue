@@ -11,48 +11,25 @@
         </transition>
         <transition name="pop" appear>
           <div class="modal" role="dialog" v-if="showModal">
-            <div class="form-container">
-              <h4>Si te interesa este artículo rellena este form para empezar tu intercambio</h4>
-              <form class="contact" action method="get">
-                <label>
-                  <h3>Nombre de usuario</h3>
-                  <input
-                    class="first-input"
-                    placeholder="Tu Usuario"
-                    type="text"
-                    tabindex="1"
-                    required
-                    autofocus
-                  />
-                </label>
-                <label>
-                  <h3>¿Qué ofreces?</h3>
-                  <input placeholder="Artículos" type="text" tabindex="2" required autofocus />
-                </label>
-                <label>
-                  <h3>Introduce tu correo electrónico</h3>
-                  <input
-                    placeholder="tucorreo@tucorreo.com"
-                    type="email"
-                    tabindex="3"
-                    required
-                    autofocus
-                  />
-                </label>
-                <label>
-                  <h3>¿Necesitas dar más información?</h3>
-                  <textarea
-                    class="text-form"
-                    placeholder="Escribe detalles del intercambio..."
-                    tabindex="4"
-                    required
-                    autofocus
-                  ></textarea>
-                </label>
-                <label></label>
-              </form>
-            </div>
-            <button @click="showModal = false" class="button">Enviar</button>
+            <form id="contact" action method="post">
+              <h2>Rellena el formulario para contactar</h2>
+              <fieldset>
+                <input placeholder="Nombre" type="text" />
+              </fieldset>
+              <fieldset>
+                <input placeholder="usuario@email.com" type="email" />
+              </fieldset>
+              <fieldset>
+                <input placeholder="Tu teléfono (opcional)" type="tel" />
+              </fieldset>
+              <fieldset>
+                <input placeholder="¿Qué ofreces?" type="text" />
+              </fieldset>
+              <fieldset>
+                <textarea placeholder="¿Necesitas dar más información?"></textarea>
+              </fieldset>
+              <button @click="showModal = false" class="button">Enviar</button>
+            </form>
           </div>
         </transition>
       </div>
@@ -125,65 +102,26 @@ export default {
 .modal {
   position: absolute;
   position: fixed;
-  top: 10%;
-  left: 25%;
   justify-content: center;
+  top: 15%;
   text-align: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.24);
   background: #fff;
   z-index: 999;
   transform: none;
-}
-
-h4 {
-  margin: 0 auto;
-  font-size: 18px;
-  color: var(--main-color);
-  text-shadow: 1px 1px 2px grey;
-}
-
-.modal-container {
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-.contact {
-  display: flex;
-  flex-direction: column;
-
-  .form-container {
-    margin: auto;
-  }
-
-  label {
-    flex-direction: column;
-    font-weight: bold;
-
-    h3 {
-      font-weight: bolder;
-    }
-
-    input {
-      border-radius: 6px;
-      padding: 3px;
-      border: 2px solid var(--main-color);
-      font-size: 16px;
-    }
-
-    .text-form {
-      padding: 15px;
-      border: 2px solid var(--main-color);
-      border-radius: 6px;
-      font-size: 1em;
-      font-family: var(--main-font);
-    }
-  }
-}
-
-.modal h1 {
-  margin: 0 0 1rem;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-width: 550px;
+  max-width: 750px;
+  min-height: 400px;
+  max-height: 600px;
 }
 
 .modal-overlay {
@@ -197,9 +135,88 @@ h4 {
   bottom: 0;
   left: 0;
   z-index: 998;
-  background: #2c3e50;
-  opacity: 0.6;
-  cursor: pointer;
+  background: #2a3d50;
+  opacity: 0.65;
+}
+#contact input[type="text"],
+#contact input[type="email"],
+#contact input[type="tel"],
+#contact textarea,
+#contact button[type="submit"] {
+  font: 600 13px/16px Avenir, Helvetica, Arial, sans-serif;
+}
+
+#contact {
+  padding: 40px;
+  line-height: 30px;
+  padding: 25px;
+
+  .button {
+    border-radius: 5px;
+    background-color: var(--main-color);
+    width: 100%;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+  }
+  .button:hover {
+    background-color: #000292;
+  }
+  h2 {
+    display: block;
+    font-size: 1.7em;
+    font-weight: 600;
+    margin-bottom: 35px;
+  }
+  input {
+    width: 100%;
+    text-indent: 8px;
+    height: 2em;
+  }
+  textarea {
+    height: 120px;
+    width: 100%;
+    max-width: 100%;
+    resize: none;
+  }
+}
+
+fieldset {
+  border: medium none;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 2px;
+  width: 100%;
+}
+#contact input[type="text"]:hover,
+#contact input[type="email"]:hover,
+#contact input[type="tel"]:hover,
+#contact textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+#contact input:focus,
+#contact textarea:focus {
+  outline: 0;
+  border: 1px solid #aaa;
+}
+
+::-webkit-input-placeholder {
+  color: #888;
+}
+
+:-moz-placeholder {
+  color: #888;
+}
+
+::-moz-placeholder {
+  color: #888;
+}
+
+:-ms-input-placeholder {
+  color: #888;
 }
 
 /* ---------------------------------- */
