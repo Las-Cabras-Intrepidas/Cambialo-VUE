@@ -1,5 +1,10 @@
 <template>
-  <ProductDetail :title="product.title" :category="product.category" :description="product.description" :picture="product.picture"/>
+  <ProductDetail
+    :title="product.title"
+    :category="product.category"
+    :description="product.description"
+    :picture="product.picture"
+  />
   <FormExchange />
 </template>
 <script>
