@@ -5,35 +5,35 @@
       <h1>{{ title }}</h1>
       <p>{{ description }}</p>
       <button @click="showModal = true" class="button">Cámbialo Ahora</button>
-      <div class="modal-container">
-        <transition name="fade" appear>
-          <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
-        </transition>
-        <transition name="pop" appear>
-          <div class="modal" role="dialog" v-if="showModal">
-            <form id="contact" action method="post">
-              <h2>Rellena el formulario para contactar</h2>
-              <fieldset>
-                <input placeholder="Nombre" type="text" />
-              </fieldset>
-              <fieldset>
-                <input placeholder="usuario@email.com" type="email" />
-              </fieldset>
-              <fieldset>
-                <input placeholder="Tu teléfono (opcional)" type="tel" />
-              </fieldset>
-              <fieldset>
-                <input placeholder="¿Qué ofreces?" type="text" />
-              </fieldset>
-              <fieldset>
-                <textarea placeholder="¿Necesitas dar más información?"></textarea>
-              </fieldset>
-              <button @click="showModal = false" class="button">Enviar</button>
-            </form>
-          </div>
-        </transition>
-      </div>
     </div>
+  </div>
+  <div class="modal-container">
+    <transition name="fade" appear>
+      <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+    </transition>
+    <transition name="pop" appear>
+      <div class="modal" role="dialog" v-if="showModal">
+        <form id="contact">
+          <h2>Rellena el formulario para contactar</h2>
+          <fieldset>
+            <input placeholder="Nombre" type="text" />
+          </fieldset>
+          <fieldset>
+            <input placeholder="usuario@email.com" type="email" />
+          </fieldset>
+          <fieldset>
+            <input placeholder="Tu teléfono (opcional)" type="tel" />
+          </fieldset>
+          <fieldset>
+            <input placeholder="¿Qué ofreces?" type="text" />
+          </fieldset>
+          <fieldset>
+            <textarea placeholder="¿Necesitas dar más información?"></textarea>
+          </fieldset>
+          <button @click="showModal = false" class="button">Enviar</button>
+        </form>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -77,33 +77,31 @@ export default {
     margin: 10px;
   }
 
-  div {
-    margin-left: 1rem;
+  button {
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: white;
+    border: 2px solid var(--main-color);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: var(--main-color);
+  }
 
-    button {
-      cursor: pointer;
-      font-size: 1rem;
-      background-color: white;
-      border: 2px solid var(--main-color);
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      color: var(--main-color);
-    }
-
-    button:hover {
-      background-color: var(--main-color);
-      color: #fff;
-    }
+  button:hover {
+    background-color: var(--main-color);
+    color: #fff;
   }
 }
+
 /* estilos modal */
 
 .modal {
   position: absolute;
   position: fixed;
+  right: 10%;
   justify-content: center;
-  top: 15%;
+  top: 5%;
   text-align: center;
   border-radius: 15px;
   box-shadow: 0 15px 10px rgba(0, 0, 0, 0.24);
@@ -118,10 +116,8 @@ export default {
   -o-font-smoothing: antialiased;
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  min-width: 550px;
-  max-width: 750px;
-  min-height: 400px;
-  max-height: 600px;
+  min-width: 30%;
+  max-width: 80%;
 }
 
 .modal-overlay {
@@ -155,9 +151,11 @@ export default {
     border-radius: 5px;
     background-color: var(--main-color);
     width: 100%;
+    min-height: 2.25rem;
     color: #fff;
     border: none;
     font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
   .button:hover {
     background-color: #000292;
@@ -169,22 +167,25 @@ export default {
     margin-bottom: 35px;
   }
   input {
-    width: 100%;
     text-indent: 8px;
-    height: 2em;
+    height: 2rem;
+    box-sizing: border-box;
+    width: 100%;
   }
   textarea {
-    height: 120px;
-    width: 100%;
+    min-height: 120px;
     max-width: 100%;
     resize: none;
+    margin-bottom: 20px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
 fieldset {
   border: medium none;
   margin: 0 0 10px;
-  min-width: 100%;
   padding: 2px;
   width: 100%;
 }
@@ -239,5 +240,29 @@ fieldset {
 .pop-leave-to {
   opacity: 0;
   transform: scale(0.3) translateY(-50%);
+}
+
+@media (min-width: 500px) {
+  .modal {
+    max-width: 70%;
+    top: 15%;
+    right: 15%;
+  }
+}
+
+@media (min-width: 700px) {
+  .modal {
+    max-width: 55%;
+    top: 15%;
+    right: 22.5%;
+  }
+}
+
+@media (min-width: 950px) {
+  .modal {
+    max-width: 50%;
+    top: 15%;
+    right: 30%;
+  }
 }
 </style>
