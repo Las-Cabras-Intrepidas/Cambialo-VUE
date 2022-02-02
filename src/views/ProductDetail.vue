@@ -5,17 +5,17 @@
     :description="product.description"
     :picture="product.picture"
   />
-  <FormExchange />
+  <!-- <FormExchange /> -->
 </template>
 <script>
-import FormExchange from '../components/ProductsComponents/FormExchange.vue'
+// import FormExchange from '../components/ProductsComponents/FormExchange.vue'
 import ProductDetail from '../components/ProductsComponents/ProductDetail.vue'
 import products from '../assets/data/producto.json'
 
 export default {
   name: 'ProductsExchange',
   component: {
-    FormExchange
+    // FormExchange
   },
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -30,7 +30,8 @@ export default {
     this.product = this.products.find((product) => product.title === productName)
   },
   components: {
-    FormExchange, ProductDetail
+    // FormExchange,
+    ProductDetail
   }
 }
 </script>
