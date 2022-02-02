@@ -1,38 +1,17 @@
 <template>
-<div>
-    <input type="text" placeholder="Nombre del producto" v-model.trim="props.product.title" />
+<div class="container">
+  <h2>Edita tu producto => {{ idroute }}</h2>
+  <form @submit.prevent="updateProduct(idroute)">
+  <div class="name">
+    <input type="text" placeholder="Producto" v-model="title" />
   </div>
   <p>➡ Selecciona una categoría:</p>
-  <div class="category">
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-1" v-model="props.product.idCategory" value="tecnologia" />
-      <label for="check-1">Tecnología</label>
-    </div>
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-2" v-model="props.product.idCategory" value="hogar" />
-      <label for="check-2">Hogar</label>
-    </div>
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-3" v-model="props.product.idCategory" value="mascotas" />
-      <label for="check-3">Mascotas</label>
-    </div>
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-4" v-model="props.product.idCategory" value="juegos" />
-      <label for="check-4">Juegos</label>
-    </div>
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-5" v-model="props.product.idCategory" value="ropa" />
-      <label for="check-5">Ropa</label>
-    </div>
-    <div class="checkbox-item">
-      <input type="checkbox" id="check-6" v-model="props.product.idCategory" value="deporte" />
-      <label for="check-6">Deporte</label>
-    </div>
+  <div class="name">
+    <input type="text" placeholder="Categoria" v-model="idCategory" />
   </div>
   <div class="picture">
     <p>➡ Sube una foto:</p>
     <input type="file" accept="image/*" />
-    <!-- v-model="product.picture"  -->
   </div>
   <div class="description">
     <textarea
@@ -41,25 +20,57 @@
       id="textarea-1"
       cols="30"
       rows="10"
-      v-model.trim="props.product.description"
+      v-model="description"
     ></textarea>
   </div>
-  <button type="submit" :disabled="validateForm">Subir</button>
-  <!-- eslint-disable vue/no-mutating-props -->
-
+  <button type="submit" id="addProductButton" value="AddProduct">Subir</button>
+  </form>
+</div>
 </template>
 
 <script>
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore/lite'
 export default {
   name: 'InputProduct',
-  props: {
-    product: Object
-  },
-  computed: {
-    // eslint-disable-next-line space-before-function-paren
-    validateForm() {
-      return this.product.title.trim() === ''
+  data () {
+    return {
+      idroute: this.$route.params.id,
+      title: '',
+      description: '',
+      idCategory: ''
     }
+  },
+  methods: {
+    async updateProduct (id) {
+      const db = getFirestore()
+      const productRef = doc(db, 'Productos', id)
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(productRef, {
+        title: this.title,
+        description: this.description,
+        idCategory: this.idCategory
+      }).then(() => {
+        this.$router.go('/usuario')
+      })
+    },
+    async created () {
+      const db = getFirestore()
+      const docRef = doc(db, 'Productos', this.$route.params.id)
+      const docSnap = await getDoc(docRef)
+        .then(() => {
+          this.product = docSnap
+          console.log(this.product)
+          if (docSnap.exists()) {
+            console.log('Document data:', docSnap.data())
+            window.alert('bien')
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!')
+            window.alert('va mal')
+          }
+        })
+    }
+
   }
 
 }

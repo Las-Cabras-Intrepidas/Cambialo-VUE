@@ -7,13 +7,31 @@
             <input id="titleP" type="text" placeholder="Titulo" required v-model="title">
           </label>
           <label for="">
-            <input id="descP" type="text" placeholder="Descripcion" required v-model="description">
+            <input id="descP" type="textarea" placeholder="Descripcion" required v-model="description">
           </label>
           <label for="">
-            <input id="avalP" type="text" placeholder="Disponible" required v-model="available">
+            <input  name="foto" type="file" accept="image/*" @change="buscarImagen($event)">
+            <div class="mt-4">
+              <img :src="datoImagen">
+            </div>
           </label>
           <label for="">
-            <input id="catP" type="text" placeholder="Categoria" required v-model="idCategory">
+            <select id="avalP" required v-model="available" name="selectdisp">
+              <option value="">Seleccione Disponibilidad</option>
+              <option value="Disponible">Disponible</option>
+              <option value="No disponible">No disponible</option>
+            </select>
+          </label>
+          <label for="">
+            <select  id="catP"  required v-model="idCategory" name="selectcat">
+              <option value="">Categoría</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Hogar">Hogar</option>
+              <option value="Mascotas">Mascotas</option>
+              <option value="Juegos">Juegos</option>
+              <option value="Ropa">Ropa</option>
+              <option value="Deporte">Deporte</option>
+          </select>
           </label>
           <button id="addProductButton" type="submit" value="AddProduct" style="background-color: var(--main-color)">
             Subir Producto
@@ -54,6 +72,7 @@
 
 <script>
 import { getFirestore, collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore/lite'
+import { getStorage, ref, uploadBytes } from 'firebase/storage'
 export default {
   name: 'AddProductUser',
   data () {
@@ -63,19 +82,31 @@ export default {
       available: '',
       idUser: '',
       idCategory: '',
-      productos: []
+      productos: [],
+      file: null,
+      datoImagen: null
     }
   },
   methods: {
     async addProduct () {
       const db = getFirestore()
       const uid = this.$store.state.user.uid
+      const storage = getStorage()
+      const storageRef = ref(storage, this.file.name)
+      // 'file' comes from the Blob or File API
+      uploadBytes(storageRef, this.file).then((snapshot) => {
+        console.log('Uploaded a blob or file!')
+      })
       await addDoc(collection(db, 'Productos'), {
         title: this.title,
         description: this.description,
         available: this.available,
         idUser: uid,
-        idCategory: this.idCategory
+        idCategory: this.idCategory,
+        picture: this.file.name
+      }).then(() => {
+        this.error = 'Imagen subida con éxito'
+        this.file = null
       })
         .then(() => {
           this.$router.go('/usuario')
@@ -104,8 +135,24 @@ export default {
         .then(() => {
           this.$router.go()
         })
+    },
+    buscarImagen (event) {
+      console.log(event.target.files[0])
+      const tipoArchivo = event.target.files[0].type
+      if (tipoArchivo === 'image/jpeg' || tipoArchivo === 'image/png') {
+        this.file = event.target.files[0]
+        this.error = null
+      } else {
+        this.error = 'Archivo no válido'
+        this.file = null
+        return
+      }
+      const reader = new FileReader()
+      reader.readAsDataURL(this.file)
+      reader.onload = (e) => {
+        this.datoImagen = e.target.result
+      }
     }
-
   },
   mounted () {
     this.showDates()

@@ -10,7 +10,7 @@
         <p>CÁMBIALO</p>
       </router-link>
     </div>
-    <!-- Barra de busqueda -->
+    <!-- Barra de busqueda-->
     <div class="search-container desktop-search">
       <div class="inner-container">
         <input type="search" id="search" placeholder="Busca en todas las categorías..." />
@@ -46,6 +46,12 @@
         <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">Cerrar sesión</router-link>
         </button>
+        <!-- <router-link to="/usuario">
+          <font-awesome-icon v-if="existUser" :icon="['fas', 'user']" />
+        </router-link>
+        <router-link to="/">
+          <font-awesome-icon v-if="existUser" @click="logOut" :icon="['fas', 'power-off']" />
+        </router-link> -->
       </div>
     </div>
   </nav>
@@ -151,6 +157,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.icon {
+  font-size: 24px;
+  color: blue;
+}
 
 ul {
   padding: 0;
