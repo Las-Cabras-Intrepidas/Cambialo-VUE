@@ -17,12 +17,12 @@
   <!-- Productos -->
   <div class="container">
     <div class="row-container">
-      <div class="row" v-for="product in shownProducts" :key="product.category" :id="product.idcategory">
+      <div class="row" v-for="product in shownProducts" :key="product.id " :id="product.category">
         <div class="img-box">
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.idUser } }" @click="scrollToTop">
-            <img :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+product.picture.replace('/','%2F')+'?alt=media'" :alt="product.title" />
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.id } }" @click="scrollToTop">
+            <img :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+product.picture.replace('/','%2F')+'?alt=media'" :alt="product.description" />
           </router-link>
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.idUser } }" @click="scrollToTop">
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.id } }" @click="scrollToTop">
             <font-awesome-icon class="icon" icon="handshake" />
           </router-link>
         </div>
@@ -50,7 +50,8 @@ export default {
       categories: categories,
       selectedCategory: null,
       productos: [],
-      products: this.productos
+      products: this.productos,
+      idProduct: ''
     }
   },
   computed: {

@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <img :src="picture" :alt="title" />
+    <img :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+picture.replace('/','%2F')+'?alt=media'" :alt="title" />
     <div class="text-container">
-      <h1>{{ title }}</h1>
-      <p>{{ description }}</p>
-      <button @click="showModal = true" class="button">Cámbialo Ahora</button>
+      <h1> {{ this.title }} </h1>
+      <p> {{ this.description }} </p>
+      <button @click="showModal = true" class="button">Cambiar</button>
     </div>
   </div>
   <div class="modal-container">
@@ -38,27 +38,35 @@
 </template>
 
 <script>
+import { getFirestore, doc, getDoc } from 'firebase/firestore/lite'
 export default {
   name: 'ProductDetail',
-  props: {
-    title: {
-      type: String
-    },
-    category: {
-      type: String
-    },
-    description: {
-      type: String
-    },
-    picture: {
-      type: String
-    }
-  },
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
+      idProduct: this.$route.params.id,
+      title: '',
+      description: '',
+      idCategory: '',
+      picture: '',
       showModal: false
     }
+  },
+  methods: {
+    async showProduct (idProduct) {
+      const db = getFirestore()
+      const docRef = doc(db, 'Productos', idProduct)
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        this.title = docSnap.data().title
+        this.description = docSnap.data().description
+        this.idCategory = docSnap.data().idCategory
+        this.picture = docSnap.data().picture
+      }
+    }
+  },
+  mounted () {
+    this.showProduct(this.$route.params.id)
   }
 }
 </script>
@@ -114,7 +122,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-font-smoothing: antialiased;
   -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+  /* font-smoothing: antialiased; */
   text-rendering: optimizeLegibility;
   min-width: 30%;
   max-width: 80%;
