@@ -150,6 +150,7 @@ button:hover {
 img {
   max-width: 100%;
   border-radius: 1rem 1rem 0 0;
+  height: 200px;
 }
 
 .icon {
@@ -238,6 +239,10 @@ p {
 
   .card-category:hover {
     transform: scale(1.3);
+  }
+
+  .img-category {
+    height: 140px;
   }
 }
 </style>
