@@ -29,19 +29,19 @@
           <router-link to="/productos" @click="scrollToTop">Productos</router-link>
         </li>
         <li>
-          <router-link to="/contacto" @click="scrollToTop">Contacto</router-link>
+          <router-link to="/conocenos" @click="scrollToTop">Conócenos</router-link>
         </li>
       </ul>
       <!-- Botones Sign In -->
       <div id="botonesLogin" class="login-buttons">
-        <button v-if="!existUser"  id="btnInicio">
+        <button v-if="!existUser" id="btnInicio">
           <router-link to="/login" @click="scrollToTop">Iniciar sesión</router-link>
         </button>
         <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>
         <button v-if="existUser" id="btnUserPage">
-          <router-link to="/usuario">{{$store.state.user.email}}</router-link>
+          <router-link to="/usuario">{{ $store.state.user.email }}</router-link>
         </button>
         <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">Cerrar sesión</router-link>
@@ -51,7 +51,7 @@
         </router-link>
         <router-link to="/">
           <font-awesome-icon v-if="existUser" @click="logOut" :icon="['fas', 'power-off']" />
-        </router-link> -->
+        </router-link>-->
       </div>
     </div>
   </nav>
@@ -67,7 +67,12 @@
         <p>CÁMBIALO</p>
       </div>
       <!-- Boton Menu hamburguesa -->
-      <button @click="toggleMobileNav" v-show="mobile" class="mobile-nav-toggle" :class="{ 'icon-active': mobileNav }">
+      <button
+        @click="toggleMobileNav"
+        v-show="mobile"
+        class="mobile-nav-toggle"
+        :class="{ 'icon-active': mobileNav }"
+      >
         <span class="sr-only">Menu</span>
       </button>
       <!-- Enlaces de navegacion hamburguesa-->
@@ -125,7 +130,7 @@ export default {
     this.checkScreen()
   },
   methods: {
-    toggleMobileNav () {
+    toggleMobileNav() {
       this.mobileNav = !this.mobileNav
     },
     checkScreen() {
@@ -138,14 +143,14 @@ export default {
       }
     },
     // funcion boton logout
-    logOut () {
+    logOut() {
       const auth = getAuth()
       signOut(auth)
         .then(() => {
           this.$router.replace('/')
         })
     },
-    scrollToTop () {
+    scrollToTop() {
       window.scrollTo(0, 0)
     }
   },
@@ -157,7 +162,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .icon {
   font-size: 24px;
   color: blue;
@@ -235,7 +239,7 @@ ul {
   // overflow: hidden;
 
   .inner-container {
-    display:flex;
+    display: flex;
     white-space: nowrap;
     width: 100%;
     font-size: 0.875rem;
@@ -317,9 +321,9 @@ ul {
   @supports (backdrop-filter: blur(1rem)) {
     .link-box {
       background: #5175b51a;
-        backdrop-filter: blur(1rem);
-      }
-   }
+      backdrop-filter: blur(1rem);
+    }
+  }
 
   li {
     margin-bottom: 2.5rem;
@@ -389,7 +393,7 @@ ul {
 
 .mobile-nav-toggle {
   position: absolute;
-  background: url('../assets/img/square.png');
+  background: url("../assets/img/square.png");
   background-repeat: no-repeat;
   background-size: cover;
   width: 2rem;
@@ -399,15 +403,15 @@ ul {
   z-index: 50;
   border: none;
   display: block;
-  }
+}
 
-  .mobile-nav-toggle:hover {
-    cursor: pointer;
-  }
+.mobile-nav-toggle:hover {
+  cursor: pointer;
+}
 
-  .icon-active {
-    background-image: url('../assets/img/cancel.png');
-   }
+.icon-active {
+  background-image: url("../assets/img/cancel.png");
+}
 
 .sr-only {
   display: none;
@@ -428,7 +432,7 @@ ul {
   }
 
   #btnInicio {
-    white-space:nowrap;
+    white-space: nowrap;
   }
 }
 
@@ -440,10 +444,8 @@ ul {
 }
 
 @media (min-width: 1560px) {
-
   .search-container {
     width: 40%;
   }
 }
-
 </style>

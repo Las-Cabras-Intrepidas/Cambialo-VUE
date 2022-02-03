@@ -11,26 +11,50 @@
         <div class="signin-info">
           <h3>¿Aún no tienes una cuenta?</h3>
           <p>Regístrate para poder iniciar sesión</p>
-          <button id="registerButton2"><router-link to="/registrate">Registrarse</router-link>
+          <button id="registerButton2">
+            <router-link to="/registrate">Registrarse</router-link>
           </button>
         </div>
       </div>
       <!--Formulario de Login-->
       <div class="front-box">
-        <form action="#" id="formLogin" method="GET" class="formulario__login" @submit.prevent="logIn">
+        <form
+          action="#"
+          id="formLogin"
+          method="GET"
+          class="formulario__login"
+          @submit.prevent="logIn"
+        >
           <h2>Iniciar sesión</h2>
-          <label for="">
-            <input id="userLogin" type="text" placeholder="Correo electrónico" required v-model="email">
+          <label for>
+            <input
+              id="userLogin"
+              type="text"
+              placeholder="Correo electrónico"
+              required
+              v-model="email"
+            />
           </label>
-          <label for="">
-            <input id="pswLogin" type="password" placeholder="Contraseña" required v-model="password">
+          <label for>
+            <input
+              id="pswLogin"
+              type="password"
+              placeholder="Contraseña"
+              required
+              v-model="password"
+            />
           </label>
-          <button id="loginButton" type="submit" value="Login" style="background-color: var(--main-color)">
-            Iniciar sesión
-          </button>
-          <button id="loginButtonGoogle" @click="logInWithGoogle" style="background-color: red">
-            Iniciar sesión con Google
-          </button>
+          <button
+            id="loginButton"
+            type="submit"
+            value="Login"
+            style="background-color: var(--main-color)"
+          >Iniciar sesión</button>
+          <button
+            id="loginButtonGoogle"
+            @click="logInWithGoogle"
+            style="background-color: red"
+          >Iniciar sesión con Google</button>
         </form>
         <!--  -->
       </div>
@@ -90,7 +114,6 @@ export default {
 
 </script>
 <style lang="scss" scoped>
-
 .login-section {
   padding: 0;
   background-image: url("../../assets/img/mosaic-image.webp");
@@ -115,8 +138,9 @@ export default {
     color: #fff;
     transition: all 500ms;
 
-    p, button {
-      margin-top: 30px
+    p,
+    button {
+      margin-top: 30px;
     }
 
     p {
@@ -135,14 +159,14 @@ export default {
       color: #fff;
       outline: none;
 
-      a{
+      a {
         color: #fff;
       }
     }
 
     button:hover {
       background: #fff;
-      a{
+      a {
         color: var(--main-color);
       }
     }
@@ -260,5 +284,4 @@ export default {
     padding-left: 2rem;
   }
 }
-
 </style>

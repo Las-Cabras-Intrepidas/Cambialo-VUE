@@ -54,7 +54,7 @@
         <img class="logo" src="../assets/img/logo-small.jpg" alt />
       </router-link>
       <p>Cámbialo -</p>
-      <p>Copyright © 2021, Intrepid Ibex ©</p>
+      <p>Copyright © 2022, Intrepid Ibex ©</p>
     </div>
   </footer>
 </template>

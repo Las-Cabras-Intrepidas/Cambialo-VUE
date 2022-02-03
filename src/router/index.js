@@ -58,12 +58,6 @@ const routes = [{
     requiresAuth: true
   }
 },
-/*
-                         {
-                           path: '/categoriafiltrada',
-                           name: 'Filtrada',
-                           component: () => import('../views/Productosfilter.vue')
-                         } */
 {
   path: '/terminos',
   name: 'TermsConditions',
@@ -73,7 +67,8 @@ const routes = [{
 {
   path: '/editar/:id',
   name: 'EditProduct',
-  component: () => import('../views/EditProduct.vue')
+  component: () =>
+    import('../views/EditProduct.vue')
 }
 ]
 
