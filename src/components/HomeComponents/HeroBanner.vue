@@ -1,7 +1,7 @@
 <template>
   <section class="mosaic-section">
     <div class="hero-container">
-      <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="#LoQueNoUsesCambialo" />
+      <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="Mosaico de artículos" />
       <h1>Conecta con otros usuarios y dale otra vida a lo que ya no usas.</h1>
       <button id="btnBorrar1">
         <router-link to="/registrate" @click="scrollToTop">Empieza aquí</router-link>
@@ -14,7 +14,8 @@
 export default {
   name: 'HeroBanner',
   methods: {
-    scrollToTop () {
+    // eslint-disable-next-line space-before-function-paren
+    scrollToTop() {
       window.scrollTo(0, 0)
     }
   }
@@ -84,7 +85,7 @@ export default {
 }
 
 @media (min-width: 850px) {
-  .hero-container{
+  .hero-container {
     width: 70%;
     padding: 2rem 0;
 
@@ -95,7 +96,7 @@ export default {
 }
 
 @media (min-width: 1200px) {
-  .hero-container{
+  .hero-container {
     width: 65%;
     margin: 1.5rem 0;
     img {
@@ -108,7 +109,7 @@ export default {
 }
 
 @media (min-width: 1500px) {
-  .hero-container{
+  .hero-container {
     margin: 2.5rem 0;
     width: 55%;
     img {

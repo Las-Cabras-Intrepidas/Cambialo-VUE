@@ -2,11 +2,11 @@
   <div class="container-boxes">
     <div class="left-box">
       <h1>Dale una nueva vida a los artículos</h1>
-      <img src="../../assets/img/img-boxes.png" alt />
+      <img src="../../assets/img/img-boxes.png" alt="ilustracion mujer sentada" />
     </div>
     <div class="right-box">
       <h1>Sálvemos al planeta</h1>
-      <img src="../../assets/img/img2-boxes.png" alt />
+      <img src="../../assets/img/img2-boxes.png" alt="ilustracion dos personas hablando" />
     </div>
   </div>
 </template>

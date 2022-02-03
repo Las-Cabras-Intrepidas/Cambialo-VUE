@@ -10,14 +10,15 @@
       </button>
     </div>
   </div>
-  <img class="hashtag" src="../../assets/img/hero_banner.webp" />
+  <img class="hashtag" src="../../assets/img/hero_banner.webp" alt="Banner intercambio libros" />
 </template>
 
 <script>
 export default {
   name: 'SecondBanner',
   methods: {
-    scrollToTop () {
+    // eslint-disable-next-line space-before-function-paren
+    scrollToTop() {
       window.scrollTo(0, 0)
     }
   }

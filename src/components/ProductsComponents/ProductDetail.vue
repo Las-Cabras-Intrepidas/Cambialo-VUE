@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img :src="picture" alt />
+    <img :src="picture" :alt="title" />
     <div class="text-container">
       <h1>{{ title }}</h1>
       <p>{{ description }}</p>
