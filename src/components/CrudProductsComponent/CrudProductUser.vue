@@ -2,69 +2,104 @@
   <div>
     <div class="add-box">
       <h2>Subir Producto</h2>
-      <form action="#" id="addProduct" method="GET" class="formulario__addProduct" @submit.prevent="addProduct">
-      <div class="formUpload">
-          <label for="">
-            <input id="titleP" class="textCards" type="text" placeholder="Titulo" required v-model="title">
+      <form
+        action="#"
+        id="addProduct"
+        method="GET"
+        class="formulario__addProduct"
+        @submit.prevent="addProduct"
+      >
+        <div class="formUpload">
+          <label for>
+            <input
+              id="titleP"
+              class="textCards"
+              type="text"
+              placeholder="Titulo"
+              required
+              v-model="title"
+            />
           </label>
-          <label for="">
-            <input id="descP" class="textCards" type="textarea" placeholder="Descripcion" required v-model="description">
+          <label for>
+            <input
+              id="descP"
+              class="textCards"
+              type="textarea"
+              placeholder="Descripcion"
+              required
+              v-model="description"
+            />
           </label>
-          <label for="">
-            <input id="uploadFile" name="foto" type="file" accept="image/*" @change="buscarImagen($event)" required>
+          <label for>
+            <input
+              id="uploadFile"
+              name="foto"
+              type="file"
+              accept="image/*"
+              @change="buscarImagen($event)"
+              required
+            />
             <div class="mt-4">
-              <img :src="datoImagen">
+              <img :src="datoImagen" />
             </div>
           </label>
-          <label for="">
-            <select  id="catP"  required v-model="idCategory" name="selectcat">
-              <option value="">Categoria</option>
+          <label for>
+            <select id="catP" required v-model="idCategory" name="selectcat">
+              <option value>Categoria</option>
               <option value="Tecnología">Tecnología</option>
               <option value="Hogar">Hogar</option>
               <option value="Mascotas">Mascotas</option>
               <option value="Juegos">Juegos</option>
               <option value="Ropa">Ropa</option>
               <option value="Deporte">Deporte</option>
-          </select>
+            </select>
           </label>
-          <button class="inputUpdate" id="addProductButton" type="submit" value="AddProduct" style="background-color: var(--main-color); color: white; width: 150px" >
-            Subir
-          </button>
-          </div>
-        </form>
+          <button
+            class="inputUpdate"
+            id="addProductButton"
+            type="submit"
+            value="AddProduct"
+            style="background-color: var(--main-color); color: white; width: 150px"
+          >Subir</button>
+        </div>
+      </form>
     </div>
-    <div class=getProduct-box>
-      <h2>Productos de {{$store.state.user.email}}</h2>
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Disponibilidad</th>
-        <th scope="col">Categoría</th>
-        <th scope="col">Imagen</th>
-        <th scope="col">Eliminar</th>
-        <th scope="col">Editar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(item, index) in productos" :key="index">
-        <td>{{item.title}}</td>
-        <td>{{item.description}}</td>
-        <td>{{item.available}}</td>
-        <td>{{item.idCategory}}</td>
-        <td><img v-bind:src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+item.picture.replace('/','%2F')+'?alt=media'"></td>
-        <td>
-          <button  @click.prevent="deleteProduct(item.id, item.picture)" class="btnBlue">Eliminar</button>
-        </td>
-        <td>
-        <button class="btnBlue" @click="editProduct(item.id)">
-            <router-link :to="{ name: 'EditProduct', params: { id: item.id } }">Editar</router-link>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    </table>
+    <div class="getProduct-box">
+      <h2>Productos de {{ $store.state.user.email }}</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Disponibilidad</th>
+            <th scope="col">Categoría</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in productos" :key="index">
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.available }}</td>
+            <td>{{ item.idCategory }}</td>
+            <td>
+              <img
+                v-bind:src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/' + item.picture.replace('/', '%2F') + '?alt=media'"
+              />
+            </td>
+            <td>
+              <button @click.prevent="deleteProduct(item.id, item.picture)" class="btnBlue">Eliminar</button>
+            </td>
+            <td>
+              <button class="btnBlue" @click="editProduct(item.id)">
+                <router-link :to="{ name: 'EditProduct', params: { id: item.id } }">Editar</router-link>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -172,18 +207,19 @@ table {
   align-items: center;
   text-align: center;
   border-collapse: collapse;
-  border:solid 2px blue;
+  border: solid 2px blue;
   margin: 40px;
 }
 
-th{
-  border:solid 2px blue;
+th {
+  border: solid 2px blue;
 }
-td{
-  border-bottom:solid 2px blue ;
+td {
+  border-bottom: solid 2px blue;
 }
-th, td {
-  padding: 50px;
+th,
+td {
+  padding: 20px;
 
   margin: 0;
 }
@@ -193,13 +229,13 @@ td img {
   width: 140px;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.getProduct-box{
+.getProduct-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,7 +250,7 @@ form{
   border-radius: 5px;
 }
 
-.textCards{
+.textCards {
   font-size: 15px;
   font-family: var(--main-font);
   border: 3px solid rebeccapurple;
@@ -244,17 +280,20 @@ form{
   text-decoration: none;
   cursor: pointer;
 }
-.formUpload{
+.formUpload {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 }
-.mt-4 > img{
- max-width: 150px;
+.mt-4 > img {
+  max-width: 150px;
 }
 
-#catP , #uploadFile,#titleP,#descP{
+#catP,
+#uploadFile,
+#titleP,
+#descP {
   width: 300px;
   height: 30px;
   margin: 5px;
@@ -264,5 +303,4 @@ form{
     flex-wrap: wrap;
   }
 }
-
 </style>
