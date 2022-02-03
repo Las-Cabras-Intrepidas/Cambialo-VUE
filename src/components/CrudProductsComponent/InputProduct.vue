@@ -28,7 +28,11 @@
       v-model="description"
     ></textarea>
   </div>
-  <button type="submit" id="addProductButton" value="AddProduct">Subir</button>
+    <button type="submit" id="addProductButton" value="AddProduct">
+      <router-link to="/usuario" @click="scrollToTop">
+        Subir
+      </router-link>
+    </button>
   </form>
 </div>
 </template>
