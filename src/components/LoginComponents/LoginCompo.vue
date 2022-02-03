@@ -101,7 +101,7 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  background-image: url("../../assets/img/bg4.jpg");
+  background-image: url("../../assets/img/mosaic-image.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -111,10 +111,11 @@ export default {
   flex-direction: column;
   padding: 3%;
   min-height: calc(100vh - 200px);
+  margin-bottom: 2%;
 }
 
 .login__container {
-  background: linear-gradient(#21c08b, #ab88ff);
+  background: linear-gradient(#1db8c2, #012db3);
   border: 5px solid white;
   border-radius: 40px;
   color: white;
