@@ -8,14 +8,24 @@
   </div>
   <p>➡ Selecciona una categoría:</p>
   <div class="name">
-    <input type="text" placeholder="Categoria" v-model="idCategory" />
+    <label for="">
+      <select  id="catP"  required v-model="idCategory" name="selectcat">
+        <option value="">Categoria</option>
+        <option value="Tecnología">Tecnología</option>
+        <option value="Hogar">Hogar</option>
+        <option value="Mascotas">Mascotas</option>
+        <option value="Juegos">Juegos</option>
+        <option value="Ropa">Ropa</option>
+        <option value="Deporte">Deporte</option>
+      </select>
+    </label>
   </div>
   <div class="picture">
     <p>➡ Sube una foto:</p>
     <input type="file" accept="image/*" @change="buscarImagen($event)"/>
     <div class="mt-4">
-              <img :src="datoImagen">
-            </div>
+      <img :src="datoImagen">
+    </div>
   </div>
   <p>➡ Descripción de producto:</p>
   <div class="description">
@@ -29,16 +39,17 @@
     ></textarea>
   </div>
     <button type="submit" id="addProductButton" value="AddProduct">
-      <router-link to="/usuario" @click="scrollToTop">
+      Editar
+      <!-- <router-link to="/usuario" @click="scrollToTop">
         Subir
-      </router-link>
+      </router-link> -->
     </button>
   </form>
 </div>
 </template>
 
 <script>
-import { getFirestore, doc, updateDoc } from 'firebase/firestore/lite'
+import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore/lite'
 import { getStorage, ref, uploadBytes } from 'firebase/storage'
 export default {
   name: 'InputProduct',
@@ -77,7 +88,7 @@ export default {
             this.file = null
           })
           .then(() => {
-            this.$router.go('/usuario')
+            this.$router.push('/usuario')
           })
       } else {
         await updateDoc(productRef, {
@@ -90,7 +101,7 @@ export default {
             this.file = null
           })
           .then(() => {
-            this.$router.go('/usuario')
+            this.$router.push('/usuario')
           })
       }
     },
@@ -110,8 +121,21 @@ export default {
       reader.onload = (e) => {
         this.datoImagen = e.target.result
       }
+    },
+    async showProduct (idProduct) {
+      const db = getFirestore()
+      const docRef = doc(db, 'Productos', idProduct)
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        this.title = docSnap.data().title
+        this.description = docSnap.data().description
+        this.idCategory = docSnap.data().idCategory
+      }
     }
 
+  },
+  mounted () {
+    this.showProduct(this.$route.params.id)
   }
 
 }

@@ -1,7 +1,7 @@
 <template>
   <ProductDetail
     :title="product.title"
-    :category="product.category"
+    :category="product.idcategory"
     :description="product.description"
     :picture="product.picture"
   />
@@ -10,7 +10,7 @@
 <script>
 // import FormExchange from '../components/ProductsComponents/FormExchange.vue'
 import ProductDetail from '../components/ProductsComponents/ProductDetail.vue'
-import products from '../assets/data/producto.json'
+import { getFirestore, doc, getDoc } from 'firebase/firestore/lite'
 
 export default {
   name: 'ProductsExchange',
@@ -20,14 +20,22 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      products: products,
+      productos: [],
       product: null
+    }
+  },
+  async showProduct (idProduct) {
+    const db = getFirestore()
+    const docRef = doc(db, 'Productos', idProduct)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      this.product = docSnap.data()
     }
   },
   // eslint-disable-next-line space-before-function-paren
   beforeMount() {
     const productName = this.$route.params.id
-    this.product = this.products.find((product) => product.title === productName)
+    this.product = this.showProduct(productName)
   },
   components: {
     // FormExchange,

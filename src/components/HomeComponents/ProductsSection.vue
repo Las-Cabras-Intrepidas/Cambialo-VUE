@@ -8,7 +8,9 @@
         :id="starProduct.category"
       >
         <div class="img-box">
-        <img :src="starProduct.picture" :alt="starProduct.title" />
+        <router-link to="/productos" @click="scrollToTop">
+          <img :src="starProduct.picture" :alt="starProduct.title" />
+        </router-link>
         <router-link to="/productos" @click="scrollToTop">
           <font-awesome-icon class="icon" icon="handshake" />
         </router-link>

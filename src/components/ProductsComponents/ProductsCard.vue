@@ -17,16 +17,19 @@
   <!-- Productos -->
   <div class="container">
     <div class="row-container">
-      <div class="row" v-for="product in shownProducts" :key="product.title" :id="product.category">
+      <div class="row" v-for="product in shownProducts" :key="product.category" :id="product.idcategory">
         <div class="img-box">
-          <img :src="product.picture" :alt="product.title" />
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.title } }" @click="scrollToTop">
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.idUser } }" @click="scrollToTop">
+            <img :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+product.picture.replace('/','%2F')+'?alt=media'" :alt="product.title" />
+          </router-link>
+          <router-link :to="{ name: 'ProductDetail', params: { id: product.idUser } }" @click="scrollToTop">
             <font-awesome-icon class="icon" icon="handshake" />
           </router-link>
         </div>
         <div class="flex">
           <h4>{{ product.title }}</h4>
-          <p class="availability">{{ product.available ? "Disponible" : "No Disponible" }}</p>
+          <!--<p class="availability">{{product.available ? "Disponible" : "No Disponible" }}</p>-->
+          <p class="availability">Disponible</p>
         </div>
       </div>
     </div>
@@ -35,7 +38,8 @@
 
 <script>
 import categories from '../../assets/data/categoria.json'
-import products from '../../assets/data/producto.json'
+// import products from '../../assets/data/producto.json'
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore/lite'
 
 export default {
   name: 'ProductsCard',
@@ -45,22 +49,39 @@ export default {
       value: '',
       categories: categories,
       selectedCategory: null,
-      products: products
+      productos: [],
+      products: this.productos
     }
   },
   computed: {
     // eslint-disable-next-line space-before-function-paren
     shownProducts() {
       if (this.selectedCategory) {
-        return this.products.filter(product => product.category === this.selectedCategory)
+        return this.productos.filter(productos => productos.idCategory === this.selectedCategory)
       }
-      return this.products
+      return this.productos
     }
   },
   methods: {
     scrollToTop () {
       window.scrollTo(0, 0)
+    },
+    async downloadProducts () {
+      const db = getFirestore()
+      const q = query(collection(db, 'Productos'), where('available', '==', 'Disponible'))
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => {
+        const producto = doc.data()
+        producto.id = doc.id
+        this.productos.push(producto)
+        console.log(producto)
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data())
+      })
     }
+  },
+  mounted () {
+    this.downloadProducts()
   }
 }
 </script>

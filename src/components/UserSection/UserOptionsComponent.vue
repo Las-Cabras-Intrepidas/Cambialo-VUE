@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2>¿Qué quieres cambiar hoy?</h2>
+    <!-- <h2>¿Qué quieres cambiar hoy?</h2> -->
   </div>
-  <div class="buttons">
+  <!-- <div class="buttons">
     <button>Subir Artículo</button>
     <button>Mirar la tienda</button>
-  </div>
+  </div> -->
 </template>
 <script>
 export default {
