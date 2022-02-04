@@ -59,14 +59,16 @@ import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 
 export default {
   name: 'Register',
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       email: '',
       password: ''
     }
   },
   methods: {
-    register () {
+    // eslint-disable-next-line space-before-function-paren
+    register() {
       const auth = getAuth()
       createUserWithEmailAndPassword(auth, this.email, this.password)
         .then(() => {
@@ -76,7 +78,8 @@ export default {
           console.log(error.message)
         })
     },
-    logInWithGoogle () {
+    // eslint-disable-next-line space-before-function-paren
+    logInWithGoogle() {
       const provider = new GoogleAuthProvider()
       provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
       const auth = getAuth()
@@ -114,6 +117,7 @@ export default {
   flex-direction: column;
   padding: 3%;
   min-height: calc(100vh - 200px);
+  margin-bottom: 2%;
 }
 
 .login__container {
