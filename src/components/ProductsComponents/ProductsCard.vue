@@ -1,4 +1,14 @@
 <template>
+  <div class="inner-container">
+    <input
+      type="search"
+      id="search"
+      v-model="buscar"
+      placeholder="Busca en todas las categorías..."
+      class="form-control"
+    />
+    <button>Buscar</button>
+  </div>
   <div class="container-categories">
     <div
       @click="selectedCategory = category.category;"
@@ -17,12 +27,21 @@
   <!-- Productos -->
   <div class="container">
     <div class="row-container">
-      <div class="row" v-for="product in shownProducts" :key="product.id " :id="product.category">
+      <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
         <div class="img-box">
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.id } }" @click="scrollToTop">
-            <img :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/'+product.picture.replace('/','%2F')+'?alt=media'" :alt="product.description" />
+          <router-link
+            :to="{ name: 'ProductDetail', params: { id: product.id } }"
+            @click="scrollToTop"
+          >
+            <img
+              :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/' + product.picture.replace('/', '%2F') + '?alt=media'"
+              :alt="product.description"
+            />
           </router-link>
-          <router-link :to="{ name: 'ProductDetail', params: { id: product.id } }" @click="scrollToTop">
+          <router-link
+            :to="{ name: 'ProductDetail', params: { id: product.id } }"
+            @click="scrollToTop"
+          >
             <font-awesome-icon class="icon" icon="handshake" />
           </router-link>
         </div>
@@ -43,6 +62,9 @@ import { getFirestore, collection, query, where, getDocs } from 'firebase/firest
 
 export default {
   name: 'ProductsCard',
+  props: {
+    msg: String
+  },
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -51,7 +73,8 @@ export default {
       selectedCategory: null,
       productos: [],
       products: this.productos,
-      idProduct: ''
+      idProduct: '',
+      buscar: ''
     }
   },
   computed: {
@@ -61,13 +84,21 @@ export default {
         return this.productos.filter(productos => productos.idCategory === this.selectedCategory)
       }
       return this.productos
+    },
+    // eslint-disable-next-line space-before-function-paren
+    productSearch() {
+      return this.productos.filter(product => {
+        return product.title.toLowerCase().includes(this.buscar.toLowerCase())
+      })
     }
   },
   methods: {
-    scrollToTop () {
+    // eslint-disable-next-line space-before-function-paren
+    scrollToTop() {
       window.scrollTo(0, 0)
     },
-    async downloadProducts () {
+    // eslint-disable-next-line space-before-function-paren
+    async downloadProducts() {
       const db = getFirestore()
       const q = query(collection(db, 'Productos'), where('available', '==', 'Disponible'))
       const querySnapshot = await getDocs(q)
@@ -81,7 +112,8 @@ export default {
       })
     }
   },
-  mounted () {
+  // eslint-disable-next-line space-before-function-paren
+  mounted() {
     this.downloadProducts()
   }
 }
