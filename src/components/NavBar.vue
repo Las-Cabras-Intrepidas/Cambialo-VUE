@@ -10,15 +10,6 @@
         <p>CÁMBIALO</p>
       </router-link>
     </div>
-    <!-- Barra de busqueda-->
-    <div class="search-container desktop-search">
-      <div class="inner-container">
-        <input type="search" id="search" placeholder="Busca en todas las categorías..." />
-        <button class="icon">
-          <font-awesome-icon icon="search" />
-        </button>
-      </div>
-    </div>
     <!-- Enlaces de navegacion-->
     <div class="link-container flex">
       <ul class="nav-list flex">
@@ -100,15 +91,6 @@
         </div>
       </transition>
     </div>
-    <!-- Barra de busqueda -->
-    <div class="search-container mobile-search">
-      <div class="inner-container">
-        <input type="search" id="search" placeholder="Busca en todas las categorías..." />
-        <button class="icon">
-          <font-awesome-icon icon="search" />
-        </button>
-      </div>
-    </div>
   </nav>
 </template>
 
@@ -135,7 +117,7 @@ export default {
     },
     checkScreen() {
       this.windowWidth = window.innerWidth
-      if (this.windowWidth <= 900) {
+      if (this.windowWidth <= 800) {
         this.mobile = true
       } else {
         this.mobile = false
@@ -226,67 +208,6 @@ ul {
     font-weight: 600;
     letter-spacing: 0.75px;
     font-size: 1.25rem;
-  }
-}
-
-.search-container {
-  margin: 0.5rem 1.5rem;
-  display: flex;
-  background: none;
-  align-content: center;
-  justify-content: center;
-  border: none;
-  // overflow: hidden;
-
-  .inner-container {
-    display: flex;
-    white-space: nowrap;
-    width: 100%;
-    font-size: 0.875rem;
-
-    input {
-      width: 100%;
-      height: 3.125rem;
-      background: #fff;
-      border: 1px solid #a1a1a128;
-      border-right: none;
-      color: #000;
-      padding-left: 1rem;
-      border-radius: 25px 0 0 25px;
-      outline: none;
-      transition: 50ms;
-    }
-
-    button {
-      border-radius: 0 25px 25px 0;
-      border: 1px solid #a1a1a128;
-      padding: 0;
-      border-left: none;
-      background: none;
-      height: 3.125rem;
-      width: 3.125rem;
-      transition: all 550ms ease;
-      color: var(--main-color);
-      font-size: 1rem;
-    }
-  }
-
-  .inner-container:hover,
-  .inner-container:active,
-  .inner-container:focus {
-    input {
-      border: 2px solid var(--main-color);
-    }
-    button {
-      background: var(--main-color);
-      cursor: pointer;
-      color: #fff;
-    }
-
-    button:hover {
-      background: var(--main-color);
-      font-size: 1.25rem;
-    }
   }
 }
 
@@ -426,7 +347,7 @@ ul {
   width: 90px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
   #btnRegistro {
     display: none;
   }

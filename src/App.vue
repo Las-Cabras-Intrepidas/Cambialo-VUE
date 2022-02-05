@@ -48,6 +48,10 @@ a {
   color: #2c3e50;
 }
 
+.sr-only {
+  display: none;
+}
+
 #nav {
   padding: 30px;
 

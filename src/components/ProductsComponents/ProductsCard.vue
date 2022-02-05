@@ -1,17 +1,18 @@
 <template>
-  <div class="inner-container">
-    <input
-      type="search"
-      id="search"
-      v-model="buscar"
-      placeholder="Busca en todas las categorías..."
-      class="form-control"
-    />
-    <button>Buscar</button>
+    <!-- Barra de busqueda-->
+  <div class="search-container desktop-search">
+    <div class="inner-container">
+      <input type="search" id="search" v-model="buscar" placeholder="iPhone 11, balón, camisa..."
+      />
+      <button @click="productSearch">
+        <font-awesome-icon class="search-icon" icon="search" />
+        <span class="sr-only">Buscar</span>
+      </button>
+    </div>
   </div>
   <div class="container-categories">
     <div
-      @click="selectedCategory = category.category;"
+      @click="selectedCategory = category.category"
       class="card-category"
       v-for="category in categories"
       :key="category.id"
@@ -20,12 +21,40 @@
       <h2>{{ category.category }}</h2>
     </div>
   </div>
-
   <div>
-    <button @click="selectedCategory = null">Mostrar Todos</button>
+    <button class="btn" @click="showAll">Mostrar Todos</button>
   </div>
-  <!-- Productos -->
-  <div class="container">
+  <!-- Productos buscados -->
+  <div class="container" v-if="showFiltered">
+    <div class="row-container">
+      <div class="row" v-for="filteredProduct in filteredProducts" :key="filteredProduct.id" :id="filteredProduct.category">
+        <div class="img-box">
+          <router-link
+            :to="{ name: 'ProductDetail', params: { id: filteredProduct.id } }"
+            @click="scrollToTop"
+          >
+            <img
+              :src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/' + filteredProduct.picture.replace('/', '%2F') + '?alt=media'"
+              :alt="filteredProduct.description"
+            />
+          </router-link>
+          <router-link
+            :to="{ name: 'ProductDetail', params: { id: filteredProduct.id } }"
+            @click="scrollToTop"
+          >
+            <font-awesome-icon class="icon" icon="handshake" />
+          </router-link>
+        </div>
+        <div class="flex">
+          <h4>{{ filteredProduct.title }}</h4>
+          <!--<p class="availability">{{product.available ? "Disponible" : "No Disponible" }}</p>-->
+          <p class="availability">Disponible</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Productos no buscados -->
+  <div class="container" v-else>
     <div class="row-container">
       <div class="row" v-for="product in shownProducts" :key="product.id" :id="product.category">
         <div class="img-box">
@@ -74,7 +103,9 @@ export default {
       productos: [],
       products: this.productos,
       idProduct: '',
-      buscar: ''
+      buscar: '',
+      filteredProducts: [],
+      showFiltered: false
     }
   },
   computed: {
@@ -87,9 +118,23 @@ export default {
     },
     // eslint-disable-next-line space-before-function-paren
     productSearch() {
-      return this.productos.filter(product => {
-        return product.title.toLowerCase().includes(this.buscar.toLowerCase())
-      })
+      // Buscar en el array de productos los elementos que incluyen la string que este en 'buscar'
+      // Se incluye una funcion de normalizar y regex para que tambien se tomen en cuenta los acentos.
+      // eslint-disable-next-line prefer-const
+      let filteredProducts = this.productos.filter(product => product.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(this.buscar))
+
+      // Comprobar que esta buscando los nombres bien
+      // eslint-disable-next-line prefer-const
+      for (let filteredProduct of filteredProducts) {
+        console.log(filteredProduct.title)
+      }
+
+      // Devolver los datos
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.filteredProducts = filteredProducts
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.showFiltered = true
+      return console.log(this.filteredProducts)
     }
   },
   methods: {
@@ -106,10 +151,11 @@ export default {
         const producto = doc.data()
         producto.id = doc.id
         this.productos.push(producto)
-        console.log(producto)
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data())
       })
+    },
+    showAll () {
+      this.selectedCategory = null
+      this.showFiltered = false
     }
   },
   // eslint-disable-next-line space-before-function-paren
@@ -120,7 +166,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
+.btn {
   padding: 8px 20px;
   font-weight: 600;
   border-radius: 30px;
@@ -138,10 +184,11 @@ button {
     color: var(--main-color);
   }
 }
-button:hover {
+.btn:hover {
   background-color: var(--main-color);
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
 }
 
 .container {
@@ -249,10 +296,10 @@ p {
 .container-categories {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 2rem;
+  margin: 2rem auto;
   flex-direction: row;
-  margin-bottom: 2rem;
   flex-wrap: wrap;
+  width: 80%;
 
   .card-category {
     transition: all 0.4s ease;
@@ -270,11 +317,80 @@ p {
   }
 
   .card-category:hover {
-    transform: scale(1.3);
+    transform: scale(1.1);
+    cursor: pointer;
   }
 
   .img-category {
     height: 140px;
+  }
+}
+
+.search-container {
+  margin: 0.5rem 1.5rem;
+  display: flex;
+  background: none;
+  align-content: center;
+  justify-content: center;
+  border: none;
+
+  .inner-container {
+    display: flex;
+    white-space: nowrap;
+    width: 90%;
+    font-size: 0.875rem;
+
+    input {
+      width: 95%;
+      height: 3.125rem;
+      background: #fff;
+      border: 1px solid #a1a1a128;
+      border-right: none;
+      color: #000;
+      padding-left: 1rem;
+      border-radius: 25px 0 0 25px;
+      outline: none;
+      transition: 50ms;
+    }
+
+    button {
+      border-radius: 0 25px 25px 0;
+      border: 1px solid #a1a1a128;
+      padding: 0;
+      border-left: none;
+      background: none;
+      height: 3.125rem;
+      width: 3.125rem;
+      transition: all 550ms ease;
+      color: var(--main-color);
+      font-size: 1rem;
+    }
+  }
+
+  .inner-container:hover,
+  .inner-container:active,
+  .inner-container:focus {
+    input {
+      border: 2px solid var(--main-color);
+    }
+    button {
+      background: var(--main-color);
+      cursor: pointer;
+      color: #fff;
+    }
+
+    button:hover {
+      background: var(--main-color);
+      font-size: 1.25rem;
+    }
+  }
+
+  .desktop-bar {
+  justify-content: space-between;
+  }
+
+  .desktop-search {
+    width: 50%;
   }
 }
 </style>
