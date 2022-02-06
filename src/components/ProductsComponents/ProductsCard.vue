@@ -94,8 +94,7 @@ export default {
   props: {
     msg: String
   },
-  // eslint-disable-next-line space-before-function-paren
-  data() {
+  data () {
     return {
       value: '',
       categories: categories,
@@ -109,15 +108,13 @@ export default {
     }
   },
   computed: {
-    // eslint-disable-next-line space-before-function-paren
-    shownProducts() {
+    shownProducts () {
       if (this.selectedCategory) {
         return this.productos.filter(productos => productos.idCategory === this.selectedCategory)
       }
       return this.productos
     },
-    // eslint-disable-next-line space-before-function-paren
-    productSearch() {
+    productSearch () {
       // Buscar en el array de productos los elementos que incluyen la string que este en 'buscar'
       // Se incluye una funcion de normalizar y regex para que tambien se tomen en cuenta los acentos.
       // eslint-disable-next-line prefer-const
@@ -138,12 +135,10 @@ export default {
     }
   },
   methods: {
-    // eslint-disable-next-line space-before-function-paren
-    scrollToTop() {
+    scrollToTop () {
       window.scrollTo(0, 0)
     },
-    // eslint-disable-next-line space-before-function-paren
-    async downloadProducts() {
+    async downloadProducts () {
       const db = getFirestore()
       const q = query(collection(db, 'Productos'), where('available', '==', 'Disponible'))
       const querySnapshot = await getDocs(q)
@@ -158,8 +153,7 @@ export default {
       this.showFiltered = false
     }
   },
-  // eslint-disable-next-line space-before-function-paren
-  mounted() {
+  mounted () {
     this.downloadProducts()
   }
 }
