@@ -1,30 +1,35 @@
 <template>
   <section class="central-cards">
-    <div>
-      <h2>Atencion al cliente</h2>
-      <p>
-        Contacta con nosotros y resolveremos cualquier duda o incidencia.
-        <br>
-      Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto
-        <router-link to="/contacto">aquí</router-link>.
-      </p>
-    </div>
-    <div>
-      <h2>Compromiso</h2>
-      <p>Nuestro objetivo es ayudarte a realizar tus cambios fácilmente.
-      <br>
-        Mejoramos para darte la mejor experiencia mientras das una segunda vida a las cosas que ya no necesitas.</p>
-    </div>
-    <div>
-      <h2>Gestión de incidencias</h2>
-      <p>Con tecnología innovadora y estricta seguridad, reducimos riesgos brindántote un mayor nivel de protección.
-      <br>
-      Te garantizamos un trueque justo.</p>
+    <div class="cards-container">
+      <div class="card">
+        <h1>Atencion al cliente</h1>
+        <p>
+          Contacta con nosotros y resolveremos cualquier duda o incidencia.
+          Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto
+          <router-link to="/contacto">aquí</router-link>.
+        </p>
+      </div>
+      <div class="card">
+        <h1>Compromiso</h1>
+        <p>
+          Nuestro objetivo es ayudarte a realizar cambios fácilmente.
+          Mejoramos para darte la mejor experiencia mientras das una segunda vida a las cosas que ya no necesitas.
+        </p>
+      </div>
+      <div class="card">
+        <h1>Gestión de incidencias</h1>
+        <p>
+          Con tecnología innovadora y estricta seguridad, reducimos riesgos para un mayor nivel de protección.
+          Te
+          <strong>garantizamos</strong> un trueque justo.
+        </p>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+
 export default {
   name: 'ValuesBanner'
 }
@@ -33,31 +38,37 @@ export default {
 <style lang="scss" scoped>
 .central-cards {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1.5rem 2rem;
-  margin-bottom: 4rem;
 
-  div {
-    width: 75%;
-    border-radius: 0.5rem;
+  .cards-container {
     display: flex;
+    flex-direction: row;
+    margin: 1.5rem 2rem;
+    margin-bottom: 4rem;
+  }
+
+  div.card {
+    border-radius: 0.5rem;
+    width: 85%;
+    display: flex;
+    text-align: justify;
     flex-direction: column;
     align-items: center;
     background-color: #113ccc;
     color: #fff;
-    margin: 10px;
-    padding: 1rem;
+    margin: 12.5px;
+    padding: 0.7rem;
     padding-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(36, 57, 77, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-    h2 {
-      font-weight: 600;
-      font-size: 1.25rem;
+    h1 {
+      font-weight: 800;
+      font-size: 1.3rem;
     }
 
     p {
       font-size: 1rem;
-      text-align: center;
+      text-align: justify;
       font-weight: 500;
       max-width: 80%;
       margin: 0.5rem 0;
@@ -69,30 +80,16 @@ export default {
     }
   }
 }
-
-@media (min-width: 750px) {
-  .central-cards{
-    div {
-      width: 65%;
-    }
-  }
+div:hover {
+  box-shadow: 0 14px 28px rgba(36, 57, 77, 0.25),
+    0 10px 10px rgba(44, 57, 95, 0.103);
 }
 
-@media (min-width: 1000px) {
+@media (max-width: 1000px) {
   .central-cards {
-    flex-direction: row;
-    justify-content: center;
-    div {
-      width: 25%;
+    .cards-container {
+      flex-direction: column;
     }
   }
-}
-
-@media (min-width: 1500px) {
-    .central-cards{
-    div {
-      width: 20%;
-      }
-    }
 }
 </style>
