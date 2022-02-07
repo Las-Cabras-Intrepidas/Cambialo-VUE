@@ -3,9 +3,7 @@
     <div class="hero-container">
       <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="Mosaico de artículos" />
       <h1>Conecta con otros usuarios y dale otra vida a lo que ya no usas.</h1>
-      <button id="btnBorrar1">
-        <router-link to="/registrate" @click="scrollToTop">Empieza aquí</router-link>
-      </button>
+      <router-link to="/registrate" @click="scrollToTop" class="btnBorrar1">Empieza aquí</router-link>
     </div>
   </section>
 </template>
@@ -55,31 +53,61 @@ export default {
     text-align: center;
   }
 
-  button {
-    padding: 8px 20px;
-    font-weight: 600;
-    border-radius: 30px;
-    line-height: 1.5rem;
-    font-size: 1rem;
-    background-color: #fff;
-    color: var(--main-color);
-    border: 2px solid var(--main-color);
-    text-decoration: none;
-    transition: all 300ms;
-    margin-right: 0.5rem;
-    margin-bottom: 1.5rem;
+  @mixin colorChange($color, $num) {
+    @if $num == 1 {
+      animation: colorize 0.5s ease-in-out forwards;
 
-    a {
-      color: var(--main-color);
+      @keyframes colorize {
+        0% {
+          color: $color;
+        }
+        25% {
+          color: $color;
+        }
+        100% {
+          color: white;
+        }
+      }
     }
   }
 
-  button:hover {
-    background-color: var(--main-color);
-    text-decoration: none;
+  .btnBorrar1 {
+    cursor: pointer;
+    font-weight: 600;
+    position: relative;
+    font-size: 1.25rem;
+    transition: all 2s;
+    background-color: #fff;
+    color: var(--main-color);
+    z-index: 5;
+    border-radius: 30px;
+    padding: 10px 17px;
+    text-align: center;
+    border: 2px solid var(--main-color);
+    transition: all 0.5s;
+    min-height: 1.5rem;
+    margin-right: 0.5rem;
 
-    a {
-      color: #fff;
+    &:hover {
+      @include colorChange(var(--main-color), 1);
+    }
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background-color: var(--main-color);
+      z-index: -1;
+      transition: all 0.5s;
+      border-radius: 30px;
+    }
+    &:hover::before {
+      width: 100%;
+      transition: 0.55s;
+      transform: scale(1.1);
+      border-radius: 30px;
     }
   }
 }
