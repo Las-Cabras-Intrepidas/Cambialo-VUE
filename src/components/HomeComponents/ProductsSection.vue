@@ -8,16 +8,16 @@
         :id="starProduct.category"
       >
         <div class="img-box">
-        <router-link to="/productos" @click="scrollToTop">
-          <img :src="starProduct.picture" :alt="starProduct.title" />
-        </router-link>
-        <router-link to="/productos" @click="scrollToTop">
-          <font-awesome-icon class="icon" icon="handshake" />
-        </router-link>
+          <router-link to="/productos" @click="scrollToTop">
+            <img :src="starProduct.picture" :alt="starProduct.title" />
+          </router-link>
+          <router-link to="/productos" @click="scrollToTop">
+            <font-awesome-icon class="icon" icon="handshake" />
+          </router-link>
         </div>
-        <div class="flex">
-        <h4>{{ starProduct.title }}</h4>
-        <p class="availability">{{ starProduct.available ? "Disponible" : "No Disponible" }}</p>
+        <div class="product-text">
+          <h4>{{ starProduct.title }}</h4>
+          <p class="availability">{{ starProduct.available ? "Disponible" : "No Disponible" }}</p>
         </div>
         <!-- <p>{{ starProduct.description }}</p> -->
       </div>
@@ -37,7 +37,9 @@ export default {
     }
   },
   methods: {
-    scrollToTop () {
+
+    // eslint-disable-next-line space-before-function-paren
+    scrollToTop() {
       window.scrollTo(0, 0)
     }
   }
@@ -58,26 +60,32 @@ export default {
 }
 
 .row {
-  box-shadow: 1px 1px 4px 1px #cfcfcf;
+  box-shadow: 1px 1px 4px 1px #cfcfcf85;
   border-radius: 1rem;
-  border: 2px solid #fff;
+  border: 1.5px solid #fff;
 }
 
 .row:hover {
-  border: 2px solid #012bb3;
+  border: 3px solid #012bb3;
+  transform: scale(1.15);
+  transition-duration: 500ms, 250ms;
 }
 
-.flex {
+.product-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   align-items: center;
   min-height: 2rem;
-  margin-top: 1.5rem
+  margin-top: 1.5rem;
 }
 
 .img-box {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
 img {
@@ -92,16 +100,14 @@ img {
   font-size: 1.25rem;
   right: 40%;
   background: var(--main-color);
-  border: 2px solid #fff;
-  padding: 0.6rem;
+  border: 2.5px solid #fff;
+  padding: 0.75rem;
   border-radius: 50%;
-  text-align:center;
 }
 
 .availability {
   color: green;
   font-weight: 600;
-  text-align: start;
 }
 
 h4 {
@@ -127,6 +133,9 @@ p {
   .row-container {
     grid-template-columns: repeat(4, 1fr);
   }
+  .icon {
+    right: 38%;
+  }
 }
 
 @media (min-width: 1300px) {
@@ -139,11 +148,17 @@ p {
       margin: 0 0 0 1rem;
     }
   }
+  .icon {
+    right: 38%;
+  }
 }
 
 @media (min-width: 1600px) {
   .container {
     max-width: 60%;
+  }
+  .icon {
+    right: 40%;
   }
 }
 </style>
