@@ -32,7 +32,10 @@
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>
         <button v-if="existUser" id="btnUserPage">
-          <router-link to="/usuario">{{ $store.state.user.email }}</router-link>
+          <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
+          <router-link to="/usuario">
+            <font-awesome-icon icon="user" />
+          </router-link>
         </button>
         <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">Cerrar sesión</router-link>
@@ -71,21 +74,27 @@
         <div>
           <ul>
             <li>
-              <router-link to="/">Inicio</router-link>
+              <router-link @click="toggleMobileNav" to="/">Inicio</router-link>
             </li>
             <li>
-              <router-link to="/productos">Productos</router-link>
+              <router-link @click="toggleMobileNav" to="/productos">Productos</router-link>
             </li>
             <li>
-              <router-link to="/contacto">Contacto</router-link>
+              <router-link @click="toggleMobileNav" to="/contacto">Contacto</router-link>
             </li>
           </ul>
           <div id="botonesLogin" class="login-buttons">
-            <button id="btnInicio">
-              <router-link to="/login">Iniciar sesión</router-link>
+            <button @click="toggleMobileNav" v-if="!existUser" id="btnInicio">
+              <router-link to="/login" @click="scrollToTop">Iniciar sesión</router-link>
             </button>
-            <button id="btnInicio">
-              <router-link to="/registrate">Registrarse</router-link>
+            <button @click="toggleMobileNav" v-if="!existUser" id="btnRegistro">
+              <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
+            </button>
+            <button @click="toggleMobileNav" v-if="existUser" id="btnUserPage">
+              <router-link to="/usuario">{{ $store.state.user.email }}</router-link>
+            </button>
+            <button @click="toggleMobileNav" v-if="existUser" id="btnLogOut">
+              <router-link to="/" @click="logOut">Cerrar sesión</router-link>
             </button>
           </div>
         </div>
@@ -348,10 +357,6 @@ ul {
 }
 
 @media (max-width: 1000px) {
-  #btnRegistro {
-    display: none;
-  }
-
   #btnInicio {
     white-space: nowrap;
   }

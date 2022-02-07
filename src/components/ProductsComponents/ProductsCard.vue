@@ -180,8 +180,7 @@ export default {
   border: 2px solid var(--main-color);
   text-decoration: none;
   transition: all 300ms;
-  margin-right: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0.5rem;
 
   a {
     color: var(--main-color);
@@ -330,12 +329,13 @@ p {
 }
 
 .search-container {
-  margin: 0.5rem 1.5rem;
+  margin: 0.5rem auto;
   display: flex;
   background: none;
   align-content: center;
   justify-content: center;
   border: none;
+  width: 50%;
 
   .inner-container {
     display: flex;
@@ -347,7 +347,7 @@ p {
       width: 95%;
       height: 3.125rem;
       background: #fff;
-      border: 1px solid #a1a1a128;
+      border: 1.5px solid #a1a1a167;
       border-right: none;
       color: #000;
       padding-left: 1rem;
@@ -358,7 +358,7 @@ p {
 
     button {
       border-radius: 0 25px 25px 0;
-      border: 1px solid #a1a1a128;
+      border: 1.5px solid #a1a1a167;
       padding: 0;
       border-left: none;
       background: none;
