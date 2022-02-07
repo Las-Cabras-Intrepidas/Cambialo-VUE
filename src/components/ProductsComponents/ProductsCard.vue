@@ -3,7 +3,7 @@
   <div class="search-container desktop-search">
     <div class="inner-container">
       <input type="search" id="search" v-model="buscar" placeholder="iPhone 11, balón, camisa..."
-      />
+      @keyup.enter="productSearch"/>
       <button @click="productSearch">
         <font-awesome-icon class="search-icon" icon="search" />
         <span class="sr-only">Buscar</span>
@@ -12,7 +12,7 @@
   </div>
   <div class="container-categories">
     <div
-      @click="selectedCategory = category.category"
+      @click="categorySearch(category.category)"
       class="card-category"
       v-for="category in categories"
       :key="category.id"
@@ -110,28 +110,10 @@ export default {
   computed: {
     shownProducts () {
       if (this.selectedCategory) {
-        return this.productos.filter(productos => productos.idCategory === this.selectedCategory)
+        return this.productos
+          .filter(productos => productos.idCategory === this.selectedCategory)
       }
       return this.productos
-    },
-    productSearch () {
-      // Buscar en el array de productos los elementos que incluyen la string que este en 'buscar'
-      // Se incluye una funcion de normalizar y regex para que tambien se tomen en cuenta los acentos.
-      // eslint-disable-next-line prefer-const
-      let filteredProducts = this.productos.filter(product => product.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(this.buscar))
-
-      // Comprobar que esta buscando los nombres bien
-      // eslint-disable-next-line prefer-const
-      for (let filteredProduct of filteredProducts) {
-        console.log(filteredProduct.title)
-      }
-
-      // Devolver los datos
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.filteredProducts = filteredProducts
-      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-      this.showFiltered = true
-      return console.log(this.filteredProducts)
     }
   },
   methods: {
@@ -151,6 +133,33 @@ export default {
     showAll () {
       this.selectedCategory = null
       this.showFiltered = false
+    },
+    productSearch () {
+      // Buscar en el array de productos los elementos que incluyen la string que este en 'buscar'
+      // Se incluye una funcion de normalizar y regex para que tambien se tomen en cuenta los acentos.
+      // eslint-disable-next-line prefer-const
+      let filteredProducts = this.productos
+        .filter(product =>
+          product.title
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .includes(this.buscar)
+        )
+      // Devolver los datos
+      this.filteredProducts = filteredProducts
+      this.showFiltered = true
+    },
+    categorySearch (category) {
+      this.selectedCategory = category
+      console.log(category)
+      const filteredProducts = this.productos
+        .filter(product =>
+          product.idCategory
+            .includes(this.selectedCategory))
+      // Devolver los datos
+      this.filteredProducts = filteredProducts
+      this.showFiltered = true
     }
   },
   mounted () {
