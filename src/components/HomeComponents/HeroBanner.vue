@@ -3,12 +3,19 @@
     <div class="hero-container">
       <img id="hash-logo" src="../../assets/img/hero_banner.webp" alt="Mosaico de artículos" />
       <h1>Conecta con otros usuarios y dale otra vida a lo que ya no usas.</h1>
-      <router-link to="/registrate" @click="scrollToTop" class="btnBorrar1">Empieza aquí</router-link>
+      <router-link
+        v-if="!existUser"
+        to="/registrate"
+        @click="scrollToTop"
+        class="btnBorrar1"
+      >Empieza aquí</router-link>
     </div>
   </section>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
 export default {
   name: 'HeroBanner',
   methods: {
@@ -16,6 +23,9 @@ export default {
     scrollToTop() {
       window.scrollTo(0, 0)
     }
+  },
+  computed: {
+    ...mapGetters(['existUser'])
   }
 }
 </script>

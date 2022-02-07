@@ -5,13 +5,19 @@
         <h3>¡Compra sin dinero!</h3>
         <h4>Únete a la nueva plataforma de intercambio</h4>
       </div>
-      <router-link to="/registrate" @click="scrollToTop" class="button">Empieza aquí</router-link>
+      <router-link
+        v-if="!existUser"
+        to="/registrate"
+        @click="scrollToTop"
+        class="button"
+      >Empieza aquí</router-link>
     </div>
   </div>
   <img class="hashtag" src="../../assets/img/hero_banner.webp" alt="Banner intercambio libros" />
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'SecondBanner',
   methods: {
@@ -19,6 +25,9 @@ export default {
     scrollToTop() {
       window.scrollTo(0, 0)
     }
+  },
+  computed: {
+    ...mapGetters(['existUser'])
   }
 }
 </script>
