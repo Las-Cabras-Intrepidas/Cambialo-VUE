@@ -67,7 +67,7 @@ export default {
 
 .row:hover {
   border: 3px solid #012bb3;
-  transform: scale(1.15);
+  transform: scale(1.05);
   transition-duration: 500ms, 250ms;
 }
 

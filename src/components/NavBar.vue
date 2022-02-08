@@ -31,17 +31,17 @@
         <!-- <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>-->
-        <button v-if="existUser" id="btnUserPage">
-          <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
           <router-link to="/usuario">
-            <font-awesome-icon icon="user" />
+            <button v-if="existUser" id="btnUserPage">
+          <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
+              <font-awesome-icon icon="user" />
+            </button>
           </router-link>
-        </button>
-        <button v-if="existUser" @click="logOut" id="btnLogOut">
           <router-link to="/">
-            <font-awesome-icon icon="power-off" />
+            <button v-if="existUser" @click="logOut" id="btnLogOut">
+              <font-awesome-icon icon="power-off" />
+            </button>
           </router-link>
-        </button>
       </div>
     </div>
   </nav>
@@ -227,6 +227,7 @@ ul {
 
   a {
     border-bottom: 3px solid transparent;
+    display: inline-block;
   }
 
   a:hover {
@@ -288,6 +289,7 @@ ul {
 
     a {
       color: var(--main-color);
+      display: inline-block;
     }
   }
 
