@@ -28,9 +28,9 @@
         <button v-if="!existUser" id="btnInicio">
           <router-link to="/login" @click="scrollToTop">Iniciar sesión</router-link>
         </button>
-        <button v-if="!existUser" id="btnRegistro">
+        <!-- <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
-        </button>
+        </button>-->
         <button v-if="existUser" id="btnUserPage">
           <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
           <router-link to="/usuario">
@@ -38,14 +38,10 @@
           </router-link>
         </button>
         <button v-if="existUser" @click="logOut" id="btnLogOut">
-          <router-link to="/">Cerrar sesión</router-link>
+          <router-link to="/">
+            <font-awesome-icon icon="power-off" />
+          </router-link>
         </button>
-        <!-- <router-link to="/usuario">
-          <font-awesome-icon v-if="existUser" :icon="['fas', 'user']" />
-        </router-link>
-        <router-link to="/">
-          <font-awesome-icon v-if="existUser" @click="logOut" :icon="['fas', 'power-off']" />
-        </router-link>-->
       </div>
     </div>
   </nav>
