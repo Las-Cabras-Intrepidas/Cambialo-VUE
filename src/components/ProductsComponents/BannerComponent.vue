@@ -24,7 +24,8 @@ h2 {
 }
 
 hr {
-  width: 400px;
+  min-width: 300px;
+  max-width: 400px;
   background: #012bb3;
   border: 3px solid #012bb3;
   border-radius: 8px;
