@@ -46,7 +46,7 @@
           </router-link>
         </div>
         <div class="flex">
-          <h4>{{ filteredProduct.title }}</h4>
+          <h4 id="productTitle">{{ filteredProduct.title }}</h4>
           <!--<p class="availability">{{product.available ? "Disponible" : "No Disponible" }}</p>-->
           <p class="availability">Disponible</p>
         </div>
