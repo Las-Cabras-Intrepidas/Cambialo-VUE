@@ -1,11 +1,10 @@
-/* eslint-disable space-before-function-paren */
 <template>
   <div>
     <h2 class="title-section">Echa un vistazo...</h2>
   </div>
   <div class="container-categories">
     <div
-      @click="filterResults(value)"
+      @click="scrollToTop"
       class="card-category"
       v-for="category in categories"
       :key="category.id"
@@ -24,8 +23,7 @@ import products from '../../assets/data/producto.json'
 
 export default {
   name: 'Categories',
-  // eslint-disable-next-line space-before-function-paren
-  data() {
+  data () {
     return {
       value: '',
       categories: categories,
@@ -33,11 +31,8 @@ export default {
       filter: []
     }
   },
-  methods: {
-    // eslint-disable-next-line space-before-function-paren
-    filterResults(value) {
-      console.log(value)
-    }
+  scrollToTop () {
+    window.scrollTo(0, 0)
   }
 }
 
@@ -47,7 +42,7 @@ export default {
 .title-section {
   text-align: left;
   margin-top: 2.5rem;
-  margin-left: 1rem;
+  margin-left: 15%;
 }
 .container-categories {
   display: grid;
@@ -56,11 +51,12 @@ export default {
   justify-items: center;
   margin: auto 5%;
 
+
   .card-category {
     max-width: 45%;
 
     img {
-      border-radius: 3px;
+      border-radius: 50%;
       opacity: 0.7;
       width: 100px;
       box-shadow: 0.5px 1px 5px black;

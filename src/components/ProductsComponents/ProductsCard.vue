@@ -46,7 +46,7 @@
           </router-link>
         </div>
         <div class="flex">
-          <h4>{{ filteredProduct.title }}</h4>
+          <h4 id="productTitle">{{ filteredProduct.title }}</h4>
           <!--<p class="availability">{{product.available ? "Disponible" : "No Disponible" }}</p>-->
           <p class="availability">Disponible</p>
         </div>
@@ -226,12 +226,12 @@ export default {
 
 .img-box {
   position: relative;
-}
 
-img {
-  max-width: 100%;
-  border-radius: 1rem 1rem 0 0;
-  height: 200px;
+  img {
+    max-width: 100%;
+    height: 150px;
+    border-radius: 1rem 1rem 0 0;
+  }
 }
 
 .icon {
@@ -239,7 +239,7 @@ img {
   bottom: -15px;
   color: #fff;
   font-size: 1.25rem;
-  right: 40%;
+  right: 35%;
   background: var(--main-color);
   border: 2px solid #fff;
   padding: 0.6rem;
@@ -269,6 +269,12 @@ p {
   .row-container {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+  }
+
+  .img-box {
+    img {
+      min-height: 200px;
+    }
   }
 }
 
@@ -309,7 +315,7 @@ p {
 
     img {
       border-radius: 50%;
-      width: 130px;
+      width: 85%;
       box-shadow: 0.5px 1px 5px black;
     }
 

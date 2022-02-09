@@ -67,7 +67,7 @@ export default {
 
 .row:hover {
   border: 3px solid #012bb3;
-  transform: scale(1.15);
+  transform: scale(1.05);
   transition-duration: 500ms, 250ms;
 }
 
@@ -98,7 +98,7 @@ img {
   bottom: -15px;
   color: #fff;
   font-size: 1.25rem;
-  right: 40%;
+  right: 30%;
   background: var(--main-color);
   border: 2.5px solid #fff;
   padding: 0.75rem;
@@ -122,6 +122,12 @@ p {
 }
 
 /* mediaqueries */
+@media (min-width: 600px) {
+   .icon {
+    right: 37%;
+  }
+}
+
 @media (min-width: 700px) {
   .row-container {
     grid-template-columns: repeat(3, 1fr);

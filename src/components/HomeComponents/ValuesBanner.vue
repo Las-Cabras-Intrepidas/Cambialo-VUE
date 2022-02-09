@@ -80,7 +80,8 @@ export default {
     }
   }
 }
-div:hover {
+
+div.card:hover {
   box-shadow: 0 14px 28px rgba(36, 57, 77, 0.25),
     0 10px 10px rgba(44, 57, 95, 0.103);
 }
