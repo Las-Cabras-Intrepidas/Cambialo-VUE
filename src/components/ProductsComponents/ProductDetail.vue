@@ -93,8 +93,9 @@ export default {
   display: flex;
   background-color: aliceblue;
   border-radius: 1rem;
-  margin: 5%;
+  margin: 5% auto;
   text-align: start;
+  width: 40%;
 
   img {
     width: 25%;
@@ -168,11 +169,12 @@ span {
 }
 .modal-send {
   position: absolute;
-  background: rgba(144, 238, 144, 0.616);
+  background: rgb(144, 238, 144);
   border: 1px solid green;
   border-radius: 8px;
   top: 500px;
   width: 30%;
+  box-shadow: 5px 12px 20px 3px #c1c1c1;
 }
 
 .msg {
@@ -266,6 +268,20 @@ fieldset {
   color: #888;
 }
 
+@media (max-width: 900px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+
+    img {
+      width: 55%;
+    }
+  }
+}
 /* ---------------------------------- */
 /* .fade-enter-active,
 .fade-leave-active {

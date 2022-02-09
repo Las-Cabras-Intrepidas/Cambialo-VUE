@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="add-box">
       <h2>Subir Producto</h2>
       <form
@@ -66,40 +66,50 @@
     </div>
     <div class="getProduct-box">
       <h2>Productos de {{ $store.state.user.email }}</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Disponibilidad</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Eliminar</th>
-            <th scope="col">Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in productos" :key="index">
-            <td>{{ item.title }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.available }}</td>
-            <td>{{ item.idCategory }}</td>
-            <td>
-              <img
-                v-bind:src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/' + item.picture.replace('/', '%2F') + '?alt=media'"
-              />
-            </td>
-            <td>
-              <button @click.prevent="deleteProduct(item.id, item.picture)" class="btnBlue">Eliminar</button>
-            </td>
-            <td>
-              <button class="btnBlue" @click="editProduct(item.id)">
-                <router-link :to="{ name: 'EditProduct', params: { id: item.id } }">Editar</router-link>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-for="(item, index) in productos" :key="index" class="products-cards-container">
+        <div class="products-card">
+          <div class="product-image-container">
+            <img
+              v-bind:src="'https://firebasestorage.googleapis.com/v0/b/cambialo-eoi.appspot.com/o/' + item.picture.replace('/', '%2F') + '?alt=media'"
+              class="product-image"
+            />
+          </div>
+          <div class="info-container">
+            <div class="sections-container">
+              <div class="product-name">
+                <span>{{ item.title }}</span>
+              </div>
+              <div class="product-availability">
+                <span>{{ item.available }}</span>
+              </div>
+              <div class="product-description">
+                <span>{{ item.description }}</span>
+              </div>
+              <div class="product-category">
+                <span>{{ item.idCategory }}</span>
+              </div>
+              <div class="product-buttons">
+                <div class="product-edit">
+                  <font-awesome-icon
+                    icon="trash"
+                    class="edit-button"
+                    @click.prevent="deleteProduct(item.id, item.picture)"
+                  ></font-awesome-icon>
+                </div>
+                <div class="product-edit">
+                  <router-link :to="{ name: 'EditProduct', params: { id: item.id } }">
+                    <font-awesome-icon
+                      @click="editProduct(item.id)"
+                      icon="edit"
+                      class="edit-button"
+                    />
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -109,7 +119,8 @@ import { getFirestore, collection, addDoc, query, where, getDocs, doc, deleteDoc
 import { getStorage, ref, uploadBytes, deleteObject } from 'firebase/storage'
 export default {
   name: 'AddProductUser',
-  data () {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
     return {
       title: '',
       description: '',
@@ -122,7 +133,8 @@ export default {
     }
   },
   methods: {
-    async addProduct () {
+    // eslint-disable-next-line space-before-function-paren
+    async addProduct() {
       const db = getFirestore()
       const uid = this.$store.state.user.uid
       const storage = getStorage()
@@ -150,7 +162,8 @@ export default {
           console.error('Error al añadir el documento: ', error)
         })
     },
-    async showDates () {
+    // eslint-disable-next-line space-before-function-paren
+    async showDates() {
       const db = getFirestore()
       const uid = this.$store.state.user.uid
       const q = query(collection(db, 'Productos'), where('idUser', '==', uid))
@@ -164,7 +177,8 @@ export default {
         console.log(doc.id, ' => ', doc.data())
       })
     },
-    async deleteProduct (id, urlImg) {
+    // eslint-disable-next-line space-before-function-paren
+    async deleteProduct(id, urlImg) {
       const storage = getStorage()
       const desertRef = ref(storage, urlImg)
       deleteObject(desertRef).then(() => {
@@ -177,7 +191,8 @@ export default {
           this.$router.go()
         })
     },
-    buscarImagen (event) {
+    // eslint-disable-next-line space-before-function-paren
+    buscarImagen(event) {
       console.log(event.target.files[0])
       const tipoArchivo = event.target.files[0].type
       if (tipoArchivo === 'image/jpeg' || tipoArchivo === 'image/png') {
@@ -195,38 +210,179 @@ export default {
       }
     }
   },
-  mounted () {
+  // eslint-disable-next-line space-before-function-paren
+  mounted() {
     this.showDates()
   }
 }
 </script>
-
-<style>
-table {
-  align-content: center;
-  align-items: center;
-  text-align: center;
-  border-collapse: collapse;
-  border: solid 2px blue;
-  margin: 40px;
+<style lang="scss" scoped>
+.container {
+  background-color: rgba(156, 156, 156, 0.041);
+  padding-top: 10px;
+  padding-bottom: 45px;
+}
+@keyframes over-and-back {
+  0% {
+    transform: rotate(0) scale(1.05);
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(10deg) scale(1.15);
+  }
+  100% {
+    transform: rotate(0) scale(1.2);
+  }
 }
 
-th {
-  border: solid 2px blue;
-}
-td {
-  border-bottom: solid 2px blue;
-}
-th,
-td {
-  padding: 20px;
+.products-cards-container {
+  display: flex;
+  border: 1.5px solid #81818133;
+  background-color: rgb(253, 253, 253);
+  width: 80%;
+  min-height: 100px;
+  border-radius: 15px;
+  margin: 10px;
 
-  margin: 0;
-}
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(36, 57, 77, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(1.05);
+    transform: translateY(-5px);
+    background-color: rgba(175, 175, 175, 0.096);
+  }
+  .products-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
 
-td img {
-  height: 100px;
-  width: 140px;
+    .product-image-container {
+      aspect-ratio: auto 1 / 1;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      height: 100%;
+
+      margin-right: 2%;
+      .product-image {
+        position: absolute;
+        object-fit: fill;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        min-height: 100%;
+        height: auto;
+
+        border-radius: 15px;
+        background-size: cover;
+      }
+    }
+    .info-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 2px;
+      overflow: hidden;
+      box-sizing: border-box;
+      height: 100%;
+
+      .sections-container {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+        text-align: justify;
+        width: 100%;
+        padding: 15px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        height: 100% !important;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+
+        .product-name {
+          flex: 0 0 15%;
+          max-width: 15;
+          font-weight: 500;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+          white-space: nowrap;
+        }
+        .product-availability {
+          flex: 0 0 15%;
+          max-width: 15%;
+          margin-left: 2%;
+          margin-right: 2%;
+          align-items: center;
+          text-align: center;
+          span {
+            color: #018a1e;
+            font-weight: 600;
+          }
+        }
+        .product-description {
+          flex: 0 0 15%;
+          max-width: 15%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+          white-space: nowrap;
+          margin-left: 2%;
+          margin-right: 2%;
+          align-items: center;
+          text-align: center;
+        }
+        .product-category {
+          flex: 0 0 15%;
+          max-width: 15%;
+          font-weight: 600;
+          align-items: center;
+          text-align: center;
+        }
+        .product-buttons {
+          flex: 0 0 30%;
+          max-width: 30%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          text-align: center;
+          .product-delete {
+            flex: 0 0 50%;
+
+            width: auto;
+          }
+          .product-edit {
+            flex: 1 1 50%;
+            width: 100%;
+            margin-right: 3%;
+
+            .edit-button {
+              color: var(--main-color);
+
+              font-size: 2rem;
+
+              max-width: 50%;
+
+              &:hover {
+                animation: over-and-back 400ms;
+                transform: scale(1.2);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 form {
@@ -259,27 +415,6 @@ form {
   width: 350px;
 }
 
-.btnBlue {
-  width: 100px;
-  padding: 5px 10px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  background-color: rgb(255, 255, 255);
-  color: var(--main-color);
-  border: 2px solid var(--main-color);
-  text-decoration: none;
-  min-height: 2.5rem;
-  margin: 0 auto;
-}
-
-.btnBlue:hover {
-  color: #fff;
-  background-color: var(--main-color);
-  border: 2px solid var(--main-color);
-  text-decoration: none;
-  cursor: pointer;
-}
 .formUpload {
   display: flex;
   flex-direction: column;
@@ -300,7 +435,44 @@ form {
 }
 @media (max-width: 768px) {
   .category {
-    flex-wrap: wrap;
+  }
+  .sections-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1px;
+  }
+  @media (max-width: 630px) {
+    .sections-container {
+      padding: -15px;
+      margin-right: -43px;
+
+      .product-name {
+        flex: 0 0 32% !important;
+        margin-right: 16%;
+      }
+      .product-availability {
+        display: none;
+        overflow: hidden;
+      }
+      .product-description {
+        overflow: hidden;
+        display: none;
+      }
+      .product-category {
+        display: none;
+        overflow: hidden;
+      }
+      .product-edit {
+        min-width: 50px;
+        margin: -10%;
+        padding-right: -16%;
+        .edit-button {
+          font-size: 3rem;
+
+          max-width: 100%;
+        }
+      }
+    }
   }
 }
 </style>

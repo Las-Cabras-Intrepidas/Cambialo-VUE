@@ -1,32 +1,32 @@
 [
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504362/categorias/product1_tqljos.jpg",
-        "category": "Tecnología",
-        "id": 1
-    },
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504362/categorias/product2_b2mcnu.jpg",
-        "category": "Hogar",
-        "id": 2
-    },
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504362/categorias/product3_euhopv.jpg",
-        "category": "Mascotas",
-        "id": 3
-    },
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product5_yidszn.jpg",
-        "category": "Juegos",
-        "id": 4
-    },
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product4_mwucg6.jpg",
-        "category": "Ropa",
-        "id": 5
-    },
-    {
-        "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/v1642504361/categorias/product6_dmzxyj.jpg",
-        "category": "Deporte",
-        "id": 6
-    }
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product1_tqljos.jpg",
+    "category": "Tecnología",
+    "id": 1
+  },
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product2_b2mcnu.jpg",
+    "category": "Hogar",
+    "id": 2
+  },
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product3_euhopv.jpg",
+    "category": "Mascotas",
+    "id": 3
+  },
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product5_yidszn.jpg",
+    "category": "Juegos",
+    "id": 4
+  },
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product4_mwucg6.jpg",
+    "category": "Ropa",
+    "id": 5
+  },
+  {
+    "picture": "https://res.cloudinary.com/dleqykpqi/image/upload/c_scale,h_150,w_150/categorias/product6_dmzxyj.jpg",
+    "category": "Deporte",
+    "id": 6
+  }
 ]
