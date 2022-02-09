@@ -10,10 +10,10 @@
       v-for="category in categories"
       :key="category.id"
     >
-    <router-link to="/productos">
-      <img class="img-category" :src="category.picture" :alt="category.category" />
-      <h2>{{ category.category }}</h2>
-    </router-link>
+      <router-link to="/productos">
+        <img class="img-category" :src="category.picture" :alt="category.category" />
+        <h2>{{ category.category }}</h2>
+      </router-link>
     </div>
   </div>
 </template>
@@ -54,6 +54,7 @@ export default {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.5rem;
   justify-items: center;
+  margin: auto 5%;
 
   .card-category {
     max-width: 45%;
@@ -76,6 +77,14 @@ export default {
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 450px) {
+  .container-categories {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    column-gap: 14vh;
   }
 }
 </style>
