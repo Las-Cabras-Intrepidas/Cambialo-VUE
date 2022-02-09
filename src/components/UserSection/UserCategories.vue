@@ -23,7 +23,8 @@ import products from '../../assets/data/producto.json'
 
 export default {
   name: 'Categories',
-  data () {
+  /* eslint-disable space-before-function-paren */
+  data() {
     return {
       value: '',
       categories: categories,
@@ -31,7 +32,8 @@ export default {
       filter: []
     }
   },
-  scrollToTop () {
+  /* eslint-disable space-before-function-paren */
+  scrollToTop() {
     window.scrollTo(0, 0)
   }
 }
@@ -50,7 +52,6 @@ export default {
   gap: 1.5rem;
   justify-items: center;
   margin: auto 5%;
-
 
   .card-category {
     max-width: 45%;
