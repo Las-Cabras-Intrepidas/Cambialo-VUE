@@ -31,17 +31,17 @@
         <!-- <button v-if="!existUser" id="btnRegistro">
           <router-link to="/registrate" @click="scrollToTop">Registrarse</router-link>
         </button>-->
-          <router-link to="/usuario">
-            <button v-if="existUser" id="btnUserPage">
-          <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
-              <font-awesome-icon icon="user" />
-            </button>
-          </router-link>
-          <router-link to="/">
-            <button v-if="existUser" @click="logOut" id="btnLogOut">
-              <font-awesome-icon icon="power-off" />
-            </button>
-          </router-link>
+        <router-link to="/usuario">
+          <button v-if="existUser" id="btnUserPage">
+            <!-- <router-link to="/usuario">{{ $store.state.user.email }}</router-link> -->
+            <font-awesome-icon icon="user" />
+          </button>
+        </router-link>
+        <router-link to="/">
+          <button v-if="existUser" @click="logOut" id="btnLogOut">
+            <font-awesome-icon icon="power-off" />
+          </button>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -76,7 +76,7 @@
               <router-link @click="toggleMobileNav" to="/productos">Productos</router-link>
             </li>
             <li>
-              <router-link @click="toggleMobileNav" to="/contacto">Contacto</router-link>
+              <router-link @click="toggleMobileNav" to="/conocenos">Conócenos</router-link>
             </li>
           </ul>
           <div id="botonesLogin" class="login-buttons">
