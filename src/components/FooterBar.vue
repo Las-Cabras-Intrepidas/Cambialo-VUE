@@ -18,17 +18,21 @@
       <div class="desktop-bg">
         <ul class="footer-list icon-flex">
           <li class="footer-link">
-            <a href="https://www.facebook.com/Cambialocom-111304798084313/" target="_blank">
+            <a
+              href="https://www.facebook.com/Cambialocom-111304798084313/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <font-awesome-icon :icon="['fab', 'facebook-square']" />
             </a>
           </li>
           <li class="footer-link">
-            <a href="https://www.instagram.com/cambialo.eu/" target="_blank">
+            <a href="https://www.instagram.com/cambialo.eu/" target="_blank" rel="noreferrer">
               <font-awesome-icon :icon="['fab', 'instagram']" />
             </a>
           </li>
           <li class="footer-link">
-            <a href="https://twitter.com/CambialoES" target="_blank">
+            <a href="https://twitter.com/CambialoES" target="_blank" rel="noreferrer">
               <font-awesome-icon :icon="['fab', 'twitter-square']" />
             </a>
           </li>
@@ -63,7 +67,8 @@
 export default {
   name: 'FooterBar',
   methods: {
-    scrollToTop () {
+    // eslint-disable-next-line space-before-function-paren
+    scrollToTop() {
       window.scrollTo(0, 0)
     }
   }

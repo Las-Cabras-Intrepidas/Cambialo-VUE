@@ -2,22 +2,22 @@
   <section class="central-cards">
     <div class="cards-container">
       <div class="card">
-        <h1>Atencion al cliente</h1>
+        <h3>Atencion al cliente</h3>
         <p>
           Contacta con nosotros y resolveremos cualquier duda o incidencia.
-          Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto
-          <router-link to="/contacto">aquí</router-link>.
+          Estamos a tu disposición las 24 horas del día. Puedes acceder a nuestros datos de contacto a través de nuestro
+          <router-link to="/contacto">formulario</router-link>.
         </p>
       </div>
       <div class="card">
-        <h1>Compromiso</h1>
+        <h3>Compromiso</h3>
         <p>
           Nuestro objetivo es ayudarte a realizar cambios fácilmente.
           Mejoramos para darte la mejor experiencia mientras das una segunda vida a las cosas que ya no necesitas.
         </p>
       </div>
       <div class="card">
-        <h1>Gestión de incidencias</h1>
+        <h3>Gestión de incidencias</h3>
         <p>
           Con tecnología innovadora y estricta seguridad, reducimos riesgos para un mayor nivel de protección.
           Te
@@ -61,7 +61,7 @@ export default {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(36, 57, 77, 0.25);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-    h1 {
+    h3 {
       font-weight: 800;
       font-size: 1.3rem;
     }
