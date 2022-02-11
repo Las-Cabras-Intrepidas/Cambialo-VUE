@@ -112,14 +112,15 @@ export default {
   padding: 3%;
   min-height: calc(100vh - 200px);
   margin-bottom: 2%;
+     color: #253238;
 }
 
 .login__container {
-  background: linear-gradient(#1db8c2, #012db3);
+  background: #fff;
   border: 5px solid white;
   border-radius: 40px;
-  color: white;
-  padding: 60px 68px 40px;
+     color: #253238;
+  padding: 50px 58px 30px;
   min-height: 500px;
   min-width: 200px;
   display: flex;
@@ -131,10 +132,12 @@ export default {
 .login__container--form {
   display: flex;
   flex-direction: column;
+     color: #253238;
 }
 
 .login__container--form label {
-  font-size: 14px;
+  font-size: 18px;
+     color: #253238;
 }
 
 .login__container--remember-me {
@@ -146,7 +149,7 @@ export default {
 
 .login__container--remember-me a {
   color: white;
-  font-size: 14px;
+  font-size: 18px;
   text-decoration: none;
 }
 
@@ -157,8 +160,9 @@ export default {
 .login__container--social-media > div {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 10px;
+     color: #253238;
 }
 
 .login__container--social-media > div > img {
@@ -168,11 +172,12 @@ export default {
 
 .login__container--register {
   margin-top: -50px;
+     color: #253238;
 }
 
 .login__container--register a {
-  font-size: 16px;
-  color: white;
+  font-size: 18px;
+    color: #151515;
   font-weight: bold;
   text-decoration: none;
 }
@@ -186,16 +191,16 @@ export default {
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 2px solid white;
-  font-family: "Muli", sans-serif;
-  font-size: 16px;
+  border-bottom: 2px solid  #253238;
+  font-family: "Avenir", sans-serif;
+  font-size: 18px;
   margin-bottom: 20px;
   padding: 0px 0px 5px 20px;
   padding-bottom: 5px;
 }
 
 ::placeholder {
-  color: white;
+     color: #253238;
 }
 
 .login__container--form > button {
@@ -219,5 +224,8 @@ export default {
 
 .login__container--remember-me > a {
   margin-top: 2px;
+}
+#loginButton {
+  background-color: var(--main-color);
 }
 </style>

@@ -15,7 +15,7 @@
             class="input"
             id="userRegister"
             type="text"
-            placeholder="Correo electrónico"
+            placeholder="Dirección de email"
             required
             v-model="email"
           />
@@ -114,6 +114,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+    color: #253238;
   flex-direction: column;
   padding: 3%;
   min-height: calc(100vh - 200px);
@@ -121,11 +122,13 @@ export default {
 }
 
 .login__container {
-  background: linear-gradient(#1db8c2, #012db3);
+
+  background: #fff;
+
   border: 5px solid white;
   border-radius: 40px;
-  color: white;
-  padding: 60px 68px 40px;
+  color: #253238;
+  padding: 60px 48px 40px;
   min-height: 500px;
   min-width: 200px;
   display: flex;
@@ -137,22 +140,26 @@ export default {
 .login__container--form {
   display: flex;
   flex-direction: column;
+    color: #253238;
 }
 
 .login__container--form label {
-  font-size: 14px;
+  font-size: 18px;
+    color: #253238;
+
+    align-items: center;
 }
 
 .login__container--remember-me {
-  color: white;
+    color: #253238;
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
 
 .login__container--remember-me a {
-  color: white;
-  font-size: 14px;
+   color: #253238;
+  font-size: 18px;
   text-decoration: none;
 }
 
@@ -178,13 +185,14 @@ export default {
 
 .login__container--register a {
   font-size: 16px;
-  color: white;
+  color: #151515;
   font-weight: bold;
   text-decoration: none;
 }
 
 .login__container--register a:hover {
   text-decoration: underline;
+  color: #253238;
 }
 
 .input {
@@ -192,16 +200,17 @@ export default {
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 2px solid white;
-  font-family: "Muli", sans-serif;
+  border-bottom: 2px solid #253238;
+  font-family: "Avenir", sans-serif;
   font-size: 16px;
   margin-bottom: 20px;
   padding: 0px 0px 5px 20px;
   padding-bottom: 5px;
+   color: #253238;
 }
 
 ::placeholder {
-  color: white;
+  color: #253238;
 }
 
 .login__container--form > button {
@@ -225,5 +234,15 @@ export default {
 
 .login__container--remember-me > a {
   margin-top: 2px;
+}
+#checkTerms {
+  border: 1px solid #253238;
+}
+
+#formRegister {
+  label {}
+}
+#loginButton {
+  background-color: var(--main-color);
 }
 </style>
